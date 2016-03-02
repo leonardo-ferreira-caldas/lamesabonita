@@ -7,6 +7,12 @@
     </div>
     <ul class="nav nav-sidebar" v-cloak>
         <li class="">
+            <a title="Groups" href="{{ route('admin.dashboard') }}">
+                <i class="fa fa-tachometer fa-fw"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li class="">
             <a title="Groups" href="{{ route('backoffice.chef.listar') }}">
                 <i class="fa fa-group fa-fw"></i>
                 <span>Chefs</span>
