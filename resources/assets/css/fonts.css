@@ -1,0 +1,161 @@
+@font-face {
+    font-family: 'icomoon';
+    src:url('/fonts/icomoon/icomoon.eot?8pnttv');
+    src:url('fonts/icomoon/icomoon.eot?8pnttv#iefix') format('embedded-opentype'),
+    url('/fonts/icomoon/icomoon.ttf?8pnttv') format('truetype'),
+    url('/fonts/icomoon/icomoon.woff?8pnttv') format('woff'),
+    url('/fonts/icomoon/icomoon.svg?8pnttv#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icomoon-"], [class*=" icomoon-"] {
+    font-family: 'icomoon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icomoon-tree2:before {
+    content: "\e828";
+}
+.icomoon-credit-card:before {
+    content: "\e803";
+}
+.icomoon-envelope:before {
+    content: "\e817";
+}
+.icomoon-stats:before {
+    content: "\e818";
+}
+.icomoon-calendar2:before {
+    content: "\e826";
+}
+.icomoon-user-tie:before {
+    content: "\e80b";
+}
+.icomoon-trophy:before {
+    content: "\e819";
+}
+.icomoon-glass:before {
+    content: "\e804";
+}
+.icomoon-spoon-knife:before {
+    content: "\e805";
+}
+.icomoon-power:before {
+    content: "\e810";
+}
+.icomoon-clipboard:before {
+    content: "\e81a";
+}
+.icomoon-tree:before {
+    content: "\e827";
+}
+.icomoon-earth:before {
+    content: "\e812";
+}
+.icomoon-flag:before {
+    content: "\e81b";
+}
+.icomoon-flow-tree:before {
+    content: "\e829";
+}
+.icomoon-price-ribbon:before {
+    content: "\e814";
+}
+.icomoon-creditcards:before {
+    content: "\e82a";
+}
+.icomoon-vcard:before {
+    content: "\e815";
+}
+.icomoon-heartbeat:before {
+    content: "\e80f";
+}
+.icomoon-board:before {
+    content: "\e816";
+}
+.icomoon-lightning:before {
+    content: "\e813";
+}
+.icomoon-heart2:before {
+    content: "\e80e";
+}
+.icomoon-food2:before {
+    content: "\e80a";
+}
+.icomoon-sitemap:before {
+    content: "\e82b";
+}
+.icomoon-sitemap2:before {
+    content: "\e82c";
+}
+.icomoon-drink:before {
+    content: "\e80c";
+}
+.icomoon-drink2:before {
+    content: "\e80d";
+}
+.icomoon-microwave:before {
+    content: "\e806";
+}
+.icomoon-profile:before {
+    content: "\e800";
+}
+.icomoon-profile2:before {
+    content: "\e801";
+}
+.icomoon-profile3:before {
+    content: "\e802";
+}
+.icomoon-heart:before {
+    content: "\e807";
+}
+.icomoon-star:before {
+    content: "\e81c";
+}
+.icomoon-user:before {
+    content: "\e81d";
+}
+.icomoon-diamond:before {
+    content: "\e811";
+}
+.icomoon-phone:before {
+    content: "\e81e";
+}
+.icomoon-news:before {
+    content: "\e81f";
+}
+.icomoon-mail:before {
+    content: "\e820";
+}
+.icomoon-note:before {
+    content: "\e821";
+}
+.icomoon-banknote:before {
+    content: "\e822";
+}
+.icomoon-study:before {
+    content: "\e823";
+}
+.icomoon-food:before {
+    content: "\e808";
+}
+.icomoon-t-shirt:before {
+    content: "\e809";
+}
+.icomoon-calendar:before {
+    content: "\e824";
+}
+.icomoon-wallet:before {
+    content: "\e825";
+}
+

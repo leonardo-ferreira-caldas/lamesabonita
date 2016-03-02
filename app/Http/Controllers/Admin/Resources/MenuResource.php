@@ -1,0 +1,126 @@
+<?php
+
+namespace App\Http\Controllers\Admin\Resources;
+
+use Admin\Business\AdminBO;
+use App\Business\MenuBO;
+use App\Facades\Upload;
+use App\Mappers\RepositoryMapper;
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+
+class MenuResource extends Controller
+{
+    private $repository;
+    private $admin;
+    private $menu;
+
+    public function __construct(AdminBO $bo, MenuBO $menu, RepositoryMapper $mapper)
+    {
+        $this->repository = $mapper;
+        $this->admin = $bo;
+        $this->menu = $menu;
+        $this->middleware('guest_admin');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getListar()
+    {
+        return view('admin.menus.listar', [
+            'status' => $this->repository->produto_status->all()
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getBuscarRegistros()
+    {
+        return $this->repository->menu->getTodosMenus();
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function postSalvar(Request $request)
+    {
+        if (!$request->has('id_menu')) {
+            return redirectWithAlertError("Código do menu não informado.");
+        }
+
+        $this->menu->salvar($request->all());
+
+        return redirectWithAlertSuccess('Os dados do menu foram salvos com sucesso.')->back();
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getEditar($slug)
+    {
+        $menu = $this->repository->menu->findBySlug($slug, true);
+        $imagens = $this->repository->menu_imagem->getImagens($menu->id_menu);
+        $menuCulinaria = $this->repository->menu_culinaria->getCulinarias($menu->id_menu);
+        $menuRefeicao = $this->repository->menu_refeicao->getRefeicoes($menu->id_menu);
+        $refeicoes = $this->repository->tipo_refeicao->all();
+        $culinarias = $this->repository->culinaria->all();
+        $status = $this->repository->produto_status->all();
+
+        return view('admin.menus.formulario', [
+            'menu'            => $menu,
+            'menu_culinarias' => $menuCulinaria,
+            'menu_refeicoes'  => $menuRefeicao,
+            'imagens'         => $imagens,
+            'refeicoes'       => $refeicoes,
+            'culinarias'      => $culinarias,
+            'status'          => $status
+        ]);
+    }
+
+    /**
+     * Deleta uma imagem do menu
+     *
+     * @param int $idMenuImagem
+     */
+    public function getDeletarImagem($idMenuImagem) {
+
+        $imagem = $this->repository->menu_imagem->findById($idMenuImagem);
+
+        $this->repository->menu_imagem->deleteById($idMenuImagem);
+
+        Upload::deletar($imagem->nome_imagem);
+
+        $this->repository->menu_imagem->atualizarPrimeiraFotoComoCapa($imagem->fk_menu);
+
+        return redirectWithAlertSuccess('Foto deletada com sucesso.')->back();
+    }
+
+    /**
+     * Define uma imagem do menu como capa
+     *
+     * @param int $idMenuImagem
+     */
+    public function getDefinirCapa($idMenuImagem) {
+
+        $imagem = $this->repository->menu_imagem->findById($idMenuImagem);
+
+        $this->repository->menu_imagem->atualizarFotoCapa($imagem->fk_menu, $idMenuImagem);
+
+        return redirectWithAlertSuccess('Foto definida como capa com sucesso.')->back();
+    }
+
+}
