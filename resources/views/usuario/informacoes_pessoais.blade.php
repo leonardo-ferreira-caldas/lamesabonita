@@ -98,7 +98,8 @@
 
                 <div class='col_half'>
                     <label for="fk_pais">País <small>*</small></label>
-                    <input required readonly type="text" id="cep" name="cep" value="{{ $dados->nome_pais }}" class="sm-form-control required">
+                    <input type="hidden" name="fk_pais" value="BR">
+                    <input required disabled type="text" value="Brasil" class="sm-form-control required">
                 </div>
 
                 <div class='col_half col_last'>
