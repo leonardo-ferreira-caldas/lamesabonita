@@ -9,6 +9,7 @@ SELECT
   chef.slug,
   chef.fk_status as status,
   chef_status.descricao as status_descricao,
+  chef_status.cor_texto as status_cor,
   IFNULL(chef.avatar, :avatar) as avatar,
   concat(users.name, ' ', chef.sobrenome) as nome_completo,
   date_format(chef.data_nascimento, '%d/%m/%Y') as data_nascimento,

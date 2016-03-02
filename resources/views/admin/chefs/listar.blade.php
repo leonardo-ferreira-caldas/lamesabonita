@@ -71,7 +71,7 @@
                                             </div>
                                         </td>
                                         <td>@{{ registro.nome_completo }}</td>
-                                        <td>@{{ registro.status_descricao }}</td>
+                                        <td style="color: @{{ registro.status_cor }}">@{{ registro.status_descricao }}</td>
                                         <td nowrap="nowrap">
 
                                             <a class="btn btn-sm btn-gray pull-right" href="/backoffice/chef/detalhes/@{{ registro.slug }}">
