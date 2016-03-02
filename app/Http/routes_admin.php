@@ -54,20 +54,24 @@ Route::group(['middleware' => ['web'], 'prefix' => 'backoffice'], function () {
     Route::get('chef/reprovar/{slug}',      'Admin\Resources\ChefResource@getReprovarPerfil')->name('backoffice.chef.reprovar');
     Route::get('chef/deletar',              'Admin\Resources\ChefResource@getDeletar')->name('backoffice.chef.deletar');
 
-    Route::get('menu',                      'Admin\Resources\MenuResource@getListar')->name('backoffice.menu.listar');
-    Route::get('menu/buscar',               'Admin\Resources\MenuResource@getBuscarRegistros')->name('backoffice.menu.registros');
+    Route::get('menu',                     'Admin\Resources\MenuResource@getListar')->name('backoffice.menu.listar');
+    Route::get('menu/buscar',              'Admin\Resources\MenuResource@getBuscarRegistros')->name('backoffice.menu.registros');
     Route::get('menu/salvar',              'Admin\Resources\MenuResource@getInserir')->name('backoffice.menu.inserir');
     Route::post('menu/salvar',             'Admin\Resources\MenuResource@postSalvar')->name('backoffice.menu.salvar');
-    Route::get('menu/editar/{slug}',        'Admin\Resources\MenuResource@getEditar')->name('backoffice.menu.editar');
-    Route::get('menu/deletar',              'Admin\Resources\MenuResource@getDeletar')->name('backoffice.menu.deletar');
-    Route::get('menu/imagem/deletar/{id}',  'Admin\Resources\MenuResource@getDeletarImagem')->name('backoffice.menu.imagem.deletar');
-    Route::get('menu/imagem/capa/{id}',     'Admin\Resources\MenuResource@getDefinirCapa')->name('backoffice.menu.imagem.definir_capa');
+    Route::get('menu/editar/{slug}',       'Admin\Resources\MenuResource@getEditar')->name('backoffice.menu.editar');
+    Route::get('menu/aprovar/{slug}',      'Admin\Resources\MenuResource@getAprovar')->name('backoffice.menu.aprovar');
+    Route::get('menu/reprovar/{slug}',     'Admin\Resources\MenuResource@getReprovar')->name('backoffice.menu.reprovar');
+    Route::get('menu/deletar',             'Admin\Resources\MenuResource@getDeletar')->name('backoffice.menu.deletar');
+    Route::get('menu/imagem/deletar/{id}', 'Admin\Resources\MenuResource@getDeletarImagem')->name('backoffice.menu.imagem.deletar');
+    Route::get('menu/imagem/capa/{id}',    'Admin\Resources\MenuResource@getDefinirCapa')->name('backoffice.menu.imagem.definir_capa');
 
     Route::get('curso',                      'Admin\Resources\CursoResource@getListar')->name('backoffice.curso.listar');
     Route::get('curso/buscar',               'Admin\Resources\CursoResource@getBuscarRegistros')->name('backoffice.curso.registros');
     Route::get('curso/inserir',              'Admin\Resources\CursoResource@getInserir')->name('backoffice.curso.inserir');
     Route::post('curso/inserir',             'Admin\Resources\CursoResource@postSalvar')->name('backoffice.curso.salvar');
     Route::get('curso/editar/{slug}',        'Admin\Resources\CursoResource@getEditar')->name('backoffice.curso.editar');
+    Route::get('curso/aprovar/{slug}',       'Admin\Resources\CursoResource@getAprovar')->name('backoffice.curso.aprovar');
+    Route::get('curso/reprovar/{slug}',      'Admin\Resources\CursoResource@getReprovar')->name('backoffice.curso.reprovar');
     Route::get('curso/deletar',              'Admin\Resources\CursoResource@getDeletar')->name('backoffice.curso.deletar');
     Route::get('curso/imagem/deletar/{id}',  'Admin\Resources\CursoResource@getDeletarImagem')->name('backoffice.curso.imagem.deletar');
     Route::get('curso/imagem/capa/{id}',     'Admin\Resources\CursoResource@getDefinirCapa')->name('backoffice.curso.imagem.definir_capa');

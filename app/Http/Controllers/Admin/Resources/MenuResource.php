@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Admin\Resources;
 
 use Admin\Business\AdminBO;
 use App\Business\MenuBO;
+use App\Constants\ProdutoStatusContants;
 use App\Facades\Upload;
 use App\Mappers\RepositoryMapper;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class MenuResource extends Controller
 {
@@ -89,6 +91,32 @@ class MenuResource extends Controller
             'culinarias'      => $culinarias,
             'status'          => $status
         ]);
+    }
+
+    /**
+     * Aprova um menu
+     *
+     * @param string $slug
+     * @return RedirectResponse
+     */
+    public function getAprovar($slug) {
+
+        $this->repository->menu->atualizarStatusProduto($slug, ProdutoStatusContants::STATUS_APROVADO);
+
+        return redirectWithAlertSuccess('Menu aprovado com sucesso!')->back();
+    }
+
+    /**
+     * Reprova um menu
+     *
+     * @param string $slug
+     * @return RedirectResponse
+     */
+    public function getReprovar($slug) {
+
+        $this->repository->menu->atualizarStatusProduto($slug, ProdutoStatusContants::STATUS_REPROVADO);
+
+        return redirectWithAlertSuccess('Menu reprovado com sucesso!')->back();
     }
 
     /**

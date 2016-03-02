@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Resources;
 
 use Admin\Business\AdminBO;
 use App\Business\CursoBO;
+use App\Constants\ProdutoStatusContants;
 use App\Facades\Upload;
 use App\Mappers\RepositoryMapper;
 use Illuminate\Http\Request;
@@ -89,6 +90,32 @@ class CursoResource extends Controller
             'culinarias'        => $culinarias,
             'status'            => $status
         ]);
+    }
+
+    /**
+     * Aprova um curso
+     *
+     * @param string $slug
+     * @return RedirectResponse
+     */
+    public function getAprovar($slug) {
+
+        $this->repository->curso->atualizarStatusProduto($slug, ProdutoStatusContants::STATUS_APROVADO);
+
+        return redirectWithAlertSuccess('Curso aprovado com sucesso!')->back();
+    }
+
+    /**
+     * Reprova um curso
+     *
+     * @param string $slug
+     * @return RedirectResponse
+     */
+    public function getReprovar($slug) {
+
+        $this->repository->curso->atualizarStatusProduto($slug, ProdutoStatusContants::STATUS_REPROVADO);
+
+        return redirectWithAlertSuccess('Curso reprovado com sucesso!')->back();
     }
 
     /**

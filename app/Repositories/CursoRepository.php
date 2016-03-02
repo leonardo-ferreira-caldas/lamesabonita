@@ -148,6 +148,19 @@ class CursoRepository extends AbstractRepository {
     }
 
     /**
+     * Atualiza o status de produto de um curso
+     *
+     * @param string $slug
+     * @param int $status
+     * @return void
+     */
+    public function atualizarStatusProduto($slug, $status) {
+        $this->updateBySlug($slug, [
+            'fk_status' => $status
+        ]);
+    }
+
+    /**
      * Retorna a quantidade de cursos de um chef
      *
      * @param int $id Código do Chef (PK)

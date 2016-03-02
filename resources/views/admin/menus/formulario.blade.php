@@ -13,6 +13,18 @@
                     <i class="fa fa-list-alt rightmargin-xsm"></i> Voltar para a listagem
                 </a>
 
+                <a class="btn btn-danger pull-right rightmargin-sm topmargin-sm"
+                   href="{{ route('backoffice.menu.reprovar', ['slug' => $menu->slug]) }}">
+                    <i class="fa fa-times"></i>&nbsp;
+                    Reprovar
+                </a>
+
+                <a class="btn btn-success pull-right rightmargin-sm topmargin-sm"
+                   href="{{ route('backoffice.menu.aprovar', ['slug' => $menu->slug]) }}">
+                    <i class="fa fa-check"></i>&nbsp;
+                    Aprovar
+                </a>
+
                 <h1 class="title">Menu</h1>
             </div>
         </div>

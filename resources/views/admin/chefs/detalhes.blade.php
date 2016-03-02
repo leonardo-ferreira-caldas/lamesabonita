@@ -29,7 +29,7 @@
                                             Aprovar Perfil
                                         </a>&nbsp;&nbsp;
                                         <a class="btn btn-danger" href="{{ route('backoffice.chef.reprovar', ['slug' => $chef->slug]) }}">
-                                            <i class="fa fa-check"></i>&nbsp;
+                                            <i class="fa fa-times"></i>&nbsp;
                                             Reprovar Perfil
                                         </a>
                                     </div>

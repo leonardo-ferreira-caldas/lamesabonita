@@ -174,6 +174,19 @@ class MenuRepository extends AbstractRepository {
     }
 
     /**
+     * Atualiza o status de produto de um menu
+     *
+     * @param string $slug
+     * @param int $status
+     * @return void
+     */
+    public function atualizarStatusProduto($slug, $status) {
+        $this->updateBySlug($slug, [
+            'fk_status' => $status
+        ]);
+    }
+
+    /**
      * Retorna a quantidade de menus de um chef
      *
      * @param int $id Código do Chef (PK)
