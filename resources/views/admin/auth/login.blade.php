@@ -30,6 +30,8 @@
 
                                         {!! csrf_field() !!}
 
+                                        @include('includes.errors')
+
                                         <input class="form-control top" placeholder="Usuário ou Email"
                                                 autofocus="autofocus" autocapitalize="off" autocorrect="off" type="text"
                                                 name="email"/>
