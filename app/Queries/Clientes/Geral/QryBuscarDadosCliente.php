@@ -17,10 +17,10 @@ SELECT
 FROM
   degustador
 INNER JOIN
-  degustador_endereco ON degustador_endereco.fk_degustador = degustador.id_degustador AND degustador_endereco.ind_endereco_principal = true
-INNER JOIN
   users ON users.id = degustador.id_degustador
-INNER JOIN
+LEFT JOIN
+  degustador_endereco ON degustador_endereco.fk_degustador = degustador.id_degustador AND degustador_endereco.ind_endereco_principal = true
+LEFT JOIN
   pais ON degustador_endereco.fk_pais = pais.id_pais
 WHERE
   degustador.id_degustador = :id_cliente
