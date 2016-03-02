@@ -22,7 +22,7 @@ class RedirectIfAuthenticated
                 return redirect()->route('chef.visao_geral');
             }
 
-            return redirect()->to('cliente.pagina_inicial');
+            return redirect()->route('cliente.pagina_inicial');
         }
 
         return $next($request);
