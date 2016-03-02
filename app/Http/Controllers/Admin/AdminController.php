@@ -17,7 +17,7 @@ class AdminController extends Controller
     public function __construct(RepositoryMapper $mapper)
     {
         $this->repository = $mapper;
-        $this->middleware('guest_admin');
+        $this->middleware('guest_admin', ['except' => ['getLogin']]);
     }
 
     /**
