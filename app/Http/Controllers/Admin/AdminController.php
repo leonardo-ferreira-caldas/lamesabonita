@@ -17,7 +17,7 @@ class AdminController extends Controller
     public function __construct(RepositoryMapper $mapper)
     {
         $this->repository = $mapper;
-        $this->middleware('guest_admin', ['except' => ['getLogin']]);
+        $this->middleware('guest_admin');
     }
 
     /**
@@ -41,5 +41,25 @@ class AdminController extends Controller
      */
     public function getLogin() {
         return view('admin.auth.login');
+    }
+
+    /**
+     * Aprova um comentário/avaliação feita pelo cliente
+     *
+     * @return view
+     */
+    public function getAprovarAvaliacao($idAvaliacao) {
+        $this->repository->avaliacao->aprovar($idAvaliacao);
+        return redirectWithAlertSuccess("Avaliação aprovada com sucesso!")->back();
+    }
+
+    /**
+     * Reprova um comentário/avaliação feita pelo cliente
+     *
+     * @return view
+     */
+    public function getReprovarAvaliacao($idAvaliacao) {
+        $this->repository->avaliacao->reprovar($idAvaliacao);
+        return redirectWithAlertSuccess("Avaliação aprovada com sucesso!")->back();
     }
 }

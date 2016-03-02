@@ -29,8 +29,30 @@ class AvaliacaoRepository extends AbstractRepository
             'fk_chef'       => $dadosAvaliacao['id_chef'],
             'fk_produto'    => $dadosAvaliacao['id_produto'],
             'fk_tipo_avaliacao' => $dadosAvaliacao['fk_tipo_avaliacao'],
-            'ind_aprovado'  => false
+            'ind_aprovado'  => 0
         ]);
+    }
+
+    /**
+     * Aprova uma avaliação
+     *
+     * @param int $idAvaliacao
+     * @return void
+     */
+    public function aprovar($idAvaliacao) {
+        $this->updateById($idAvaliacao, [
+            'ind_aprovado'  => true
+        ]);
+    }
+
+    /**
+     * Reprova uma avaliação
+     *
+     * @param int $idAvaliacao
+     * @return void
+     */
+    public function reprovar($idAvaliacao) {
+        $this->deleteById($idAvaliacao);
     }
 
     /**

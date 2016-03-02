@@ -5,6 +5,9 @@ Route::group(['middleware' => ['web'], 'prefix' => 'backoffice'], function () {
     Route::get('/', 'Admin\AdminController@getDashboard');
     Route::get('dashboard', 'Admin\AdminController@getDashboard')->name('admin.dashboard');
 
+    Route::get('avaliacao/aprovar/{id}', 'Admin\AdminController@getAprovarAvaliacao')->name('admin.avaliacao.aprovar');
+    Route::get('avaliacao/reprovar/{id}', 'Admin\AdminController@getReprovarAvaliacao')->name('admin.avaliacao.reprovar');
+
     Route::post('login', 'Admin\AuthController@postLogin')->name('admin.login.post');
     Route::get('login', 'Admin\AdminController@getLogin')->name('admin.login');
     Route::get('logout', 'Admin\AuthController@getLogout')->name('admin.logout');

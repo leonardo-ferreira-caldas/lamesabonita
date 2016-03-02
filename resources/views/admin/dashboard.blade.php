@@ -226,11 +226,11 @@
                                     <td>{{ $avaliacao->nota }}</td>
                                     <td>
 
-                                        <a class="btn btn-sm btn-danger pull-right leftmargin-sm" target="_blank" href="#">
+                                        <a class="btn btn-sm btn-danger pull-right leftmargin-sm" href="{{ route('admin.avaliacao.reprovar', ['id' => $avaliacao->id_avaliacao]) }}">
                                             <i class="fa fa-times"></i> Reprovar
                                         </a>
 
-                                        <a class="btn btn-sm btn-success pull-right" target="_blank" href="#">
+                                        <a class="btn btn-sm btn-success pull-right" href="{{ route('admin.avaliacao.aprovar', ['id' => $avaliacao->id_avaliacao]) }}">
                                             <i class="fa fa-check"></i> Aprovar
                                         </a>
 

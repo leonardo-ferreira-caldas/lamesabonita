@@ -42,7 +42,7 @@
                                     <a class="btn btn-gray" href="{{ route('backoffice.chef.editar', ['slug' => $chef->slug]) }}">
                                         <i class="fa fa-pencil"></i>&nbsp; Editar Informações
                                     </a>&nbsp;&nbsp;
-                                    <a class="btn btn-gray" target="_blank" href="chef/{{ $chef->slug }}/perfil">
+                                    <a class="btn btn-gray" target="_blank" href="/chef/{{ $chef->slug }}/perfil">
                                         <i class="fa fa-eye"></i>&nbsp; Ver Perfil
                                     </a>
                                 </div>

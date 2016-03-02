@@ -5,6 +5,8 @@ namespace App\Business;
 use App\Constants\ChefConstants;
 use App\Constants\CursoConstants;
 use App\Constants\MenuConstants;
+use App\Constants\ProdutoStatusContants;
+use App\Model\ProdutoStatusModel;
 use Illuminate\Support\Facades\Bus;
 use App\Constants\BuscaConstants;
 use App\Facades\Query;
@@ -273,7 +275,9 @@ class BuscaBO
     public function excutarBuscar()
     {
 
-        $queryParams = [];
+        $queryParams = [
+            'id_chef_status'    => ChefConstants::STATUS_ATIVO
+        ];
 
         if ($this->isFiltrarApenasMenus()) {
             $queryParams['tipo'] = BuscaConstants::BUSCA_TIPO_MENU;

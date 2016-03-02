@@ -30,7 +30,8 @@ FROM (
     LEFT JOIN
       avaliacao ON avaliacao.fk_chef = chef.id_chef
     WHERE
-      menu.ind_ativo = 1
+      menu.ind_ativo = 1 AND
+      menu.fk_status = 1
     #WHERE#
     GROUP BY
       menu.id_menu
@@ -63,7 +64,8 @@ FROM (
     LEFT JOIN
       avaliacao ON avaliacao.fk_chef = chef.id_chef
     WHERE
-      curso.ind_ativo = 1
+      curso.ind_ativo = 1 AND
+      curso.fk_status = 1
     #WHERE#
     GROUP BY
       curso.id_curso
@@ -105,6 +107,11 @@ if (isset($params['reputacao'])) {
 if (isset($params['id_cidade'])) {
     $filtros[] = sprintf("chef.fk_cidade = %s", $params['id_cidade']);
     unset($bindings['id_cidade']);
+}
+
+if (isset($params['id_chef_status'])) {
+    $filtros[] = sprintf("chef.fk_status = %s", $params['id_chef_status']);
+    unset($bindings['id_chef_status']);
 }
 
 $filtros = !empty($filtros) ? (" AND " . implode(" AND ", $filtros)) : "";
