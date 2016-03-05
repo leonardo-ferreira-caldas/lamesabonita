@@ -67,7 +67,7 @@
                                     | filterBy filtro_status in 'status'">
                                         <td>
                                             <div class="dash-project-avatar">
-                                                <img class="avatar project-avatar s46" src="/images/uploads/@{{ registro.avatar }}">
+                                                <img class="avatar project-avatar s46" src="/image/46/46/@{{ registro.avatar }}">
                                             </div>
                                         </td>
                                         <td>@{{ registro.nome_completo }}</td>

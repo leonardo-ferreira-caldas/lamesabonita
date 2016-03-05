@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Contracts\Validation\UnauthorizedException;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -48,7 +49,10 @@ class Handler extends ExceptionHandler
         if ($this->isHttpException($e)) {
             return view('errors.404');
 
-        } else if ($e instanceof ApplicationException) {
+        } else if ($e instanceof UnauthorizedException) {
+            return redirect()->to('login');
+
+        } if ($e instanceof ApplicationException) {
             if ($request->ajax()) {
                 return response()->json([
                     'type' => $e->getType(),

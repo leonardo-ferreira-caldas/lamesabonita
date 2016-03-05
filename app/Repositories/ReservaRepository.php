@@ -39,6 +39,36 @@ class ReservaRepository extends AbstractRepository {
     }
 
     /**
+     * Verifica se o usuário logado ja reservou um menu
+     *
+     * @param int $idUsuario
+     * @param int $idMenu
+     * @return bool
+     */
+    public function jaReservouMenu($idUsuario, $idMenu) {
+        return $this->exists([
+            'fk_degustador' => $idUsuario,
+            'fk_menu'       => $idMenu,
+            'fk_status'     => ReservaConstants::STATUS_RELIZADA
+        ]);
+    }
+
+    /**
+     * Verifica se o usuário logado ja reservou um curso
+     *
+     * @param int $idUsuario
+     * @param int $idCurso
+     * @return bool
+     */
+    public function jaReservouCurso($idUsuario, $idCurso) {
+        return $this->exists([
+            'fk_degustador' => $idUsuario,
+            'fk_curso'      => $idCurso,
+            'fk_status'     => ReservaConstants::STATUS_RELIZADA
+        ]);
+    }
+
+    /**
      * Realiza a busca de reservas por status
      *
      * @param $idDegustador

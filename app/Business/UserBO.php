@@ -4,6 +4,7 @@ namespace App\Business;
 
 use App\Constants\AvaliacaoConstants;
 use App\Exceptions\ErrorException;
+use App\Exceptions\NotAllowedException;
 use Illuminate\Support\Str;
 use App\Facades\Autenticacao;
 use App\Handlers\EmailHandler;
@@ -75,8 +76,16 @@ class UserBO
         }
 
         if ($dadosAvaliacao['tipo'] == 'menu') {
+            if (!$this->repository->reserva->jaReservouMenu(Autenticacao::getId(), $dadosAvaliacao['id_produto'])) {
+                throw new NotAllowedException("Só é permitido avaliar menus que você já reservou!");
+            }
+
             $dadosAvaliacao['fk_tipo_avaliacao'] = AvaliacaoConstants::TIPO_MENU;
         } else {
+            if (!$this->repository->reserva->jaReservouCurso(Autenticacao::getId(), $dadosAvaliacao['id_produto'])) {
+                throw new NotAllowedException("Só é permitido avaliar cursos que você já reservou!");
+            }
+
             $dadosAvaliacao['fk_tipo_avaliacao'] = AvaliacaoConstants::TIPO_CURSO;
         }
 

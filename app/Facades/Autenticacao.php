@@ -3,7 +3,7 @@
 namespace App\Facades;
 
 use Auth;
-use Illuminate\Auth\Access\UnauthorizedException;
+use Illuminate\Contracts\Validation\UnauthorizedException;
 
 class Autenticacao {
 
