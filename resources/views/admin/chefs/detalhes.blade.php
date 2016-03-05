@@ -47,7 +47,7 @@
                                     </a>
                                 </div>
                                 <div class="avatar-holder">
-                                    <img class="avatar s160" src="/images/uploads/{{ $chef->avatar }}">
+                                    <img class="avatar s160" src="{{ crop($chef->avatar, 160, 160) }}">
                                 </div>
                                 <div class="cover-title">
                                     {{ $chef->nome_completo }}
