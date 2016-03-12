@@ -51,7 +51,7 @@
         <li v-show="open == 'menu'">
             <a title="Merge Requests" class="shortcuts-merge_requests submenu" href="{{ route('cadastro.tipo_refeicao.listar') }}">
                 <i class="fa fa-angle-double-right fa-fw"></i>
-                <span>Tipos de Refeição</span>
+                <span>Eventos</span>
             </a>
         </li>
         <li v-show="open == 'menu'">

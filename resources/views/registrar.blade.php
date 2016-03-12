@@ -19,17 +19,6 @@
                 <div class="acc_content clearfix mb-nobottompadding">
                     @include('includes.errors')
 
-                    {{--<div class="col_full marginbottom10px">--}}
-                        {{--<a href="{{ url('facebook/login') }}" class="button btn-full button-3d button-rounded button-facebook text-center button-blue"><i class="fa fa-facebook"></i> CRIAR CONTA COM FACEBOOK</a>--}}
-                    {{--</div>--}}
-
-                    {{--<div class="col_full marginbottom10px">--}}
-                        {{--<a href="#" class="button btn-full button-3d button-rounded button-google-plus text-center button-red"><i class="fa fa-google-plus"></i> CRIAR CONTA COM O GOOGLE+</a>--}}
-                    {{--</div>--}}
-
-                    {{--<div class="clear"></div>--}}
-                    {{--<br>--}}
-
                     <form action="/registrar" id="register-form" name="register-form" class="nobottommargin" method="POST">
                         {!! csrf_field() !!}
 
@@ -63,7 +52,7 @@
                         </div>
 
                         <div class="col_full nobottommargin">
-                            <button class="button mb-button-full text-center button-3d nomargin" id="login-form-submit" name="login-form-submit" value="login">
+                            <button class="button mb-button-full btn-full text-center button-3d nomargin" id="login-form-submit" name="login-form-submit" value="login">
                                 <i class="fa fa-sign-in"></i> Cadastrar
                             </button>
                         </div>

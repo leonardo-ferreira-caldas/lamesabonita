@@ -167,7 +167,7 @@
                     </div>
                 </article>
 
-                <article class="portfolio-item pf-media pf-icons" style="position: absolute; left: 854px; top: 0px;">
+                <article class="portfolio-item pf-media pf-icons" style="position: absolute; left: 852px; top: 0px;">
                     <div class="portfolio-image">
                         <a href="portfolio-single.php">
                             <img src="{{ crop('bolo_abacaxi.jpg', 284, 213) }}" alt="Open Imagination" style="visibility: visible; opacity: 1; display: block;">
@@ -227,7 +227,7 @@
                     </div>
                 </article>
 
-                <article class="portfolio-item pf-media pf-icons" style="position: absolute; left: 854px; top: 213px;">
+                <article class="portfolio-item pf-media pf-icons" style="position: absolute; left: 852px; top: 213px;">
                     <div class="portfolio-image">
                         <a href="portfolio-single.php">
                             <img src="{{ crop('pudim_morango_2.jpg', 284, 213) }}" alt="Open Imagination" style="visibility: visible; opacity: 1; display: block;">
@@ -333,16 +333,6 @@
     $(document).ready(function() {
         var animations = [["fadeInUp","fadeInDown"],["fadeInLeft","fadeInRight"]];
         var shuffle    = animations[Math.floor(Math.random()*animations.length)];
-//        $(".title-home span").Morphext({
-//            animation: shuffle[0],
-//            separator: ",",
-//            speed: 5000
-//        });
-//        $(".title-home div").Morphext({
-//            animation: shuffle[1] || shuffle[0],
-//            separator: ",",
-//            speed: 5000
-//        });
 
         $("#city_chef").focus();
     });

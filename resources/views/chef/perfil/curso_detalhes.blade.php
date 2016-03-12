@@ -117,8 +117,10 @@
 
             </div>
 
-            @include ('includes.avaliacoes')
-
+            @include ('includes.avaliacoes', [
+                'id_produto' => $curso->id_curso,
+                'tipo'       => 'curso'
+            ])
 
         </div>
     </div>

@@ -19,13 +19,6 @@
                 <div class="acc_content clearfix mb-nobottompadding">
                     @include('includes.errors')
 
-                    {{--<div class="col_full marginbottom10px">--}}
-                        {{--<a href="{{ url('facebook/login') }}" class="button btn-full button-3d button-rounded button-facebook text-center button-blue"><i class="fa fa-facebook"></i> ENTRAR COM FACEBOOK</a>--}}
-                    {{--</div>--}}
-
-                    {{--<div class="col_full marginbottom10px">--}}
-                        {{--<a href="#" class="button btn-full button-3d button-rounded button-google-plus text-center button-red"><i class="fa fa-google-plus"></i> ENTRAR COM O GOOGLE+</a>--}}
-                    {{--</div>--}}
 
                     <form id="login-form" name="login-form" class="nobottommargin" action="{{ route('post.login') }}" method="POST">
                         {!! csrf_field() !!}
@@ -57,7 +50,7 @@
                             <a href="{{ url('recuperar-senha') }}" style="margin-top: 4px;" class="fright mb-nofloat">Esqueceu sua senha?</a>
                         </div>
 
-                        <button class="button button-3d btn-full nomargin" value="login"><i class="fa fa-check-square-o"></i> Login</button>
+                        <button class="button button-3d btn-full nomargin" value="login"><i class="fa fa-check-square-o"></i> Entrar</button>
                     </form>
                 </div>
 

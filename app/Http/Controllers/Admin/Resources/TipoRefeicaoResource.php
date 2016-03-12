@@ -55,7 +55,7 @@ class TipoRefeicaoResource extends Controller
             $registro = $this->tipo_refeicao->inserir($request->get('nome_tipo_refeicao'));
         }
 
-        return redirectWithAlertSuccess('O tipo de refeição foi salvo com sucesso.')
+        return redirectWithAlertSuccess('O evento foi salvo com sucesso.')
             ->route('cadastro.tipo_refeicao.editar', ['id' => $registro->id_tipo_refeicao]);
     }
 
@@ -107,6 +107,6 @@ class TipoRefeicaoResource extends Controller
 
         $this->admin->excluirTipoRefeicao($request->get('id'));
 
-        return redirectWithAlertSuccess('Refeição deletada com sucesso!')->route('cadastro.tipo_refeicao.listar');
+        return redirectWithAlertSuccess('O evento foi deletado com sucesso!')->route('cadastro.tipo_refeicao.listar');
     }
 }

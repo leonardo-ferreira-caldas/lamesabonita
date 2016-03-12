@@ -33,7 +33,7 @@
 
         @include("admin.includes.menu")
 
-        <div class="content-wrapper" id="tipo_culinaria">
+        <div class="content-wrapper" id="menu-formulario">
             <div class="container-fluid container-limited container-bg-light">
                 <div class="content">
                     <div class="clearfix">
@@ -43,6 +43,7 @@
                         <form class="form-horizontal"
                               action="{{ route('backoffice.menu.salvar') }}"
                               accept-charset="UTF-8"
+                              enctype="multipart/form-data"
                               method="POST">
 
                             {!! csrf_field() !!}
@@ -54,7 +55,7 @@
                                             <label class="block-label" for="id_menu">Código</label>
                                             <input value="{{ $menu->id_menu }}" class="form-control" readonly="readonly"
                                                    type="text" name="id_menu">
-                                        </div>
+                                          </div>
 
                                         <div class="col-sm-8">
                                             <label class="block-label" for="titulo">Titulo</label>
@@ -160,7 +161,7 @@
 
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <label class="block-label" for="descricao">Tipos de Refeições</label>
+                                            <label class="block-label" for="descricao">Eventos</label>
                                             <div class="gray-border bg-white allpadding-sm noleftpadding nobottompadding toppadding-xsm">
                                                 <div class="radio">
                                                     @foreach($refeicoes as $refeicao)
@@ -211,46 +212,53 @@
 
                                             <label class="block-label" for="descricao">Fotos</label>
 
-                                            @if (count($imagens) == 0)
-                                                <div class="bg-white allpadding-sm gray-border center">
-                                                    Nenhuma foto cadastrada.
-                                                </div>
+                                            <div>
 
-                                            @else
+                                                @foreach ($imagens as $imagem)
 
-                                                <div>
-
-                                                    @foreach ($imagens as $imagem)
-
-                                                        <div class="picture rightmargin-sm" style="width: 200px;{{ $imagem->ind_capa ? 'background: #EAEAEA;' : '' }}">
-                                                            <a target="_blank" href="/images/uploads/{{ $imagem->nome_imagem }}">
-                                                                <img src="{{ crop($imagem->nome_imagem, 178, 100) }}">
-                                                            </a>
-                                                            <div class="row topmargin-sm">
-                                                                <div class="col-md-12">
-                                                                    <a
-                                                                        class="btn btn-sm btn-block btn-danger bottommargin-xsm"
-                                                                        href="{{ route('backoffice.menu.imagem.deletar', ['id' => $imagem->id_menu_imagem]) }}"
-                                                                    >
-                                                                        <i class="fa fa-trash rightmargin-xsm"></i> Deletar Foto
-                                                                    </a>
-                                                                </div>
-                                                                <div class="col-md-12">
-                                                                    <a
-                                                                        class="btn btn-sm btn-block btn-info bottommargin-xsm"
-                                                                        href="{{ route('backoffice.menu.imagem.definir_capa', ['id' => $imagem->id_menu_imagem]) }}"
-                                                                    >
-                                                                        <i class="fa fa-picture-o rightmargin-xsm"></i> Definir como principal
-                                                                    </a>
-                                                                </div>
+                                                    <div class="picture rightmargin-sm bottommargin-sm" style="width: 200px;{{ $imagem->ind_capa ? 'background: rgb(255, 236, 143);' : '' }}">
+                                                        <a target="_blank" href="/images/uploads/{{ $imagem->nome_imagem }}">
+                                                            <img src="{{ crop($imagem->nome_imagem, 178, 100) }}">
+                                                        </a>
+                                                        <div class="row topmargin-sm">
+                                                            <div class="col-md-12">
+                                                                <a
+                                                                    class="btn btn-sm btn-block btn-danger bottommargin-xsm"
+                                                                    href="{{ route('backoffice.menu.imagem.deletar', ['id' => $imagem->id_menu_imagem]) }}"
+                                                                >
+                                                                    <i class="fa fa-trash rightmargin-xsm"></i> Deletar Foto
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <a
+                                                                    class="btn btn-sm btn-block btn-info bottommargin-xsm"
+                                                                    href="{{ route('backoffice.menu.imagem.definir_capa', ['id' => $imagem->id_menu_imagem]) }}"
+                                                                >
+                                                                    <i class="fa fa-picture-o rightmargin-xsm"></i> Definir como principal
+                                                                </a>
                                                             </div>
                                                         </div>
+                                                    </div>
 
-                                                    @endforeach
+                                                @endforeach
 
+                                            </div>
+
+                                            <div class="clearfix"></div>
+
+                                            <div class="bg-white allpadding-sm gray-border topmargin-sm">
+
+                                                <div v-for="foto in fotos" class="bottommargin-sm">
+                                                    <input type="file" name="menu_foto[]" class="foto-upload">
+                                                    <button type="button" v-on:click="remover($index)" class="btn btn-danger btn-sm leftmargin-sm">
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
                                                 </div>
 
-                                            @endif
+                                                <button type="button" v-on:click="adicionar" class="btn btn-success">
+                                                    <i class="fa fa-camera-retro rightmargin-xsm"></i> Adiciona Foto
+                                                </button>
+                                            </div>
 
                                         </div>
                                     </div>
@@ -273,5 +281,7 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript" src="/admin/js/menu/formulario.vue.js"></script>
 
 @endsection

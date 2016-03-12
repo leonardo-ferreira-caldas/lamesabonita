@@ -26719,3 +26719,7 @@ table .sherlock-code {
 .nobottompadding {padding-bottom: 0px !important;}
 .noleftpadding {padding-left: 0px !important;}
 .norightpadding {padding-right: 0px !important;}
+
+.foto-upload {
+    display: inline-block !important;
+}

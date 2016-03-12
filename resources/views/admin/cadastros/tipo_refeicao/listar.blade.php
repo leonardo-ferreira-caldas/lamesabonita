@@ -18,7 +18,7 @@
                         </li>
                     </ul>
                 </div>
-                <h1 class="title">Tipos de Refeição</h1>
+                <h1 class="title">Eventos</h1>
             </div>
         </div>
     </header>
@@ -34,14 +34,14 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="filter-item">
-                                        <input v-model="filtro" type="text" placeholder="Pesquise refeições..." class="search-input form-control ui-autocomplete-input" spellcheck="false" autocomplete="off">
+                                        <input v-model="filtro" type="text" placeholder="Pesquise eventos..." class="search-input form-control ui-autocomplete-input" spellcheck="false" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col-md-7">
                                     <div class="pull-right">
                                         <a class="btn btn-new" href="{{ route('cadastro.tipo_refeicao.inserir') }}">
                                             <i class="fa fa-plus"></i>
-                                            &nbsp;Adicionar Nova Refeição
+                                            &nbsp;Adicionar Novo Evento
                                         </a>
                                     </div>
                                 </div>
@@ -53,7 +53,7 @@
                                 <thead class="panel-heading">
                                 <tr>
                                     <th>Cód</th>
-                                    <th>Nome Refeição</th>
+                                    <th>Nome Evento</th>
                                     <th></th>
                                 </tr>
                                 </thead>

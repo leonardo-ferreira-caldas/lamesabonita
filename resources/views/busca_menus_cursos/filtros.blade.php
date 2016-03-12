@@ -69,7 +69,7 @@
 </div>
 
 <div class="fancy-title title-dotted-border">
-    <h4>Tipos de Refeição</h4>
+    <h4>Eventos</h4>
 </div>
 
 <div class='col_full'>

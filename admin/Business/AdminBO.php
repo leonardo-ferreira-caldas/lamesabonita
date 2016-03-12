@@ -50,7 +50,7 @@ class AdminBO
         }
 
         if ($this->repository->menu_refeicao->getPossuiMenus($idCulinaria) || $this->repository->curso_refeicao->getPossuiCursos($idCulinaria)) {
-            throw new NotAllowedException("Não é possível deletar a refeição informada pois ela já está vinculada a outros registros.");
+            throw new NotAllowedException("Não é possível deletar o evento informado pois ele já está vinculado a outros registros.");
         }
 
         $this->repository->tipo_refeicao->deleteById($idCulinaria);

@@ -81,4 +81,18 @@ class AvaliacaoRepository extends AbstractRepository
         ]);
     }
 
+    /**
+     * Retorna os avaliações de um curso
+     *
+     * @return Model
+     */
+    public function getAvaliacaoesCurso($idCurso)
+    {
+        return Query::fetch("Chef/Avaliacao/QryBuscarAvaliacoesCurso", [
+            'id_curso' => $idCurso,
+            'id_tipo' => AvaliacaoConstants::TIPO_CURSO,
+            'avatar'  => ClienteConstants::DEFAULT_AVATAR
+        ]);
+    }
+
 }

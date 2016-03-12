@@ -192,10 +192,12 @@ class PaginasController extends Controller
     public function getCursoDetalhes($slugChef, $slugCurso)
     {
         $chef = $this->repository->chef->findBySlug($slugChef, true);
+        $curso = $this->repository->curso->findBySlug($slugCurso, true);
 
         return view('chef.perfil.curso_detalhes', [
             'chef'          => $chef,
-            'curso'         => $this->repository->curso->findBySlug($slugCurso, true),
+            'curso'         => $curso,
+            'avaliacoes'    => $this->repository->avaliacao->getAvaliacaoesCurso($curso->id_curso),
             'datas_reserva' => json_encode($this->repository->chef_agenda->getAgendaDisponivel($chef->id_chef)),
             'incluso_preco' => $this->bo->curso->getInclusoPreco()
         ]);

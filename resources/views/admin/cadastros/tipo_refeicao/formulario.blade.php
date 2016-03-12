@@ -18,7 +18,7 @@
                         </li>
                     </ul>
                 </div>
-                <h1 class="title">Tipos de Refeição</h1>
+                <h1 class="title">Evento</h1>
             </div>
         </div>
     </header>
@@ -32,7 +32,7 @@
                     <div class="clearfix">
 
                         <div class="gray-content-block top-block">
-                            Preencha os campos abaixo para inserir um novo tipo de refeição.
+                            Preencha os campos abaixo para inserir um novo evento.
                         </div>
 
                         <div class="prepend-top-default"></div>
@@ -61,7 +61,7 @@
                                             <input value="{{ $registro->nome_tipo_refeicao or '' }}" class="form-control" required="required" type="text"
                                                    name="nome_tipo_refeicao">
 
-                                            <span class="help-block">Entre com o nome do tipo de refeição desejada.</span>
+                                            <span class="help-block">Entre com o nome do evento desejado.</span>
                                         </div>
                                     </div>
 
