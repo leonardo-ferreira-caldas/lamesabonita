@@ -123,6 +123,7 @@ class MenuBO {
 
             $this->repository->menu_refeicao->deletarByMenuId($menu->id_menu);
             $this->repository->menu_culinaria->deletarByMenuId($menu->id_menu);
+            $this->repository->menu_preco->deletarByMenuId($menu->id_menu);
 
             foreach ($dados['tipo_refeicao'] as $idTipoRefeicao) {
                 $this->repository->menu_refeicao->inserir($menu->id_menu, $idTipoRefeicao);
@@ -130,6 +131,10 @@ class MenuBO {
 
             foreach ($dados['tipo_culinaria'] as $idCulinaria) {
                 $this->repository->menu_culinaria->inserir($menu->id_menu, $idCulinaria);
+            }
+
+            foreach ($dados['menu_preco'] as $posicao => $preco) {
+                $this->repository->menu_preco->inserir($menu->id_menu, $preco, $dados['qtd_minima_clientes'][$posicao]);
             }
 
             if (isset($dados['menu_foto'])) {

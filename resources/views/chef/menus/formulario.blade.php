@@ -51,6 +51,30 @@
                 </div>
             </div>
 
+            <div class='col_full'>
+                <fieldset class="marginbottom10px">
+                    <legend class="marginbottom10px"><label for="titulo">Preços por convidados <small>(opcional)</small></label></legend>
+
+                    <div id="prices_rules">
+
+                        @if(isset($menu) && $menu->precos->count() > 0)
+                            @foreach($menu->precos as $price)
+                                <div class='col_full single-price-menu marginbottom10px'>
+                                    @include('chef.menus.formulario_precos_por_convidados')
+                                </div>
+                            @endforeach
+                            <span class="preco_fallback" style="display: none">Nenhum preço por convidado cadastrado.</span>
+                        @else
+                            <span class="preco_fallback">Nenhum preço por convidado cadastrado.</span>
+                        @endif
+                    </div>
+
+                </fieldset>
+                <a href="#" id="add_price_menu" class="text-center mb-button-full button button-small button-3d nomargin">
+                    <i class="fa fa-plus"></i> Adicionar Preço Por Convidados
+                </a>
+            </div>
+
             <div class='col_full lista_incluso_preco'>
                 <fieldset class="marginbottom10px">
                     <legend class="marginbottom10px"><label for="titulo">O que está incluso no preço</label></legend>

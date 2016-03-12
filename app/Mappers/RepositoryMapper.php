@@ -15,6 +15,7 @@ use App\Repositories\ContaBancariaRepository;
 use App\Repositories\CulinariaRepository;
 use App\Repositories\CursoCulinariaRepository;
 use App\Repositories\CursoImagemRepository;
+use App\Repositories\CursoPrecoRepository;
 use App\Repositories\CursoRepository;
 use App\Repositories\CursoTipoRefeicaoRepository;
 use App\Repositories\DegustadorEnderecoRepository;
@@ -25,6 +26,7 @@ use App\Repositories\ImagemRepository;
 use App\Repositories\InclusoPrecoRepository;
 use App\Repositories\MenuCulinariaRepository;
 use App\Repositories\MenuImagemRepository;
+use App\Repositories\MenuPrecoRepository;
 use App\Repositories\MenuRepository;
 use App\Repositories\MenuTipoRefeicaoRepository;
 use App\Repositories\PagamentoRepository;
@@ -44,6 +46,7 @@ class RepositoryMapper extends AbstractMapper {
         'menu'             => MenuRepository::class,
         'menu_imagem'      => MenuImagemRepository::class,
         'menu_refeicao'    => MenuTipoRefeicaoRepository::class,
+        'menu_preco'       => MenuPrecoRepository::class,
         'menu_culinaria'   => MenuCulinariaRepository::class,
         'pagamento'        => PagamentoRepository::class,
         'reserva'          => ReservaRepository::class,
@@ -65,6 +68,7 @@ class RepositoryMapper extends AbstractMapper {
         'curso_imagem'     => CursoImagemRepository::class,
         'curso_refeicao'   => CursoTipoRefeicaoRepository::class,
         'curso_culinaria'  => CursoCulinariaRepository::class,
+        'curso_preco'      => CursoPrecoRepository::class,
         'tipo_refeicao'    => TipoRefeicaoRepository::class,
         'culinaria'        => CulinariaRepository::class,
         'faq'              => FAQRepository::class,

@@ -62,7 +62,7 @@ $("body").delegate('.remove-price-menu', 'click', function(evt) {
 	evt.preventDefault();
 	$(this).closest('.single-price-menu').remove();
 
-    if ($(".prices_rules .single-price-menu").size() == 0) {
+    if ($("#prices_rules .single-price-menu").size() == 0) {
         $(".preco_fallback").show();
     }
 });

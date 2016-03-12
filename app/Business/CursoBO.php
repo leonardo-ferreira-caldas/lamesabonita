@@ -123,6 +123,7 @@ class CursoBO {
 
             $this->repository->curso_refeicao->deletarByCursoId($curso->id_curso);
             $this->repository->curso_culinaria->deletarByCursoId($curso->id_curso);
+            $this->repository->curso_preco->deletarByCursoId($curso->id_curso);
 
             foreach ($dados['tipo_refeicao'] as $idTipoRefeicao) {
                 $this->repository->curso_refeicao->inserir($curso->id_curso, $idTipoRefeicao);
@@ -130,6 +131,10 @@ class CursoBO {
 
             foreach ($dados['tipo_culinaria'] as $idCulinaria) {
                 $this->repository->curso_culinaria->inserir($curso->id_curso, $idCulinaria);
+            }
+
+            foreach ($dados['curso_preco'] as $posicao => $preco) {
+                $this->repository->curso_preco->inserir($curso->id_curso, $preco, $dados['qtd_minima_clientes'][$posicao]);
             }
 
             if (isset($dados['curso_foto'])) {

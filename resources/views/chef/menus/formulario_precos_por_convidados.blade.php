@@ -17,7 +17,7 @@
     <label for="">a partir de </label>
     <div class='menu_price_rule_guests_field'>
         <select required type="text" id="qtd_minima_clientes" name="qtd_minima_clientes[]" class="sm-form-control required" aria-required="true">
-        @for($i = 2; $i < 30; $i++)
+        @for($i = 2; $i < 50; $i++)
             <option
                 @if(isset($price->qtd_minima_clientes) && $price->qtd_minima_clientes == $i)
                     selected="selected"
