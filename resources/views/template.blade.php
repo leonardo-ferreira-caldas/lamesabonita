@@ -115,7 +115,7 @@
                                 </div>
 
                                 <div class="col_full">
-                                    <button id="quick-newsletter-form" name="submit" type="submit" id="submit-button" tabindex="5" value="Submit" class="button button-3d button-rounded button-amber btn-full nomargin">Me Inscrever</button>
+                                    <button id="quick-newsletter-form" name="submit" type="submit" id="submit-button" tabindex="5" value="Submit" class="button button-3d button-rounded btn-full nomargin">Inscreva-se aqui</button>
                                 </div>
             
                             </form>

@@ -10354,7 +10354,7 @@ body:not(.device-touch):not(.device-xs):not(.device-xxs) #portfolio.portfolio-pa
 	opacity: 0;
 	z-index: 2;
 	text-align: center;
-	background-color: rgba(0,0,0,0.5);
+	background-color: rgba(0,0,0,0.7);
 }
 
 body:not(.device-touch):not(.device-xs):not(.device-xxs) .portfolio-overlay {
@@ -12604,9 +12604,9 @@ body:not(.device-touch) .button {
 -----------------------------------------------------------------*/
 
 .button.button-border {
-	border: 2px solid #444;
+	border: 2px solid #e67e22;
 	background-color: transparent;
-	color: #333;
+	color: ;
 	line-height: 36px;
 	font-weight: 600;
 	text-shadow: none;
@@ -12623,7 +12623,7 @@ body:not(.device-touch) .button {
 .button.button-border.button-desc { line-height: 1; }
 
 .button:not(.btn-disabled).button-border:hover {
-	background-color: #444;
+	background-color: #e67e22;
 	color: #FFF;
 	border-color: transparent !important;
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
@@ -16844,14 +16844,14 @@ label.error { display: none !important; }
 	left: auto !important;
 	right: 50%;
 	margin-right: 20px;
-	width: 15%;
+	width: 25%;
 }
 
 .divider.divider-center.divider-short:after {
 	left: 50% !important;
 	right: auto !important;
 	margin-left: 20px;
-	width: 15%;
+	width: 25%;
 }
 
 .divider.divider-center.divider-vshort:before,
@@ -27578,6 +27578,48 @@ ul.tab-nav.tab-nav2 li.ui-state-active a,
 }
 @media only screen and (min-width: 200px) {
 
+    .como-funciona-text {
+        font-size: 17px;
+        text-align: center;
+        color: #333;
+        font-family: 'Lato', Arial, sans-serif;
+    }
+
+    .como-funciona-number {
+        width: 40px;
+        line-height: 35px;
+        background: white;
+        border: 3px solid #e67e22;
+        display: inline-block;
+        border-radius: 100%;
+        height: 40px;
+        font-size: 20px;
+        font-family: Roboto;
+    }
+
+    .como-funciona-items {
+        position: relative;
+        z-index: 1;
+    }
+
+    .como-funciona-wrapper {
+        position: relative;
+    }
+
+    .como-funciona-wrapper hr {
+        position: absolute;
+        top: 83px;
+        left: 144px;
+        width: 850px;
+        border-color: #e67e22;
+        border-width: 3px;
+    }
+
+    .menu-apresentacao-item img {
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+        border-radius: 2px;
+    }
+
     .label-status-pendente {
         color: #E09100;
         font-weight: bold;
@@ -28539,8 +28581,6 @@ ul.tab-nav.tab-nav2 li.ui-state-active a,
         border-radius: 0px !important;
     }
 
-    .
-
     .mb-noleftmargin {
         margin-left: 0px !important;
     }
@@ -28626,9 +28666,7 @@ ul.tab-nav.tab-nav2 li.ui-state-active a,
     }
 
     .mb-btn-full {
-
         width: 100% !important;
-
     }
 
     .mb-noborder {
@@ -30609,8 +30647,11 @@ box-shadow: 2px 2px 5px 0px rgba(102,94,102,1);
         padding: 0 15px;
         position: relative;
         z-index: 10;
-        font-size: 21px !important;
-        color: #999;
+        font-style: normal;
+        text-transform: uppercase;
+        font-family: Raleway, Lato, Roboto;
+        font-size: 29px !important;
+        color: #777;
     }
 
     .fbox-lmb {
@@ -34184,3 +34225,4 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.active {
 .datepicker-days .prev {
     font-size: 20px;
 }
+/*# sourceMappingURL=lamesabonita.css.map */

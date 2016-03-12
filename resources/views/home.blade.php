@@ -44,90 +44,219 @@
             <i>Como Funciona</i>
         </div>
 
-        <div class="col_one_fourth">
-            <div class="feature-box fbox-center fbox-bg fbox-border fbox-effect fbox-small-padding">
-                <div class="fbox-icon fbox-icon-chef">
-                    <img src='images/icones/chef_ingredientes.jpg' class="fbox-icon-chef-ingredientes" />
-                </div>
-                <h3>O chef compra os melhores ingredientes</h3>
-            </div>
-        </div>
+        <div class="clear"></div>
 
-        <div class="col_one_fourth">
-            <div class="feature-box fbox-center fbox-bg fbox-border fbox-effect fbox-small-padding">
-                <div class="fbox-icon fbox-icon-chef">
-                    <img src='images/icones/chef_cozinha.jpg' class="fbox-icon-chef-cozinha" />
-                </div>
-                <h3>O chef cozinha para você na sua casa</h3>
-            </div>
-        </div>
+        <div class="como-funciona-wrapper topmargin-sm">
 
-        <div class="col_one_fourth">
-            <div class="feature-box fbox-center fbox-bg fbox-border fbox-effect">
-                <div class="fbox-icon fbox-icon-chef">
-                    <img src='images/icones/chef_serve_voce.jpg' class="fbox-icon-chef-serve-na-mesa" />
-                </div>
-                <h3>O chef te serve na mesa</h3>
-            </div>
-        </div>
+            <div class="como-funciona-items">
 
-        <div class="col_one_fourth col_last">
-            <div class="feature-box fbox-center fbox-bg fbox-border fbox-effect">
-                <div class="fbox-icon fbox-icon-chef">
-                    <img src='images/icones/chef_icone_lava_louca.png' class="fbox-icon-chef-lava-louca" />
+                <div class="col_one_fourth bottommargin-sm">
+                    <div class="center">
+                        <img src='images/icones/chef_icone_grocery.png' class="fbox-icon-chef-ingredientes" />
+                    </div>
+                    <div class="center topmargin-sm bottommargin-xsm">
+                        <span class="como-funciona-number">1</span>
+                    </div>
+
+                    <h3 class='como-funciona-text '>O chef compra os melhores ingredientes</h3>
                 </div>
-                <h3>O chef deixa sua cozinha brilhando</h3>
+
+                <div class="col_one_fourth bottommargin-sm">
+                    <div class="center">
+                        <img src='images/icones/chef_icone_cozinha.png' class="fbox-icon-chef-ingredientes" />
+                    </div>
+                    <div class="center topmargin-sm bottommargin-xsm">
+                        <span class="como-funciona-number">2</span>
+                    </div>
+
+                    <h3 class='como-funciona-text topmargin-sm'>O chef cozinha para você e seus convidados</h3>
+                </div>
+
+                <div class="col_one_fourth bottommargin-sm">
+                    <div class="center">
+                        <img src='images/icones/chef_icone_apresenta_menu.png' class="fbox-icon-chef-ingredientes" />
+                    </div>
+                    <div class="center topmargin-sm bottommargin-xsm">
+                        <span class="como-funciona-number">3</span>
+                    </div>
+
+                    <h3 class='como-funciona-text topmargin-sm'>O chef apresenta o menu</h3>
+                </div>
+
+                <div class="col_one_fourth col_last bottommargin-sm">
+                    <div class="center">
+                        <img src='images/icones/chef_icone_limpeza.png' class="fbox-icon-chef-ingredientes" />
+                    </div>
+                    <div class="center topmargin-sm bottommargin-xsm">
+                        <span class="como-funciona-number">4</span>
+                    </div>
+
+                    <h3 class='como-funciona-text topmargin-sm'>O chef organiza sua cozinha</h3>
+                </div>
+
             </div>
+
+            <hr>
+
         </div>
 
         <div class="clear"></div>
 
-        <div class="fancy-title title-dotted-border title-right">
-            <h3>Comece agora mesmo</h3>
+        <div class="center topmargin-sm">
+            <a href="#" class="button button-3d button-large button-rounded">Veja nossa lista de menus</a>
         </div>
 
-        <div class='col_half'>
-            <a class="thumbnail">
-              <img alt="100%x180" src="images/others/esta_pronto.jpg" style="width: 100%; display: block;">
-            </a>
-        </div>
+    </div>
 
-        <div class='col_half col_last'>
-            <div class="title-block">
-                <h3>Está pronto?</h3>
-                <span>Em apenas três passos, você já terá reservado seu chef particular</span>
-            </div>
+    <div class="clear"></div>
 
-            <div class="col_full single-feature">
-                <div class="icon-feature"><span>1</span></div>
-                <h4>
-                    Escolha um menu
-                    <small>Navegue dentre todas as variedades culinárias</small>
-                </h4>
-                <div class="clear"></div>
+    <div class="section topmargin-lg notopborder" style="padding: 40px 0px 60px;">
+
+        <div class="container center clearfix">
+            <div class="heading-block" id="suporte">
+                <h2>Conheça alguns de nossos menus</h2>
+                <span class="sou-chef-lmb-subtitulo">ESCOLHA E RESERVE SEU MENU PREFERIDO. NOSSOS CHEFS PREPARAM NA SUA CASA.</span>
             </div>
 
             <div class="clear"></div>
 
-            <div class="col_full single-feature">
-                <div class="icon-feature"><span>2</span></div>
-                <h4>
-                    Conheça seu chef
-                    <small>Os melhores chefs do brasil você só encontra aqui</small>
-                </h4>
-                <div class="clear"></div>
+            <div class="portfolio grid-container portfolio-nomargin clearfix bottommargin" style="position: relative; height: 426px;">
+
+                <article class="portfolio-item pf-media pf-icons" style="position: absolute; left: 0px; top: 0px;">
+                    <div class="portfolio-image">
+                        <a href="portfolio-single.php">
+                            <img src="{{ crop('bolo_chocolate.jpg', 284, 213) }}" alt="Open Imagination" style="visibility: visible; opacity: 1; display: block;">
+                        </a>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-desc" style="margin-top: 53.5px;">
+                                <h3><a href="#">Bolo de Chocolate</a></h3>
+                                <span>Chef Leonardo F. Caldas</span>
+                            </div>
+                            <a href="#" class="left-icon"><i class="icon-line-plus"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="portfolio-item pf-media pf-icons" style="position: absolute; left: 284px; top: 0px;">
+                    <div class="portfolio-image">
+                        <a href="portfolio-single.php">
+                            <img src="{{ crop('bolo_morango.jpg', 284, 213) }}" alt="Open Imagination" style="visibility: visible; opacity: 1; display: block;">
+                        </a>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-desc" style="margin-top: 53.5px;">
+                                <h3><a href="#">Bolo de Morango</a></h3>
+                                <span>Chef Leonardo F. Caldas</span>
+                            </div>
+                            <a href="#" class="left-icon"><i class="icon-line-plus"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="portfolio-item pf-media pf-icons" style="position: absolute; left: 568px; top: 0px;">
+                    <div class="portfolio-image">
+                        <a href="portfolio-single.php">
+                            <img src="{{ crop('bolo_caramelo.jpg', 284, 213) }}" alt="Open Imagination" style="visibility: visible; opacity: 1; display: block;">
+                        </a>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-desc" style="margin-top: 53.5px;">
+                                <h3><a href="#">Bolo de Caramelo</a></h3>
+                                <span>Chef Leonardo F. Caldas</span>
+                            </div>
+                            <a href="#" class="left-icon"><i class="icon-line-plus"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="portfolio-item pf-media pf-icons" style="position: absolute; left: 854px; top: 0px;">
+                    <div class="portfolio-image">
+                        <a href="portfolio-single.php">
+                            <img src="{{ crop('bolo_abacaxi.jpg', 284, 213) }}" alt="Open Imagination" style="visibility: visible; opacity: 1; display: block;">
+                        </a>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-desc" style="margin-top: 53.5px;">
+                                <h3><a href="#">Bolo de Abacaxi</a></h3>
+                                <span>Chef Leonardo F. Caldas</span>
+                            </div>
+                            <a href="#" class="left-icon"><i class="icon-line-plus"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="portfolio-item pf-media pf-icons" style="position: absolute; left: 0px; top: 213px;">
+                    <div class="portfolio-image">
+                        <a href="portfolio-single.php">
+                            <img src="{{ crop('bolo_chocolate_cereja.jpg', 284, 213) }}" alt="Open Imagination" style="visibility: visible; opacity: 1; display: block;">
+                        </a>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-desc" style="margin-top: 53.5px;">
+                                <h3><a href="#">Bolo de Chocolate c/ Cereja</a></h3>
+                                <span>Chef Leonardo F. Caldas</span>
+                            </div>
+                            <a href="#" class="left-icon"><i class="icon-line-plus"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="portfolio-item pf-media pf-icons" style="position: absolute; left: 284px; top: 213px;">
+                    <div class="portfolio-image">
+                        <a href="portfolio-single.php">
+                            <img src="{{ crop('pudim_caramelo.jpg', 284, 213) }}" alt="Open Imagination" style="visibility: visible; opacity: 1; display: block;">
+                        </a>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-desc" style="margin-top: 53.5px;">
+                                <h3><a href="#">Pudim de Caramelo</a></h3>
+                                <span>Chef Leonardo F. Caldas</span>
+                            </div>
+                            <a href="#" class="left-icon"><i class="icon-line-plus"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="portfolio-item pf-media pf-icons" style="position: absolute; left: 568px; top: 213px;">
+                    <div class="portfolio-image">
+                        <a href="portfolio-single.php">
+                            <img src="{{ crop('pudim_morango.jpg', 284, 213) }}" alt="Open Imagination" style="visibility: visible; opacity: 1; display: block;">
+                        </a>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-desc" style="margin-top: 53.5px;">
+                                <h3><a href="#">Pudim de Morango</a></h3>
+                                <span>Chef Leonardo F. Caldas</span>
+                            </div>
+                            <a href="#" class="left-icon"><i class="icon-line-plus"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="portfolio-item pf-media pf-icons" style="position: absolute; left: 854px; top: 213px;">
+                    <div class="portfolio-image">
+                        <a href="portfolio-single.php">
+                            <img src="{{ crop('pudim_morango_2.jpg', 284, 213) }}" alt="Open Imagination" style="visibility: visible; opacity: 1; display: block;">
+                        </a>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-desc" style="margin-top: 53.5px;">
+                                <h3><a href="#">Pudim de Morango 2</a></h3>
+                                <span>Chef Leonardo F. Caldas</span>
+                            </div>
+                            <a href="#" class="left-icon"><i class="icon-line-plus"></i></a>
+                        </div>
+                    </div>
+                </article>
+
             </div>
 
+            <div class="clear"></div>
 
-            <div class="col_full single-feature">
-                <div class="icon-feature"><span>3</span></div>
-                <h4>
-                    Aproveite!
-                    <small>Relaxe enquanto um chef profissional cozinha pra você</small>
-                </h4>
+            <div class="center topmargin-sm">
+                <a href="#" class="button button-3d button-large button-rounded">Ver lista completa de menus</a>
             </div>
 
         </div>
+
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="container clearfix">
 
         <div class="clear"></div>
 
@@ -138,9 +267,6 @@
         <ul class="testimonials-grid clearfix">
             <li style="height: 147px;">
                 <div class="testimonial">
-                    <div class="testi-image">
-                        <a href="#"><img src="images/testimonials/1.jpg" alt="Customer Testimonails"></a>
-                    </div>
                     <div class="testi-content">
                         <p>Incidunt deleniti blanditiis quas aperiam recusandae consequatur ullam quibusdam cum libero illo rerum!</p>
                         <div class="testi-meta">
@@ -152,9 +278,6 @@
             </li>
             <li style="height: 147px;">
                 <div class="testimonial">
-                    <div class="testi-image">
-                        <a href="#"><img src="images/testimonials/2.jpg" alt="Customer Testimonails"></a>
-                    </div>
                     <div class="testi-content">
                         <p>Natus voluptatum enim quod necessitatibus quis expedita harum provident eos obcaecati id culpa corporis molestias.</p>
                         <div class="testi-meta">
@@ -166,9 +289,6 @@
             </li>
             <li style="height: 147px;">
                 <div class="testimonial">
-                    <div class="testi-image">
-                        <a href="#"><img src="images/testimonials/4.jpg" alt="Customer Testimonails"></a>
-                    </div>
                     <div class="testi-content">
                         <p>Fugit officia dolor sed harum excepturi ex iusto magnam asperiores molestiae qui natus obcaecati facere sint amet.</p>
                         <div class="testi-meta">
@@ -180,9 +300,6 @@
             </li>
             <li style="height: 147px;">
                 <div class="testimonial">
-                    <div class="testi-image">
-                        <a href="#"><img src="images/testimonials/3.jpg" alt="Customer Testimonails"></a>
-                    </div>
                     <div class="testi-content">
                         <p>Similique fugit repellendus expedita excepturi iure perferendis provident quia eaque. Repellendus, vero numquam?</p>
                         <div class="testi-meta">

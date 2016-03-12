@@ -49,7 +49,7 @@
         </div>
    </div>
     <div class="home-sf-btn">
-        <button type="submit" class="home-src-btn button button-rounded button-reveal button-large button-amber tright">
+        <button type="submit" class="home-src-btn button button-rounded button-reveal button-large tright">
             <i class="fa fa-search"></i><span>Pesquisar</span>
         </button>
     </div>

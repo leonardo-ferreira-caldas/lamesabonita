@@ -4434,7 +4434,7 @@ body:not(.device-touch):not(.device-xs):not(.device-xxs) #portfolio.portfolio-pa
 	opacity: 0;
 	z-index: 2;
 	text-align: center;
-	background-color: rgba(0,0,0,0.5);
+	background-color: rgba(0,0,0,0.7);
 }
 
 body:not(.device-touch):not(.device-xs):not(.device-xxs) .portfolio-overlay {
@@ -6684,9 +6684,9 @@ body:not(.device-touch) .button {
 -----------------------------------------------------------------*/
 
 .button.button-border {
-	border: 2px solid #444;
+	border: 2px solid #e67e22;
 	background-color: transparent;
-	color: #333;
+	color: ;
 	line-height: 36px;
 	font-weight: 600;
 	text-shadow: none;
@@ -6703,7 +6703,7 @@ body:not(.device-touch) .button {
 .button.button-border.button-desc { line-height: 1; }
 
 .button:not(.btn-disabled).button-border:hover {
-	background-color: #444;
+	background-color: #e67e22;
 	color: #FFF;
 	border-color: transparent !important;
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
@@ -10924,14 +10924,14 @@ label.error { display: none !important; }
 	left: auto !important;
 	right: 50%;
 	margin-right: 20px;
-	width: 15%;
+	width: 25%;
 }
 
 .divider.divider-center.divider-short:after {
 	left: 50% !important;
 	right: auto !important;
 	margin-left: 20px;
-	width: 15%;
+	width: 25%;
 }
 
 .divider.divider-center.divider-vshort:before,
