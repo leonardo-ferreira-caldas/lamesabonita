@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Carbon\Carbon;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,7 +25,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $date = Carbon::now()->toW3cString();
+        $environment = env('APP_ENV');
+        $schedule->command(
+            "db:backup --database=mysql --destination=s3 --destinationPath=/backups/lamesabonita/{$environment}/{$date} --compression=gzip"
+        )->twiceDaily(13,21);
     }
 }
