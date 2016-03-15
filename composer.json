@@ -13,7 +13,9 @@
         "moip/moip-sdk-php": "~1",
         "inacho/php-credit-card-validator": "1.*",
         "barryvdh/laravel-debugbar": "^2.1",
-        "barryvdh/laravel-ide-helper": "^2.1"
+        "barryvdh/laravel-ide-helper": "^2.1",
+        "backup-manager/laravel": "^1.1",
+        "league/flysystem-aws-s3-v3": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
