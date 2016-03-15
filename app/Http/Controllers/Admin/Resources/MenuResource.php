@@ -78,6 +78,7 @@ class MenuResource extends Controller
         $imagens = $this->repository->menu_imagem->getImagens($menu->id_menu);
         $menuCulinaria = $this->repository->menu_culinaria->getCulinarias($menu->id_menu);
         $menuRefeicao = $this->repository->menu_refeicao->getRefeicoes($menu->id_menu);
+        $menuPrecos = $this->repository->menu_preco->getPrecosPorConvidado($menu->id_menu);
         $refeicoes = $this->repository->tipo_refeicao->all();
         $culinarias = $this->repository->culinaria->all();
         $status = $this->repository->produto_status->all();
@@ -86,6 +87,7 @@ class MenuResource extends Controller
             'menu'            => $menu,
             'menu_culinarias' => $menuCulinaria,
             'menu_refeicoes'  => $menuRefeicao,
+            'menu_preco'      => $menuPrecos,
             'imagens'         => $imagens,
             'refeicoes'       => $refeicoes,
             'culinarias'      => $culinarias,

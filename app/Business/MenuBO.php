@@ -134,6 +134,7 @@ class MenuBO {
             }
 
             foreach ($dados['menu_preco'] as $posicao => $preco) {
+                if (empty($preco)) continue;
                 $this->repository->menu_preco->inserir($menu->id_menu, $preco, $dados['qtd_minima_clientes'][$posicao]);
             }
 

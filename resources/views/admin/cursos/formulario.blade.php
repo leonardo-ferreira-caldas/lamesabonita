@@ -175,6 +175,66 @@
 
                                     <div class="form-group">
                                         <div class="col-sm-12">
+                                            <label class="block-label" for="descricao">Preços Por Clientes</label>
+                                            <div class="allpadding-sm noleftpadding nobottompadding toppadding-xsm">
+                                                @foreach($curso_preco as $preco)
+
+                                                    <div class="form-group">
+                                                        <div class="col-sm-2">
+                                                            <label class="block-label">Preço</label>
+                                                            <input value="{{ $preco->preco }}" class="form-control"
+                                                                   type="text" name="curso_preco[]">
+                                                        </div>
+
+                                                        <div class="col-sm-2">
+                                                            <label class="block-label">Qtd Clientes</label>
+                                                            <input value="{{ $preco->qtd_minima_clientes }}" class="form-control"
+                                                                   type="text" name="qtd_minima_clientes[]">
+                                                        </div>
+
+                                                        <div class="col-sm-2">
+                                                            <label class="block-label" style="display: block">&nbsp;</label>
+
+                                                            <button type="button" onclick="$(this).closest('.form-group').remove();" class="btn btn-sm btn-danger leftmargin-sm">
+                                                                <i class="fa fa-times"></i>
+                                                            </button>
+                                                        </div>
+
+                                                    </div>
+                                                @endforeach
+
+                                                <div class="form-group" v-for="preco in precos">
+
+                                                    <div class="col-sm-2">
+                                                        <label class="block-label">Preço</label>
+                                                        <input class="form-control" type="text" name="curso_preco[]">
+                                                    </div>
+
+                                                    <div class="col-sm-2">
+                                                        <label class="block-label">Qtd Clientes</label>
+                                                        <input class="form-control" type="text" name="qtd_minima_clientes[]">
+                                                    </div>
+
+                                                    <div class="col-sm-2">
+                                                        <label class="block-label" style="display: block">&nbsp;</label>
+
+                                                        <button type="button" v-on:click="remover_preco($index)" class="btn btn-sm btn-danger leftmargin-sm">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <button type="button" v-on:click="adicionar_preco" class="btn btn-info">
+                                                <i class="fa fa-usd rightmargin-xsm"></i> Adicionar Preço por Cliente
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
 
                                             <label class="block-label" for="descricao">Fotos</label>
 

@@ -77,6 +77,7 @@ class CursoResource extends Controller
         $imagens = $this->repository->curso_imagem->getImagens($curso->id_curso);
         $cursoCulinaria = $this->repository->curso_culinaria->getCulinarias($curso->id_curso);
         $cursoRefeicao = $this->repository->curso_refeicao->getRefeicoes($curso->id_curso);
+        $cursoPreco = $this->repository->curso_preco->getPrecosPorConvidado($curso->id_curso);
         $refeicoes = $this->repository->tipo_refeicao->all();
         $culinarias = $this->repository->culinaria->all();
         $status = $this->repository->produto_status->all();
@@ -85,6 +86,7 @@ class CursoResource extends Controller
             'curso'             => $curso,
             'curso_culinarias'  => $cursoCulinaria,
             'curso_refeicoes'   => $cursoRefeicao,
+            'curso_preco'       => $cursoPreco,
             'imagens'           => $imagens,
             'refeicoes'         => $refeicoes,
             'culinarias'        => $culinarias,

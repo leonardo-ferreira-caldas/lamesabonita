@@ -17,16 +17,16 @@
 
                 <div class="col_two_third nobottommargin noabsolute menu-detalhe-wrapper">
                     <div class="padding20px noabsolute">
-                        <h2 class="roboto fontlight nobottommargin notopmargin">Grand Plaza Serviced Apartments</h2>
+                        <h2 class="lato fontlight nobottommargin notopmargin">Grand Plaza Serviced Apartments</h2>
                         <div class="mini-foto-perfil">
                             <img class="img-circle rightmargin-xsm" src="{{ crop($chef->avatar ?: 'avatar.jpg', 40, 40) }}">
-                            {{ $chef->user->name }} Caldas (<small><a href="{{ route('chef', ['slug' => $chef->slug]) }}" class="lato uppercase">Ver perfil</a></small>)
-                            <span class="leftmargin-xsm">{!! $chef->getReputacaoMedia() !!}</span>
+                            {{ $chef->user->name . " " . $chef->sobrenome }} (<small><a href="{{ route('chef', ['slug' => $chef->slug]) }}" class="lato uppercase">Ver perfil</a></small>)
+                            <span class="leftmargin-xsm color">{!! $chef->getReputacaoMedia() !!}</span>
                             <a href="/favorito/salvar/{{ $curso->slug }}/curso" class="leftmargin-xsm button button-mini button-pink button-3d nomargin">
                                 <i class="fa fa-heart"></i> Favoritos
                             </a>
 
-                            <h3 class="preco-menu-detalhes marginbottom10px pull-right roboto">R$ {{ $curso->preco }} <small class="roboto">por pessoa</small></h3>
+                            <h3 class="preco-menu-detalhes marginbottom10px pull-right lato">R$ {{ $curso->preco }} <small class="roboto">por pessoa</small></h3>
                         </div>
 
                     </div>
@@ -70,15 +70,15 @@
 
                             <div class="detalhes-menu">
 
-                                <div class="fancy-title title-dotted-border topmargin-sm text-left bottommargin-sm">
-                                    <h4 class="font17px">Descrição do Curso</h4>
+                                <div class="fancy-title title-center topmargin-sm text-left bottommargin-sm">
+                                    <h4 class="font17px color">Descrição do Curso</h4>
                                 </div>
 
                                 <div class="font14px text-center topmargin-sm bottommargin-sm">{{ $curso->descricao }}</div>
 
 
-                                <div class="fancy-title title-dotted-border topmargin-sm text-left bottommargin-sm">
-                                    <h4 class="font17px">Incluso no Preço</h4>
+                                <div class="fancy-title title-center topmargin-sm text-left bottommargin-sm">
+                                    <h4 class="font17px color">Incluso no Preço</h4>
                                 </div>
 
                                 <div class='lista_incluso_preco font14px'>

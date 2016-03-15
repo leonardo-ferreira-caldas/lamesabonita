@@ -134,6 +134,7 @@ class CursoBO {
             }
 
             foreach ($dados['curso_preco'] as $posicao => $preco) {
+                if (empty($preco)) continue;
                 $this->repository->curso_preco->inserir($curso->id_curso, $preco, $dados['qtd_minima_clientes'][$posicao]);
             }
 

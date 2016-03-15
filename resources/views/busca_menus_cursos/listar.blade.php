@@ -10,7 +10,7 @@
 
         <div class='backgroundWhite buscar-menus-inner'>
 
-            <div class="fancy-title title-dotted-border marginbottom10px">
+            <div class="fancy-title title-dotted-border title-center marginbottom10px">
                 <h3>Encontre seu menu agora!</h3>
             </div>
 

@@ -17,16 +17,16 @@
 
             <div class="col_two_third nobottommargin noabsolute menu-detalhe-wrapper">
                 <div class="padding20px noabsolute">
-                    <h2 class="roboto fontlight nobottommargin notopmargin">{{ $menu->titulo }}</h2>
+                    <h2 class="lato fontlight nobottommargin notopmargin">{{ $menu->titulo }}</h2>
                     <div class="mini-foto-perfil">
                         <img class="img-circle rightmargin-xsm" src="{{ crop($chef->avatar ?: 'avatar.jpg', 40, 40) }}">
-                        {{ $chef->user->name }} (<small><a href="{{ route('chef', ['slug' => $chef->slug]) }}" class="lato uppercase">Ver perfil</a></small>)
+                        {{ $chef->user->name . " " . $chef->sobrenome }} (<small><a href="{{ route('chef', ['slug' => $chef->slug]) }}" class="lato uppercase">Ver perfil</a></small>)
                         <span class="leftmargin-xsm color">{!! $chef->getReputacaoMedia() !!}</span>
                         <a href="/favorito/salvar/{{ $menu->slug }}/menu" class="leftmargin-xsm button button-mini button-pink button-3d nomargin">
                             <i class="fa fa-heart"></i> Favoritos
                         </a>
 
-                        <h3 class="preco-menu-detalhes marginbottom10px pull-right roboto">R$ {{ $menu->preco }} <small class="roboto">por pessoa</small></h3>
+                        <h3 class="preco-menu-detalhes marginbottom10px pull-right lato">R$ {{ $menu->preco }} <small class="roboto">por pessoa</small></h3>
                     </div>
 
                 </div>
@@ -71,38 +71,38 @@
                         <div class="detalhes-menu">
 
                             @if(!empty($menu->aperitivo ))
-                                <div class="fancy-title title-dotted-border text-left bottommargin-sm">
-                                    <h4 class="font17px">Aperitivos</h4>
+                                <div class="fancy-title title-center text-left bottommargin-sm">
+                                    <h4 class="font17px color">Aperitivos</h4>
                                 </div>
 
                                 <div class="font14px text-center topmargin-sm bottommargin-sm">{{ $menu->aperitivo }}</div>
                             @endif
 
                             @if(!empty($menu->entrada ))
-                                <div class="fancy-title title-dotted-border topmargin-sm text-left bottommargin-sm">
-                                    <h4 class="font17px">Prato de Entrada</h4>
+                                <div class="fancy-title title-center topmargin-sm text-left bottommargin-sm">
+                                    <h4 class="font17px color">Prato de Entrada</h4>
                                 </div>
 
                                 <div class="font14px text-center topmargin-sm bottommargin-sm">{{ $menu->entrada }}</div>
                             @endif
 
-                            <div class="fancy-title title-dotted-border topmargin-sm text-left bottommargin-sm">
-                                <h4 class="font17px">Prato Principal</h4>
+                            <div class="fancy-title title-center topmargin-sm text-left bottommargin-sm">
+                                <h4 class="font17px color">Prato Principal</h4>
                             </div>
 
                             <div class="font14px text-center topmargin-sm bottommargin-sm">{{ $menu->prato_principal }}</div>
 
                             @if(!empty($menu->sobremesa ))
-                                <div class="fancy-title title-dotted-border topmargin-sm text-left bottommargin-sm">
-                                    <h4 class="font17px">Sobremesa</h4>
+                                <div class="fancy-title title-center topmargin-sm text-left bottommargin-sm">
+                                    <h4 class="font17px color">Sobremesa</h4>
                                 </div>
 
                                 <div class="font14px text-center topmargin-sm bottommargin-sm">{{ $menu->sobremesa }}</div>
 
                             @endif
 
-                            <div class="fancy-title title-dotted-border topmargin-sm text-left bottommargin-sm">
-                                <h4 class="font17px">Incluso no Preço</h4>
+                            <div class="fancy-title title-center topmargin-sm text-left bottommargin-sm">
+                                <h4 class="font17px color">Incluso no Preço</h4>
                             </div>
 
                             <div class='lista_incluso_preco font14px'>

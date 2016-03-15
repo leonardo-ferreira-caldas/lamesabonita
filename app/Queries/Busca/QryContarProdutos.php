@@ -31,7 +31,7 @@ FROM (
       avaliacao ON avaliacao.fk_chef = chef.id_chef
     WHERE
       menu.ind_ativo = 1 AND
-      menu.fk_status = 1
+      menu.fk_status = 2
     #WHERE#
     GROUP BY
       menu.id_menu
@@ -65,7 +65,7 @@ FROM (
       avaliacao ON avaliacao.fk_chef = chef.id_chef
     WHERE
       curso.ind_ativo = 1 AND
-      curso.fk_status = 1
+      curso.fk_status = 2
     #WHERE#
     GROUP BY
       curso.id_curso
