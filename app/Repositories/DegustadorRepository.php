@@ -6,6 +6,7 @@ use App\Constants\ClienteConstants;
 use App\Facades\Query;
 use App\Formatters\DataFormatter;
 use App\Model\DegustadorModel;
+use App\User;
 
 class DegustadorRepository extends AbstractRepository
 {

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\Email;
 use Illuminate\Http\Request;
 
-use App\Handlers\EmailHandler;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Mappers\BusinessMapper;
@@ -260,12 +260,11 @@ class PaginasController extends Controller
      * Envia formulário de contato
      *
      * @param Request $request
-     * @param EmailHandler $email
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postFormularioContato(Requests\FormularioContatoRequest $request, EmailHandler $email)
+    public function postFormularioContato(Requests\FormularioContatoRequest $request)
     {
-        $email->enviarEmailFormularioContato($request->get('name'), $request->get('email'));
+        Email::enviarEmailFormularioContato($request->get('name'), $request->get('email'));
 
         return redirectWithAlertSuccess('Sua mensagem foi enviada com sucesso.\nAguarde enquanto nossa equipe entra em contato com você.')->back();
     }

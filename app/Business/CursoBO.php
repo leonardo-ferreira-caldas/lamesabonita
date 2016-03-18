@@ -7,7 +7,6 @@ use App\Constants\ChefConstants;
 use App\Exceptions\UnexpectedErrorException;
 use App\Facades\Autenticacao;
 use App\Facades\Upload;
-use App\Handlers\EmailHandler;
 use App\Mappers\RepositoryMapper;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use DB;
@@ -15,12 +14,10 @@ use DB;
 class CursoBO {
 
     private $repository;
-    private $email;
 
-    public function __construct(RepositoryMapper $repository, EmailHandler $email)
+    public function __construct(RepositoryMapper $repository)
     {
         $this->repository   = $repository;
-        $this->email  = $email;
     }
 
     /**
@@ -160,8 +157,6 @@ class CursoBO {
         } catch (Exception $e) {
             DB::rollBack();
             Upload::rollback();
-
-            throw $e;
 
             throw new UnexpectedErrorException;
         }

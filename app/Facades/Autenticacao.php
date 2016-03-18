@@ -95,7 +95,7 @@ class Autenticacao {
      * @return bool
      */
     public static function isEmailConfirmado() {
-        return !((bool) self::getUsuario()->ind_email_confirmado);
+        return ((bool) self::getUsuario()->ind_email_confirmado);
     }
 
     /**

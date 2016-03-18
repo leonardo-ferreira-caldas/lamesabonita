@@ -7,20 +7,17 @@ use App\Constants\ChefConstants;
 use App\Exceptions\UnexpectedErrorException;
 use App\Facades\Autenticacao;
 use App\Facades\Upload;
-use App\Handlers\EmailHandler;
 use App\Mappers\RepositoryMapper;
 use DB;
 use Symfony\Comenmponent\HttpKernel\Exception\HttpException;
 
 class MenuBO {
 
-    private $email;
     private $repository;
 
-    public function __construct(RepositoryMapper $repository, EmailHandler $email)
+    public function __construct(RepositoryMapper $repository)
     {
         $this->repository = $repository;
-        $this->email  = $email;
     }
 
     /**

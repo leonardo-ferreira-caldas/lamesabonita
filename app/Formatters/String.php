@@ -23,4 +23,5 @@ class String {
     public static function removerMascaraCPF($cpf) {
         return str_replace([".","-"], "", $cpf);
     }
+
 }

@@ -30,7 +30,7 @@ class AuthHelper {
     }
 
     public function isLoggedIn() {
-        return Auth::check() && !Auth::user()->ind_admin;
+        return Auth::check();
     }
 
     public function getEmail() {

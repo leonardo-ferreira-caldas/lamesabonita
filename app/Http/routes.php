@@ -164,7 +164,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('facebook/login',          'FacebookController@login');
     Route::get('facebook/login/callback', 'FacebookController@callback');
 
-    Route::post('login',        'Auth\AuthController@postLMBLogin');
+    Route::post('login',        'Auth\AuthController@postLogin');
     Route::post('registrar',    'Auth\AuthController@postCadastrar');
     Route::get('logout',        'Auth\AuthController@getLogout');
 

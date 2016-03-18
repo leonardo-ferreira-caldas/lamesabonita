@@ -2,6 +2,7 @@
 
 namespace App\Business;
 
+use App\Facades\Email;
 use DB;
 use App\Constants\ChefConstants;
 use App\Exceptions\UnexpectedErrorException;
@@ -9,7 +10,6 @@ use App\Facades\Autenticacao;
 use App\Facades\Upload;
 use App\Formatters\DataFormatter;
 use App\Formatters\Vector;
-use App\Handlers\EmailHandler;
 use App\Mappers\RepositoryMapper;
 use App\Utils\Alert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -20,12 +20,10 @@ use App\Facades\Query;
 
 class ChefBO {
 
-    private $email;
     private $repository;
 
-    public function __construct(RepositoryMapper $mapper, EmailHandler $email)
+    public function __construct(RepositoryMapper $mapper)
     {
-        $this->email      = $email;
         $this->repository = $mapper;
     }
 
@@ -256,7 +254,7 @@ class ChefBO {
             }
 
             $this->repository->chef->atualizarStatusPerfil($chef->id_chef, ChefConstants::STATUS_ATIVO);
-            $this->email->enviarEmailPerfilAprovado($chef->user->name, $chef->user->email);
+            Email::enviarEmailPerfilAprovado($chef->user->name, $chef->user->email);
 
             DB::commit();
 
@@ -289,7 +287,7 @@ class ChefBO {
             }
 
             $this->repository->chef->atualizarStatusPerfil($chef->id_chef, ChefConstants::STATUS_REPROVADO);
-            $this->email->enviarEmailPerfilReprovado($chef->user->name, $chef->user->email);
+            Email::enviarEmailPerfilReprovado($chef->user->name, $chef->user->email);
 
             DB::commit();
 
@@ -316,7 +314,7 @@ class ChefBO {
         try {
 
             $this->repository->chef->atualizarStatusPerfil(Autenticacao::getId(), ChefConstants::STATUS_AGUARDANDO_APROVACAO);
-            $this->email->enviarEmailSolicitacaoAprovacao(Autenticacao::getNome(), Autenticacao::getEmail());
+            Email::enviarEmailSolicitacaoAprovacao(Autenticacao::getNome(), Autenticacao::getEmail());
             DB::commit();
 
         } catch (Exception $e) {
@@ -340,7 +338,7 @@ class ChefBO {
         try {
 
             $this->repository->chef->atualizarStatusSeloLMB(Autenticacao::getId(), ChefConstants::SELO_SOLICITOU);
-            $this->email->enviarEmailSolicitacaoSeloLMB(Autenticacao::getNome(), Autenticacao::getEmail());
+            Email::enviarEmailSolicitacaoSeloLMB(Autenticacao::getNome(), Autenticacao::getEmail());
 
             DB::commit();
 

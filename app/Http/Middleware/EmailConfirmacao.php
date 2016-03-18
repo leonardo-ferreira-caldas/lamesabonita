@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Facades\Autenticacao;
 use Closure;
-use Auth;
 
 class EmailConfirmacao
 {
@@ -16,8 +16,7 @@ class EmailConfirmacao
      */
     public function handle($request, Closure $next)
     {
-
-        if (Auth::check() && !Auth::user()->ind_email_confirmado) {
+        if (Autenticacao::isLogado() && !Autenticacao::isEmailConfirmado()) {
             return redirect()->route('aguardando-confirmacao-email');
         }
 

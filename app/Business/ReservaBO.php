@@ -2,11 +2,11 @@
 
 namespace App\Business;
 
+use App\Facades\Email;
 use Illuminate\Support\Facades\Auth;
 use App\Constants\ReservaConstants;
 use App\Facades\Autenticacao;
 use App\Formatters\DataFormatter;
-use App\Handlers\EmailHandler;
 use App\Mappers\RepositoryMapper;
 use App\Repositories\ConfiguracaoSiteRepository;
 use App\Repositories\MenuRepository;
@@ -24,14 +24,12 @@ use Symfony\Component\Routing\Exception\MissingMandatoryParametersException;
 class ReservaBO {
 
     private $user;
-    private $email;
     private $moipBO;
     private $repository;
 
-    public function __construct(MoipBO $moipBO, EmailHandler $email, RepositoryMapper $mapper) {
+    public function __construct(MoipBO $moipBO, RepositoryMapper $mapper) {
         $this->moipBO       = $moipBO;
         $this->repository   = $mapper;
-        $this->email        = $email;
     }
 
     /**
@@ -162,7 +160,7 @@ class ReservaBO {
             try {
                 // Caso tudo tenha ocorrido bem, então envia um email de confirmaçao para o usuario
                 if (!$pagamentoRecusado) {
-                    $this->email->enviarEmailMenuReservado(Autenticacao::getNome(), Autenticacao::getEmail(), $reserva);
+                    Email::enviarEmailMenuReservado(Autenticacao::getNome(), Autenticacao::getEmail(), $reserva);
                 }
             } catch (Exception $e) {
                 Log::info($e->getTraceAsString());

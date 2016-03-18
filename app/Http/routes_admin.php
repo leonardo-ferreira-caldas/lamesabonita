@@ -88,4 +88,10 @@ Route::group(['middleware' => ['web'], 'prefix' => 'backoffice'], function () {
     Route::get('configuracao/editar',   'Admin\Resources\ConfiguracoesResource@getEditar')->name('backoffice.configuracao.editar');
     Route::get('configuracao/deletar',  'Admin\Resources\ConfiguracoesResource@getDeletar')->name('backoffice.configuracao.deletar');
 
+    Route::get('email',               'Admin\Resources\EmailResource@getListar')->name('backoffice.email.listar');
+    Route::get('email/buscar',        'Admin\Resources\EmailResource@getBuscarRegistros')->name('backoffice.email.registros');
+    Route::get('email/detalhes/{id}', 'Admin\Resources\EmailResource@getDetalhes')->name('backoffice.email.detalhes');
+    Route::get('email/corpo_email/{id}', 'Admin\Resources\EmailResource@getCorpoEmail')->name('backoffice.email.detalhes');
+    Route::get('email/reenviar/{id}',    'Admin\Resources\EmailResource@getReenviar')->name('backoffice.email.reenviar');
+
 });

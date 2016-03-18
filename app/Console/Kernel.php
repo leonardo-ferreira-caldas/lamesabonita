@@ -5,6 +5,7 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Carbon\Carbon;
+use App\Console\Commands\Email;
 
 class Kernel extends ConsoleKernel
 {
@@ -14,7 +15,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        // Commands\Inspire::class,
+        Email::class
     ];
 
     /**
@@ -27,8 +28,11 @@ class Kernel extends ConsoleKernel
     {
         $date = Carbon::now()->toW3cString();
         $environment = env('APP_ENV');
+
         $schedule->command(
             "db:backup --database=mysql --destination=s3 --destinationPath=/backups/lamesabonita/{$environment}/{$date} --compression=gzip"
         )->twiceDaily(13,21);
+
+        $schedule->command('email:processar_fila')->everyMinute();
     }
 }

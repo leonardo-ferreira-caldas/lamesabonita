@@ -127,7 +127,6 @@ class DatabaseCreate extends Migration
             $table->string('password', 60);
             $table->string('email')->unique();
             $table->boolean('ind_chef');
-            $table->boolean('ind_admin')->default(false);
             $table->boolean('ind_email_confirmado');
             $table->rememberToken();
             $table->timestamps();

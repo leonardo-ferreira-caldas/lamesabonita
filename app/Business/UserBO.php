@@ -5,9 +5,9 @@ namespace App\Business;
 use App\Constants\AvaliacaoConstants;
 use App\Exceptions\ErrorException;
 use App\Exceptions\NotAllowedException;
+use App\Facades\Email;
 use Illuminate\Support\Str;
 use App\Facades\Autenticacao;
-use App\Handlers\EmailHandler;
 use App\Mappers\RepositoryMapper;
 use Hash;
 use DB;
@@ -16,13 +16,11 @@ class UserBO
 {
 
     private $repository;
-    private $email;
     private $moip;
 
-    public function __construct(MoipBO $moip, RepositoryMapper $mapper, EmailHandler $email)
+    public function __construct(MoipBO $moip, RepositoryMapper $mapper)
     {
         $this->repository = $mapper;
-        $this->email = $email;
         $this->moip = $moip;
     }
 
@@ -33,7 +31,7 @@ class UserBO
      */
     public function reenviarEmailConfirmacao()
     {
-        $this->email->enviarEmailConfirmacao(Autenticacao::getNome(), Autenticacao::getEmail());
+        Email::enviarEmailConfirmacao(Autenticacao::getNome(), Autenticacao::getEmail());
     }
 
     /**
@@ -58,10 +56,10 @@ class UserBO
         $this->repository->user->confirmarEmail(Autenticacao::getId());
 
         if (Autenticacao::isChef()) {
-            return $this->email->enviarEmailBemVindoChef(Autenticacao::getNome(), Autenticacao::getEmail());
+            return Email::enviarEmailBemVindoChef(Autenticacao::getNome(), Autenticacao::getEmail());
         }
 
-        return $this->email->enviarEmailBemVindoDegustador(Autenticacao::getNome(), Autenticacao::getEmail());
+        return Email::enviarEmailBemVindoDegustador(Autenticacao::getNome(), Autenticacao::getEmail());
     }
 
     /**
@@ -142,9 +140,9 @@ class UserBO
                 $cliente = $this->repository->cliente->cadastrar($usuario);
             }
 
-            DB::commit();
+            Email::enviarEmailConfirmacao($usuario->name, $usuario->email);
 
-            $this->email->enviarEmailConfirmacao($usuario->name, $usuario->email);
+            DB::commit();
 
             return $usuario;
 

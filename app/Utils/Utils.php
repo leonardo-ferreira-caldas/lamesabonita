@@ -2,6 +2,7 @@
 
 namespace App\Utils;
 
+use Carbon\Carbon;
 use DateTime;
 
 class Utils {
@@ -17,12 +18,16 @@ class Utils {
     }
 
     public static function formatarDataBR($date) {
+        if (empty($date)) return null;
+
         $d = DateTime::createFromFormat('Y-m-d', $date);
         return $d->format('d/m/Y');
     }
 
     public static function formatarDataHoraBR($date) {
-        $d = DateTime::createFromFormat('Y-m-d H:i:s', $date);
+        if (empty($date)) return null;
+
+        $d = Carbon::createFromFormat('Y-m-d H:i:s', $date);
         return $d->format('d/m/Y H:i:s');
     }
 

@@ -9,8 +9,8 @@
 namespace App\Business;
 
 use App\Constants\PagamentoConstants;
+use App\Facades\Email;
 use App\Formatters\DataFormatter;
-use App\Handlers\EmailHandler;
 use App\Mappers\BusinessMapper;
 use App\Repositories\PagamentoRepository;
 use DB;
@@ -20,13 +20,11 @@ class PagamentoBO
 
     private $repository;
     private $bo;
-    private $email;
 
-    public function __construct(EmailHandler $email, BusinessMapper $bmapper, PagamentoRepository $repository)
+    public function __construct(BusinessMapper $bmapper, PagamentoRepository $repository)
     {
         $this->repository = $repository;
         $this->bo = $bmapper;
-        $this->email = $email;
     }
 
     public function ehStatusPagamento($status)
@@ -70,8 +68,8 @@ class PagamentoBO
                     $this->repository->atualizarStatusPagamento($pagamento->id_pagamento, PagamentoConstants::STATUS_PAGAMENTO_APROVADO, $statusMoip);
                     $this->repository->adicionarTracking($pagamento->id_pagamento, PagamentoConstants::STATUS_PAGAMENTO_APROVADO, $statusMoip, DataFormatter::getDataHoraAtual());
                     $this->bo->chef->adicionarSaldo($reserva->user->id, $reserva->vlr_divisao_chef);
-                    $this->email->enviarEmailPagamentoAprovado($name, $email, $reserva);
-                    $this->email->enviarEmailChefNovaReserva($nameChef, $emailChef, $reserva);
+                    Email::enviarEmailPagamentoAprovado($name, $email, $reserva);
+                    Email::enviarEmailChefNovaReserva($nameChef, $emailChef, $reserva);
                     break;
 
                 case PagamentoConstants::STATUS_PAGAMENTO_REPROVADO:
@@ -84,8 +82,8 @@ class PagamentoBO
                     $this->repository->atualizarStatusPagamento($pagamento->id_pagamento, PagamentoConstants::STATUS_PAGAMENTO_REPROVADO, $statusMoip);
                     $this->repository->adicionarTracking($pagamento->id_pagamento, PagamentoConstants::STATUS_PAGAMENTO_REPROVADO, $statusMoip, DataFormatter::getDataHoraAtual());
                     $this->bo->reserva->cancelarReserva($pagamento->fk_reserva);
-                    $this->email->enviarEmailPagamentoReprovado($name, $email, $reserva);
-                    $this->email->enviarEmailChefReservaCancelada($name, $email, $reserva);
+                    Email::enviarEmailPagamentoReprovado($name, $email, $reserva);
+                    Email::enviarEmailChefReservaCancelada($name, $email, $reserva);
                     break;
 
                 default:
@@ -100,16 +98,16 @@ class PagamentoBO
                             $this->repository->atualizarStatusPagamento($pagamento->id_pagamento, PagamentoConstants::STATUS_PAGAMENTO_ESTORNADO, $statusMoip);
                             $this->repository->adicionarTracking($pagamento->id_pagamento, PagamentoConstants::STATUS_PAGAMENTO_ESTORNADO, $statusMoip, DataFormatter::getDataHoraAtual());
                             $this->bo->reserva->cancelarReserva($pagamento->fk_reserva);
-                            $this->email->enviarEmailPagamentoEstornado($name, $email, $reserva);
-                            $this->email->enviarEmailChefReservaCancelada($name, $email, $reserva);
+                            Email::enviarEmailPagamentoEstornado($name, $email, $reserva);
+                            Email::enviarEmailChefReservaCancelada($name, $email, $reserva);
                             break;
 
                         case PagamentoConstants::STATUS_PAGAMENTO_REEMBOLSADO:
                             $this->repository->atualizarStatusPagamento($pagamento->id_pagamento, PagamentoConstants::STATUS_PAGAMENTO_REEMBOLSADO, $statusMoip);
                             $this->repository->adicionarTracking($pagamento->id_pagamento, PagamentoConstants::STATUS_PAGAMENTO_REEMBOLSADO, $statusMoip, DataFormatter::getDataHoraAtual());
                             $this->bo->reserva->cancelarReserva($pagamento->fk_reserva);
-                            $this->email->enviarEmailPagamentoReembolsado($name, $email, $reserva);
-                            $this->email->enviarEmailChefReservaCancelada($name, $email, $reserva);
+                            Email::enviarEmailPagamentoReembolsado($name, $email, $reserva);
+                            Email::enviarEmailChefReservaCancelada($name, $email, $reserva);
                             break;
 
                     }

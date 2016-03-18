@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Facades\Email;
 use Illuminate\Auth\Passwords\TokenRepositoryInterface;
 use App\Emails\RecuperarSenha;
-use App\Handlers\EmailHandler;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use App\User;
@@ -35,7 +35,6 @@ class PasswordController extends Controller
      * @return void
      */
     public function __construct() {
-//        $this->tokens = $tokens;
         $this->middleware("guest");
         parent::__construct();
     }
@@ -54,7 +53,7 @@ class PasswordController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function postRecuperarSenha(Request $request, EmailHandler $emailHandler) {
+    public function postRecuperarSenha(Request $request) {
         $this->validate($request, ['email' => 'required|email']);
 
         $email = $request->input('email');
@@ -69,7 +68,7 @@ class PasswordController extends Controller
 
         $token = $this->tokens->create($user);
 
-        $emailHandler->enviarEmailRecuperarSenha($user->name, $user->email, $token);
+        Email::enviarEmailRecuperarSenha($user->name, $user->email, $token);
 
         Alert::success('Enviado', 'Um email foi enviado para você com instruções para alterar sua senha.');
 

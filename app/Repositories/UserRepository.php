@@ -26,7 +26,7 @@ class UserRepository extends AbstractRepository {
      * @param $data
      * @return App\User
      */
-    private function cadastrar($data) {
+    public function cadastrar($data) {
         return $this->create([
             'name'     => $data['name'],
             'email'    => $data['email'],

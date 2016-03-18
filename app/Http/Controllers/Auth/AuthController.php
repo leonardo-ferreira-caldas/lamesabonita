@@ -50,15 +50,15 @@ class AuthController extends Controller
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
-
+    /**
+     * Caso o usuário tenha logado com sucesso, redireciona para a página correta
+     *
+     * @param Request $request
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function authenticated(Request $request, User $user) {
-        if ($request->has("_login") && $request->get("_login") == "admin") {
-            if (!$user->ind_admin) {
-                Autenticacao::deslogar();
-                return redirect('/');
-            }
-            return redirect()->route('admin.chefs');
-        } else if ($user->ind_chef) {
+        if ($user->ind_chef) {
             return redirect()->route('chef.visao_geral');
         }
 
@@ -71,19 +71,6 @@ class AuthController extends Controller
         }
 
         return redirect()->route('cliente.pagina_inicial');
-    }
-
-    /**
-     * Handle a login request to the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function postLMBLogin(Request $request) {
-        if ($request->has("_login") && $request->get("_login") == "admin") {
-            $this->loginPath = route('admin.login');
-        }
-        return $this->postLogin($request);
     }
 
     /**
@@ -146,14 +133,14 @@ class AuthController extends Controller
                 return redirect($route)->withErrors($validator);
             }
 
-            Log::info(print_r($request->all(), true));
-
             return $this->postRegister($request);
 
         } catch (HttpResponseException $httpExcpt) {
             throw $httpExcpt;
 
         } catch (Exception $e) {
+            Log::error($e->getMessage());
+
             return redirectWithAlertError("Não foi possível concluir o seu cadastro. Por favor tente novamente ou entre em contato com a equipe La Mesa Bonita.")
                 ->back();
         }
