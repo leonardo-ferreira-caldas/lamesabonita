@@ -160,7 +160,6 @@ class MenuBO {
             DB::rollBack();
             Upload::rollback();
 
-            throw $e;
             throw new UnexpectedErrorException;
         }
 
