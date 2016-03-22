@@ -75,7 +75,11 @@ abstract class AbstractRepository
     public function create($fields)
     {
         $model = $this->instanciate();
-        $model->fill($fields);
+
+        foreach ($fields as $fieldName => $fieldValue) {
+            $model->{$fieldName} = $fieldValue;
+        }
+
         $model->save();
 
         return $model;
