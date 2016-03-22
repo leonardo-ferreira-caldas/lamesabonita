@@ -282,7 +282,7 @@
                                                 </div>
 
                                                 <button type="button" v-on:click="adicionar" class="btn btn-success">
-                                                    <i class="fa fa-camera-retro rightmargin-xsm"></i> Adiciona Foto
+                                                    <i class="fa fa-camera-retro rightmargin-xsm"></i> Adicionar Foto
                                                 </button>
                                             </div>
 

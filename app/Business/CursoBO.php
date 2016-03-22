@@ -130,9 +130,11 @@ class CursoBO {
                 $this->repository->curso_culinaria->inserir($curso->id_curso, $idCulinaria);
             }
 
-            foreach ($dados['curso_preco'] as $posicao => $preco) {
-                if (empty($preco)) continue;
-                $this->repository->curso_preco->inserir($curso->id_curso, $preco, $dados['qtd_minima_clientes'][$posicao]);
+            if (isset($dados['curso_preco'])) {
+                foreach ($dados['curso_preco'] as $posicao => $preco) {
+                    if (empty($preco)) continue;
+                    $this->repository->curso_preco->inserir($curso->id_curso, $preco, $dados['qtd_minima_clientes'][$posicao]);
+                }
             }
 
             if (isset($dados['curso_foto'])) {
