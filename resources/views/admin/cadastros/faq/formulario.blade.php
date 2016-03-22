@@ -46,7 +46,16 @@
                                             <select required name="fk_tipo" class="form-control">
                                                 <option value="">Selecione...</option>
                                                 <optgroup label="Chef">
-                                                    @foreach($tipos as $tipo)
+                                                    @foreach($chefs as $tipo)
+                                                        <option
+                                                            @if(isset($registro->fk_tipo))
+                                                                {{ $registro->fk_tipo == $tipo->id_faq_tipo ? 'selected' : '' }}
+                                                            @endif
+                                                            value="{{ $tipo->id_faq_tipo }}">{{ $tipo->descricao }}</option>
+                                                    @endforeach
+                                                </optgroup>
+                                                <optgroup label="Clientes">
+                                                    @foreach($clientes as $tipo)
                                                         <option
                                                             @if(isset($registro->fk_tipo))
                                                                 {{ $registro->fk_tipo == $tipo->id_faq_tipo ? 'selected' : '' }}

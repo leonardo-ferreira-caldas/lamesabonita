@@ -86,7 +86,8 @@ class FAQResource extends Controller
 
         return view('admin.cadastros.faq.formulario', [
             'registro' => $registro,
-            'tipos'    => $this->tipo->all()
+            'chefs'    => $this->tipo->getFAQChefs(),
+            'clientes' => $this->tipo->getFAQClientes()
         ]);
     }
 
@@ -99,7 +100,8 @@ class FAQResource extends Controller
     public function getInserir()
     {
         return view('admin.cadastros.faq.formulario', [
-            'tipos'    => $this->tipo->all()
+            'chefs'    => $this->tipo->getFAQChefs(),
+            'clientes' => $this->tipo->getFAQClientes()
         ]);
     }
 

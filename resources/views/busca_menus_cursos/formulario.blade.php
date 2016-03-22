@@ -2,15 +2,22 @@
     <div class="home-sf-cidade">
         <label for="city_chef">Cidade</label>
         <div class="input-icon-left">
-            <input 
-                value="{{ $filtros['cidade'] or '' }}"
-                id="city_chef"
-                required
-                type="text"
-                placeholder="Exemplo: São Paulo"
-                name="cidade"
-                class="sm-form-control required">
-            <i class="fa fa-map-marker"></i>
+            {{--<input --}}
+                {{--value="{{ $filtros['cidade'] or '' }}"--}}
+                {{--id="city_chef"--}}
+                {{--required--}}
+                {{--type="text"--}}
+                {{--placeholder="Exemplo: São Paulo"--}}
+                {{--name="cidade"--}}
+                {{--class="sm-form-control required">--}}
+            {{--<i class="fa fa-map-marker"></i>--}}
+
+            <div class="input-icon-left">
+                <select required type="text" id="cidade" name="cidade" class="sm-form-control required">
+                    <option>São Paulo, SP</option>
+                </select>
+                <i class="fa fa-map-marker"></i>
+            </div>
         </div>
     </div>
     <div class="home-sf-date">
