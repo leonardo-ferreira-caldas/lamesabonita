@@ -1,18 +1,2 @@
-@media only screen and (min-width: 991px) {
-  #header:not(.sticky-header) #primary-menu.style-3 > ul > li > a {
-    margin: 11px 0 !important; }
-  #header:not(.sticky-header), #header:not(.sticky-header) #header-wrap, #header:not(.sticky-header) #logo img, #header:not(.sticky-header) #primary-menu:not(.style-2), #header:not(.sticky-header) #primary-menu:not(.style-2) > ul {
-    height: 70px; }
-  #header:not(.sticky-header).home #primary-menu.style-3 > ul > li > a {
-    margin: 19px 0 !important; }
-  #header:not(.sticky-header).home #primary-menu > ul.header-menus > li > a {
-    color: #FFF !important; }
-  #header:not(.sticky-header).home #logo img {
-    padding: 0 20px;
-    border: 1px solid #C5A46D;
-    border-top: none;
-    border-radius: 0 0 5px 5px; }
-  #header:not(.sticky-header).home #logo a {
-    padding: 0px 3px 3px 3px;
-    background-color: #FFF;
-    border-radius: 0 0 5px 5px; } }
+
+/*# sourceMappingURL=app.css.map */
