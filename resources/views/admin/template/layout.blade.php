@@ -24,6 +24,8 @@
         <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 
         <link rel="stylesheet" media="all" href="/admin/css/app.css" />
+
+        @yield("head.css")
         {{--<script src="/admin/js/app.js"></script>--}}
         <meta name="csrf-param" content="authenticity_token" />
         <meta name="csrf-token" content="aajIzDKAsv9tRf3JYeo7mxZPkAjp8XfXEKoCe0C5NqJ1TWAeJ2X9RchIsymM+RolrpL2NMvgUl+BdDXxekepKQ==" />

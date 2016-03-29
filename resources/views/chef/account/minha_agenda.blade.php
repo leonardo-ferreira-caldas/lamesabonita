@@ -39,7 +39,6 @@
 
 @section('js')
 <script type="text/javascript" src="/js/jquery.calendario.js"></script>
-<script type="text/javascript" src="/js/events-data.js"></script>
 <script type="text/javascript" src="/js/tipped.js"></script>
 <script type="text/javascript">
 

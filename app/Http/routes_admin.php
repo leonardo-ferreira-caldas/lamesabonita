@@ -50,9 +50,13 @@ Route::group(['middleware' => ['web'], 'prefix' => 'backoffice'], function () {
     Route::get('chef/detalhes/{slug}',      'Admin\Resources\ChefResource@getDetalhes')->name('backoffice.chef.detalhes');
     Route::post('chef/salvar',              'Admin\Resources\ChefResource@postSalvar')->name('backoffice.chef.salvar');
     Route::get('chef/editar/{slug}',        'Admin\Resources\ChefResource@getEditar')->name('backoffice.chef.editar');
+    Route::get('chef/novo_registro',        'Admin\Resources\ChefResource@getNovoRegistro')->name('backoffice.chef.novo_registro');
     Route::get('chef/aprovar/{slug}',       'Admin\Resources\ChefResource@getAprovarPerfil')->name('backoffice.chef.aprovar');
     Route::get('chef/reprovar/{slug}',      'Admin\Resources\ChefResource@getReprovarPerfil')->name('backoffice.chef.reprovar');
     Route::get('chef/deletar',              'Admin\Resources\ChefResource@getDeletar')->name('backoffice.chef.deletar');
+    Route::get('chef/agenda/salvar/{chef}',         'Admin\Resources\ChefResource@getSalvarAgenda')->name('backoffice.chef.agenda.salvar');
+    Route::get('chef/agenda/atualizar/{chef}/{id}', 'Admin\Resources\ChefResource@getAtualizarAgenda')->name('backoffice.chef.agenda.atualizar');
+    Route::get('chef/agenda/deletar/{chef}/{id}',   'Admin\Resources\ChefResource@getDeletarAgenda')->name('backoffice.chef.agenda.deletar');
 
     Route::get('menu',                     'Admin\Resources\MenuResource@getListar')->name('backoffice.menu.listar');
     Route::get('menu/buscar',              'Admin\Resources\MenuResource@getBuscarRegistros')->name('backoffice.menu.registros');

@@ -7,6 +7,7 @@ use App\Business\ChefBO;
 use App\Constants\ChefConstants;
 use App\Mappers\RepositoryMapper;
 use App\Model\EstadoModel;
+use App\Utils\Utils;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -34,6 +35,23 @@ class ChefResource extends Controller
     public function getListar()
     {
         return view('admin.chefs.listar');
+    }
+
+
+    /**
+     * Adicionar novo chef
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getNovoRegistro()
+    {
+        return view('admin.chefs.novo_chef', [
+            'sexos'   => $this->repository->sexo->all(),
+            'status'  => $this->repository->chef_status->all(),
+            'selo'    => $this->repository->chef_status_selo->all(),
+            'estados' => $this->repository->geo->listarEstados(),
+            'cidades' => []
+        ]);
     }
 
     /**
@@ -106,6 +124,7 @@ class ChefResource extends Controller
         $dados = $this->repository->chef->getDadosVisaoGeral($chef->id_chef);
         $menus = $this->repository->menu->getMenusByChefId($chef->id_chef);
         $cursos = $this->repository->curso->getCursosByChefId($chef->id_chef);
+
         $contasBancarias = $this->repository->conta_bancaria->getChefContasBancarias($chef->id_chef);
 
         return view('admin.chefs.detalhes', [
@@ -113,6 +132,7 @@ class ChefResource extends Controller
             'menus'                 => $menus,
             'cursos'                => $cursos,
             'contas_bancarias'      => $contasBancarias,
+            'agenda'                => json_encode($this->repository->chef_agenda->getAgendaCalendario($chef->id_chef)),
             'aguardando_aprovacao'  => $chef->fk_status == ChefConstants::STATUS_AGUARDANDO_APROVACAO
         ]);
     }
@@ -154,5 +174,69 @@ class ChefResource extends Controller
         $this->chef->reprovarPerfil($slug);
 
         return redirectWithAlertSuccess("Perfil reprovado com sucesso.")->back();
+    }
+
+    private function getDate($post) {
+        $month = str_pad($post['month'], 2, '0', STR_PAD_LEFT);
+        $day   = str_pad($post['day'], 2, '0', STR_PAD_LEFT);
+
+        return sprintf('%s-%s-%s', $post['year'], $month, $day);
+    }
+
+    public function getSalvarAgenda($idChef, Request $request) {
+
+        $post = $request->all();
+        $date = $this->getDate($post);
+
+        if (!Utils::isValidDate($date) || $post['time_from'] >= $post['time_to'] || $date <= date('Y-m-d')) {
+            abort(404, 'Não permitido');
+        }
+
+        $agenda = $this->repository->chef_agenda->getAgendaPorData($idChef, $date);
+
+        if (!empty($agenda)) {
+            return $this->update($idChef, $agenda->id_chef_agenda, $request);
+        }
+
+        $ChefAgendaModel = $this->repository->chef_agenda->create([
+            'fk_chef'  => $idChef,
+            'data'     => $date,
+            'hora_de'  => Utils::formatTime($post['time_from']),
+            'hora_ate' => Utils::formatTime($post['time_to'])
+        ]);
+
+        return $ChefAgendaModel->id_chef_agenda;
+
+    }
+
+    public function getAtualizarAgenda($idChef, $idAgenda, Request $request) {
+
+        $post = $request->all();
+
+        $agenda = $this->repository->chef_agenda->getAgenda($idAgenda);
+
+        if ($agenda->fk_chef != $idChef || $post['time_from'] >= $post['time_to'] || $agenda->data <= date('Y-m-d')) {
+            abort(403, 'Não permitido.');
+        }
+
+        $agenda->hora_de = Utils::formatTime($post['time_from']);
+        $agenda->hora_ate   = Utils::formatTime($post['time_to']);
+        $agenda->restore();
+        $agenda->save();
+
+        return $agenda->id_chef_agenda;
+
+    }
+
+    public function getDeletarAgenda($idChef, $idAgenda) {
+
+        $agenda = $this->repository->chef_agenda->findById($idAgenda);
+
+        if ($agenda->fk_chef != $idChef) {
+            abort(403, 'Não permitido.');
+        }
+
+        $agenda->delete();
+
     }
 }
