@@ -62,7 +62,7 @@ class Email implements QueueInterface {
                 DB::table('fila_email')
                     ->where('id_fila', $fila->id_fila)
                     ->update([
-                        'log_erro'              => $e->getTraceAsString(),
+                        'log_erro'              => $e->getMessage() . "\n\n" . $e->getTraceAsString(),
                         'qtd_tentativas_envio'  => ++$fila->qtd_tentativas_envio,
                         'data_ultima_tentativa' => Carbon::now()->toDateTimeString()
                     ]);
