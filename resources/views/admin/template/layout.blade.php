@@ -27,11 +27,7 @@
         {{--<script src="/admin/js/app.js"></script>--}}
         <meta name="csrf-param" content="authenticity_token" />
         <meta name="csrf-token" content="aajIzDKAsv9tRf3JYeo7mxZPkAjp8XfXEKoCe0C5NqJ1TWAeJ2X9RchIsymM+RolrpL2NMvgUl+BdDXxekepKQ==" />
-        <script>
-            //<![CDATA[
-            window.gon={};gon.api_version="v3";gon.default_avatar_url="https://gitlab.softbox.com.br/assets/no_avatar-0801eb7ed213327da2a534095a75b248.png";gon.default_issues_tracker="gitlab";gon.max_file_size=10;gon.relative_url_root="";gon.user_color_scheme="white";
-            //]]>
-        </script>
+
         <meta content='origin-when-cross-origin' name='referrer'>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport'>
         <meta content='#474D57' name='theme-color'>

@@ -74,7 +74,7 @@
                             <table class="table">
                                 <thead class="panel-heading">
                                 <tr>
-                                    <th>Cód</th>
+                                    <th>Chef</th>
                                     <th>Titulo</th>
                                     <th>Preço</th>
                                     <th>Ativo</th>
@@ -94,7 +94,7 @@
                                         | filterBy filtro_aprovado in 'fk_status'
                                         | orderBy ordem_campo ordem_dir
                                     ">
-                                        <td>@{{ curso.id_curso }}</td>
+                                        <td>@{{ curso.nome_completo }}</td>
                                         <td>@{{ curso.titulo }}</td>
                                         <td>R$ @{{ curso.preco }}</td>
                                         <td style="color: @{{ curso.ind_ativo ? 'green' : 'red' }}">@{{ curso.ind_ativo ? 'Ativo' : 'Inativo' }}</td>

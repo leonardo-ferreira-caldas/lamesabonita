@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Facades\Email;
-use Illuminate\Auth\Passwords\TokenRepositoryInterface;
+use Password;
 use App\Emails\RecuperarSenha;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
@@ -28,6 +28,7 @@ class PasswordController extends Controller
     use ResetsPasswords;
 
     protected $redirectTo = '/minha-conta';
+    private $tokens;
 
     /**
      * Create a new password controller instance.
@@ -61,12 +62,10 @@ class PasswordController extends Controller
         $user = User::where("email", $email)->first();
 
         if (empty($user)) {
-            $request->flash();
-            Alert::error('Erro', 'O email informado não existe.');
-            return redirect()->back();
+            return redirectWithAlertError('O email informado não existe.');
         }
 
-        $token = $this->tokens->create($user);
+        $token = Password::getRepository()->create($user);
 
         Email::enviarEmailRecuperarSenha($user->name, $user->email, $token);
 

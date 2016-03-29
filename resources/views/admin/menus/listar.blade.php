@@ -74,7 +74,7 @@
                             <table class="table">
                                 <thead class="panel-heading">
                                 <tr>
-                                    <th>Cód</th>
+                                    <th>Chef</th>
                                     <th>Titulo</th>
                                     <th>Preço</th>
                                     <th>Ativo</th>
@@ -94,7 +94,7 @@
                                         | filterBy filtro_aprovado in 'fk_status'
                                         | orderBy ordem_campo ordem_dir
                                     ">
-                                        <td>@{{ menu.id_menu }}</td>
+                                        <td>@{{ menu.nome_completo }}</td>
                                         <td>@{{ menu.titulo }}</td>
                                         <td>R$ @{{ menu.preco }}</td>
                                         <td style="color: @{{ menu.ind_ativo ? 'green' : 'red' }}">@{{ menu.ind_ativo ? 'Sim' : 'Não' }}</td>

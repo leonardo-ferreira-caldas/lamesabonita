@@ -17,7 +17,7 @@
 
             <div class="col_two_third nobottommargin noabsolute menu-detalhe-wrapper">
                 <div class="padding20px noabsolute">
-                    <h2 class="lato fontlight nobottommargin notopmargin">{{ $menu->titulo }}</h2>
+                    <h2 class="lato fontlight nobottommargin notopmargin" style="padding-right: 140px">{{ $menu->titulo }}</h2>
                     <div class="mini-foto-perfil">
                         <img class="img-circle rightmargin-xsm" src="{{ crop($chef->avatar ?: 'avatar.jpg', 40, 40) }}">
                         {{ $chef->user->name . " " . $chef->sobrenome }} (<small><a href="{{ route('chef', ['slug' => $chef->slug]) }}" class="lato uppercase">Ver perfil</a></small>)
@@ -26,7 +26,7 @@
                             <i class="fa fa-heart"></i> Favoritos
                         </a>
 
-                        <h3 class="preco-menu-detalhes marginbottom10px pull-right lato">R$ {{ $menu->preco }} <small class="roboto">por pessoa</small></h3>
+                        <h3 class="preco-menu-detalhes marginbottom10px pull-right lato">R$ {{ formatar_monetario($menu->preco) }} <small class="roboto">por pessoa</small></h3>
                     </div>
 
                 </div>

@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="menu-price-box">
-                <span class='menu-price'>R$ {{ $item->produto_preco }}</span>
+                <span class='menu-price'>R$ {{ formatar_monetario($item->produto_preco) }}</span>
                 <span>/por pessoa para</span>
 
                 <a href="/chef/{{ $item->chef_slug }}/{{ $item->produto_tipo }}/{{ $item->produto_slug }}" class="pull-right button button-mini button-3d nomargin">
