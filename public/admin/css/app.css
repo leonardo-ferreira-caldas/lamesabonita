@@ -11475,7 +11475,8 @@ ul.controls > li .author_link .avatar-inline, ul.controls > li .author_link .com
 }
 
 .table-holder {
-    margin: 0
+    margin: 0;
+    font-size: 14px;
 }
 
 table.table, .file-holder table, .wiki table, .md table, ul.notes .note .note-body .note-text table {
@@ -26646,7 +26647,7 @@ table .sherlock-code {
 .allmargin {margin: 50px;}
 .allmargin-lg {margin: 80px;}
 .allmargin-md {margin: 25px;}
-.allmargin-sm {margin: 10px;}
+.allmargin-sm {margin: 10px !important;}}
 .allmargin-xsm {margin: 5px;}
 
 .topmargin {margin-top: 50px;}
@@ -26722,4 +26723,120 @@ table .sherlock-code {
 
 .foto-upload {
     display: inline-block !important;
+}
+
+.fc-calendar .fc-head {
+    background: #343434 !important;
+    padding: 0px !important;
+}
+
+.events-calendar-header nav span {
+    background: transparent !important;
+    border-radius: 0px !important;
+    height: 33px !important;
+    border: 2px solid #e67e22;
+}
+
+.events-calendar-header nav span i {
+    color: #e67e22;
+}
+
+.fc-calendar .fc-head > div {
+    font-weight: 400 !important;
+}
+
+.fc-calendar, .fc-calendar .fc-head {
+    border-radius: 0px !important;
+}
+
+.calendar-month-year {
+    text-transform: uppercase;
+    text-align: center !important;
+    float: none !important;
+    padding: 0px !important;
+    width: auto !important;
+    position: relative !important;
+}
+
+.calendar-month-year nav {
+    position: static !important;
+}
+
+#calendar-prev {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+#calendar-next {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+.fc-calendar .fc-body {
+    padding: 0px !important;
+}
+
+.fc-calendar .fc-row > div > span.fc-date {
+    left: 12px !important;
+}
+
+#template-horario {
+    display: none;
+}
+
+.template-horario-agenda {
+    width: 200px;
+    margin-bottom: 0px;
+}
+
+.divider {
+    position: relative;
+    overflow: hidden;
+    margin: 35px 0;
+    color: #E5E5E5;
+    width: 100%;
+}
+
+.divider.divider-center, .divider.divider-center.divider-short {
+    text-align: center;
+}
+
+.divider i {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    line-height: 1;
+    font-size: 18px !important;
+    text-align: center;
+}
+
+.divider.divider-center:before {
+    left: -50% !important;
+    right: 0;
+    margin-left: -20px;
+}
+.divider:after, .divider.divider-center:before, .divider.divider-center.divider-short:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    top: 8px;
+    left: 30px;
+    height: 0;
+    border-top: 1px solid #EEE;
+}
+
+.divider.divider-center:after {
+    left: 50% !important;
+    right: 0;
+    margin-left: 20px;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+.template-horario-agenda label, .tpd-title {
+    font-size: 13px !important;
 }
