@@ -93,4 +93,14 @@ class ReservaRepository extends AbstractRepository {
         ]);
     }
 
+    /**
+     * Busca todas as reservas
+     *
+     * @param int $idChef
+     */
+    public function getTodasReservas() {
+        return Query::fetch('Reservas/QryBuscarTodasReservas');
+    }
+
+
 }

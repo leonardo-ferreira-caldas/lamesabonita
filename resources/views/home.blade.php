@@ -247,7 +247,7 @@
             <div class="clear"></div>
 
             <div class="center topmargin-sm">
-                <a href="#" class="button button-3d button-large button-rounded">Ver lista completa de menus</a>
+                <a href="/nossos-menus-cursos" class="button button-3d button-large button-rounded">Ver lista completa de menus</a>
             </div>
 
         </div>
@@ -268,10 +268,11 @@
             <li style="height: 147px;">
                 <div class="testimonial">
                     <div class="testi-content">
-                        <p>Incidunt deleniti blanditiis quas aperiam recusandae consequatur ullam quibusdam cum libero illo rerum!</p>
+                        <p>É a segunda experiência com a equipe de La Mesa Bonita.
+                            <br>
+                            Refeição glamoroso, com muito carinho, requinte e sabor. Além da praticidade de ter uma equipe eficiente e pratica para qualquer momento.</p>
                         <div class="testi-meta">
-                            John Doe
-                            <span>XYZ Inc.</span>
+                            Beth Chleba
                         </div>
                     </div>
                 </div>
@@ -279,10 +280,9 @@
             <li style="height: 147px;">
                 <div class="testimonial">
                     <div class="testi-content">
-                        <p>Natus voluptatum enim quod necessitatibus quis expedita harum provident eos obcaecati id culpa corporis molestias.</p>
+                        <p>La Mesa Bonita permite proporcionar em nossas casas um encontro com o melhor da gastronomia. Basta escolher um chef e acertar o menu. A experiência degustativa é deprimeira, da entrada à sobremesa, ou melhor, ao chocolatinho do café!</p>
                         <div class="testi-meta">
-                            Collis Ta'eed
-                            <span>Envato Inc.</span>
+                            Maria Beatriz Kohnen
                         </div>
                     </div>
                 </div>
@@ -290,10 +290,9 @@
             <li style="height: 147px;">
                 <div class="testimonial">
                     <div class="testi-content">
-                        <p>Fugit officia dolor sed harum excepturi ex iusto magnam asperiores molestiae qui natus obcaecati facere sint amet.</p>
+                        <p>Adorei o almoco e a companhia de vcs na sua linda casa! Quanto avaliacao: a comida nota 10, apresentacao 10, atendimento e simpatia dos chefs 10.</p>
                         <div class="testi-meta">
-                            Mary Jane
-                            <span>Google Inc.</span>
+                            Marcia Costa
                         </div>
                     </div>
                 </div>
@@ -301,10 +300,19 @@
             <li style="height: 147px;">
                 <div class="testimonial">
                     <div class="testi-content">
-                        <p>Similique fugit repellendus expedita excepturi iure perferendis provident quia eaque. Repellendus, vero numquam?</p>
+                        <p>Experiência agradável que traz o requinte de um restaurante mas com o toque pessoaldos anfitriões! Cardápios que atendem ao paladar dos que gostam de novidades até os mais tradicionais!</p>
                         <div class="testi-meta">
-                            Steve Jobs
-                            <span>Apple Inc.</span>
+                            Elide Bomeisel
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li style="height: 147px; width: 100%">
+                <div class="testimonial">
+                    <div class="testi-content">
+                        <p>La Mesa Bonita: Um experiência única, no aconchego da sua casa, os chefes Victor e Daniela criaram especiarias com sabores regionais espetaculares; geleia de umbu, molho de buriti, peixe grelhado com banana defumada e sorvete artesanal de camburi. Cozinha criativa, de qualidade, leveza, sofisticação e brasileiríssima!</p>
+                        <div class="testi-meta">
+                            Ana Laura Bessan
                         </div>
                     </div>
                 </div>

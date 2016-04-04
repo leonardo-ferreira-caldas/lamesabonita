@@ -31,18 +31,21 @@ class ChefBO {
      * Altera a foto de perfil do chef logado
      *
      * @param UploadedFile $file
+     * @param int $idChef
      * @throws UnexpectedErrorException
      * @return void
      */
-    public function alterarFotoCapa(UploadedFile $file) {
+    public function alterarFotoCapa(UploadedFile $file, $idChef = null) {
 
         try {
 
-            $chef = $this->repository->chef->findById(Autenticacao::getId());
+            $idChef = $idChef ?: Autenticacao::getId();
+
+            $chef = $this->repository->chef->findById($idChef);
 
             $fotoCapa = Upload::salvar($file, 'foto-capa');
 
-            $this->repository->chef->updateById(Autenticacao::getId(), [
+            $this->repository->chef->updateById($idChef, [
                 'foto_capa' => $fotoCapa
             ]);
 
@@ -58,18 +61,21 @@ class ChefBO {
      * Altera foto de perfil do chef logado
      *
      * @param UploadedFile $file
+     * @param int $idChef
      * @throws UnexpectedErrorException
      * @return void
      */
-    public function alterarFotoPerfil(UploadedFile $file) {
+    public function alterarFotoPerfil(UploadedFile $file, $idChef = null) {
 
         try {
 
-            $chef = $this->repository->chef->findById(Autenticacao::getId());
+            $idChef = $idChef ?: Autenticacao::getId();
+
+            $chef = $this->repository->chef->findById($idChef);
 
             $fotoPerfil = Upload::salvar($file, 'foto-perfil');
 
-            $this->repository->chef->updateById(Autenticacao::getId(), [
+            $this->repository->chef->updateById($idChef, [
                 'avatar' => $fotoPerfil
             ]);
 

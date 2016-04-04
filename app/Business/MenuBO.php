@@ -106,14 +106,15 @@ class MenuBO {
      * @param array $dados
      * @return void
      */
-    public function salvar($dados) {
+    public function salvar($dados, $idChef = null) {
 
         DB::beginTransaction();
 
         try {
 
             if (empty($dados['id_menu'])) {
-                $menu = $this->repository->menu->inserir(Autenticacao::getId(), $dados);
+                $idChef = $idChef ?: Autenticacao::getId();
+                $menu = $this->repository->menu->inserir($idChef, $dados);
             } else {
                 $menu = $this->repository->menu->atualizar($dados['id_menu'], $dados);
             }
@@ -122,12 +123,16 @@ class MenuBO {
             $this->repository->menu_culinaria->deletarByMenuId($menu->id_menu);
             $this->repository->menu_preco->deletarByMenuId($menu->id_menu);
 
-            foreach ($dados['tipo_refeicao'] as $idTipoRefeicao) {
-                $this->repository->menu_refeicao->inserir($menu->id_menu, $idTipoRefeicao);
+            if (isset($dados['tipo_refeicao'])) {
+                foreach ($dados['tipo_refeicao'] as $idTipoRefeicao) {
+                    $this->repository->menu_refeicao->inserir($menu->id_menu, $idTipoRefeicao);
+                }
             }
 
-            foreach ($dados['tipo_culinaria'] as $idCulinaria) {
-                $this->repository->menu_culinaria->inserir($menu->id_menu, $idCulinaria);
+            if (isset($dados['tipo_culinaria'])) {
+                foreach ($dados['tipo_culinaria'] as $idCulinaria) {
+                    $this->repository->menu_culinaria->inserir($menu->id_menu, $idCulinaria);
+                }
             }
 
             if (isset($dados['menu_preco'])) {
@@ -156,10 +161,13 @@ class MenuBO {
 
             DB::commit();
 
+            return $menu;
+
         } catch (Exception $e) {
             DB::rollBack();
             Upload::rollback();
 
+            throw $e;
             throw new UnexpectedErrorException;
         }
 

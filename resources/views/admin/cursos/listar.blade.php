@@ -8,6 +8,12 @@
         <div class="container-fluid">
             <div class="header-content">
                 @include('admin.includes.topo_formulario')
+
+                <a class="btn btn-success pull-right rightmargin-sm topmargin-sm" href="{{ route('backoffice.curso.novo_registro') }}">
+                    <i class="fa fa-plus"></i>&nbsp;
+                    Adicionar Novo Curso
+                </a>
+
                 <h1 class="title">Cursos</h1>
             </div>
         </div>

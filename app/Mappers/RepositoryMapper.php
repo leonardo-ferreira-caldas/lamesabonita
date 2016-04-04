@@ -32,6 +32,7 @@ use App\Repositories\MenuTipoRefeicaoRepository;
 use App\Repositories\PagamentoRepository;
 use App\Repositories\ProdutoStatusRepository;
 use App\Repositories\ReservaRepository;
+use App\Repositories\ReservaStatusRepository;
 use App\Repositories\SaqueRepository;
 use App\Repositories\SexoRepository;
 use App\Repositories\TipoRefeicaoRepository;
@@ -50,6 +51,7 @@ class RepositoryMapper extends AbstractMapper {
         'menu_culinaria'   => MenuCulinariaRepository::class,
         'pagamento'        => PagamentoRepository::class,
         'reserva'          => ReservaRepository::class,
+        'reserva_status'   => ReservaStatusRepository::class,
         'imagem'           => ImagemRepository::class,
         'geo'              => GeoRepository::class,
         'cliente'          => DegustadorRepository::class,

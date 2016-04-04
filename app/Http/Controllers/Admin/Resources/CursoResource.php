@@ -57,7 +57,10 @@ class CursoResource extends Controller
     public function postSalvar(Request $request)
     {
         if (!$request->has('id_curso')) {
-            return redirectWithAlertError("Código do curso não informado.");
+            $curso = $this->curso->salvar($request->all(), $request->get('id_chef'));
+            return redirectWithAlertSuccess('O curso foi criado com sucesso.')->route('backoffice.curso.editar', [
+                'slug' => $curso->slug
+            ]);
         }
 
         $this->curso->salvar($request->all());
@@ -91,6 +94,25 @@ class CursoResource extends Controller
             'refeicoes'         => $refeicoes,
             'culinarias'        => $culinarias,
             'status'            => $status
+        ]);
+    }
+
+    /**
+     * Carrega view que insere novo curso
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getNovoRegistro() {
+        $refeicoes = $this->repository->tipo_refeicao->all();
+        $culinarias = $this->repository->culinaria->all();
+        $status = $this->repository->produto_status->all();
+        $chefs = $this->repository->chef->getTodosChefs();
+
+        return view('admin.cursos.novo_curso', [
+            'refeicoes'         => $refeicoes,
+            'culinarias'        => $culinarias,
+            'status'            => $status,
+            'chefs'             => $chefs
         ]);
     }
 

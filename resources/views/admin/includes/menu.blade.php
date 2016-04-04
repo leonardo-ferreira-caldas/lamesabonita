@@ -31,6 +31,12 @@
             </a>
         </li>
         <li class="">
+            <a title="Cursos" href="{{ route('backoffice.reserva.listar') }}">
+                <i class="fa fa-book fa-fw"></i>
+                <span>Reservas</span>
+            </a>
+        </li>
+        <li class="">
             <a title="Contas Bancárias" href="{{ route('backoffice.conta_bancaria.listar') }}">
                 <i class="fa fa-university fa-fw"></i>
                 <span>Contas Bancárias</span>

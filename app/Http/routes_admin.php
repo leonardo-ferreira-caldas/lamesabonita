@@ -46,6 +46,9 @@ Route::group(['middleware' => ['web'], 'prefix' => 'backoffice'], function () {
 
     Route::get('chef',                      'Admin\Resources\ChefResource@getListar')->name('backoffice.chef.listar');
     Route::get('chef/buscar',               'Admin\Resources\ChefResource@getBuscarRegistros')->name('backoffice.chef.registros');
+    Route::get('chef/alterar-fotos/{slug}', 'Admin\Resources\ChefResource@getAlterarFotos')->name('backoffice.chef.alterar_fotos');
+    Route::post('chef/alterar-foto-perfil/{slug}', 'Admin\Resources\ChefResource@getAlterarFotoPerfil')->name('backoffice.chef.alterar_foto_perfil');
+    Route::post('chef/alterar-foto-capa/{slug}', 'Admin\Resources\ChefResource@getAlterarFotoCapa')->name('backoffice.chef.alterar_foto_capa');
     Route::get('chef/buscar_cidade/{id}',   'Admin\Resources\ChefResource@getCidadesEstado')->name('backoffice.chef.cidades');
     Route::get('chef/detalhes/{slug}',      'Admin\Resources\ChefResource@getDetalhes')->name('backoffice.chef.detalhes');
     Route::post('chef/salvar',              'Admin\Resources\ChefResource@postSalvar')->name('backoffice.chef.salvar');
@@ -60,6 +63,7 @@ Route::group(['middleware' => ['web'], 'prefix' => 'backoffice'], function () {
 
     Route::get('menu',                     'Admin\Resources\MenuResource@getListar')->name('backoffice.menu.listar');
     Route::get('menu/buscar',              'Admin\Resources\MenuResource@getBuscarRegistros')->name('backoffice.menu.registros');
+    Route::get('menu/novo_registro',       'Admin\Resources\MenuResource@getNovoRegistro')->name('backoffice.menu.novo_registro');
     Route::get('menu/salvar',              'Admin\Resources\MenuResource@getInserir')->name('backoffice.menu.inserir');
     Route::post('menu/salvar',             'Admin\Resources\MenuResource@postSalvar')->name('backoffice.menu.salvar');
     Route::get('menu/editar/{slug}',       'Admin\Resources\MenuResource@getEditar')->name('backoffice.menu.editar');
@@ -73,6 +77,7 @@ Route::group(['middleware' => ['web'], 'prefix' => 'backoffice'], function () {
     Route::get('curso/buscar',               'Admin\Resources\CursoResource@getBuscarRegistros')->name('backoffice.curso.registros');
     Route::get('curso/inserir',              'Admin\Resources\CursoResource@getInserir')->name('backoffice.curso.inserir');
     Route::post('curso/inserir',             'Admin\Resources\CursoResource@postSalvar')->name('backoffice.curso.salvar');
+    Route::get('curso/novo_registro',       'Admin\Resources\CursoResource@getNovoRegistro')->name('backoffice.curso.novo_registro');
     Route::get('curso/editar/{slug}',        'Admin\Resources\CursoResource@getEditar')->name('backoffice.curso.editar');
     Route::get('curso/aprovar/{slug}',       'Admin\Resources\CursoResource@getAprovar')->name('backoffice.curso.aprovar');
     Route::get('curso/reprovar/{slug}',      'Admin\Resources\CursoResource@getReprovar')->name('backoffice.curso.reprovar');
@@ -84,6 +89,10 @@ Route::group(['middleware' => ['web'], 'prefix' => 'backoffice'], function () {
     Route::get('conta_bancaria/buscar',     'Admin\Resources\ContaBancariaResource@getBuscarRegistros')->name('backoffice.conta_bancaria.registros');
     Route::post('conta_bancaria/salvar',    'Admin\Resources\ContaBancariaResource@postSalvar')->name('backoffice.conta_bancaria.salvar');
     Route::get('conta_bancaria/editar/{id}','Admin\Resources\ContaBancariaResource@getEditar')->name('backoffice.conta_bancaria.editar');
+
+    Route::get('reservas',            'Admin\Resources\ReservaResource@getListar')->name('backoffice.reserva.listar');
+    Route::get('reservas/buscar',     'Admin\Resources\ReservaResource@getBuscarRegistros')->name('backoffice.reserva.registros');
+    Route::get('reservas/detalhes/{id}',  'Admin\Resources\ReservaResource@getDetalhes')->name('backoffice.reserva.detalhes');
 
     Route::get('configuracao',          'Admin\Resources\ConfiguracoesResource@getListar')->name('backoffice.configuracao.listar');
     Route::get('configuracao/buscar',   'Admin\Resources\ConfiguracoesResource@getBuscarRegistros')->name('backoffice.configuracao.registros');

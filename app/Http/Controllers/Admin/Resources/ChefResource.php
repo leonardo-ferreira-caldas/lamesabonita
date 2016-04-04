@@ -50,6 +50,8 @@ class ChefResource extends Controller
             'status'  => $this->repository->chef_status->all(),
             'selo'    => $this->repository->chef_status_selo->all(),
             'estados' => $this->repository->geo->listarEstados(),
+            'avatar'  => ChefConstants::DEFAULT_AVATAR,
+            'capa'    => ChefConstants::DEFAULT_CAPA,
             'cidades' => []
         ]);
     }
@@ -73,11 +75,11 @@ class ChefResource extends Controller
     public function postSalvar(Request $request)
     {
         if (!$request->has('id_chef')) {
-            return redirectWithAlertError('O código do chef não foi informado.');
+            $chef = $this->admin->salvarNovoChef($request->all());
+            return redirectWithAlertSuccess('O chef foi cadastrado com sucesso.')->route('backoffice.chef.detalhes', ['slug' => $chef->slug]);
         }
 
         $this->admin->atualizarDadosChef($request->all());
-
         return redirectWithAlertSuccess('Os dados do chef foram salvos com sucesso.')->back();
     }
 
@@ -238,5 +240,37 @@ class ChefResource extends Controller
 
         $agenda->delete();
 
+    }
+
+    public function getAlterarFotos($slug) {
+        $chef = $this->repository->chef->findBySlug($slug, true);
+
+        return view('admin.chefs.fotos', [
+            'foto_perfil' => $chef->avatar ?: ChefConstants::DEFAULT_AVATAR,
+            'foto_capa' => $chef->foto_capa ?: ChefConstants::DEFAULT_CAPA,
+            'slug'      => $chef->slug
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @throws \App\Exceptions\UnexpectedErrorException
+     */
+    public function getAlterarFotoPerfil($slug, Request $request) {
+        $chef = $this->repository->chef->findBySlug($slug, true);
+        $this->chef->alterarFotoPerfil($request->file('foto_perfil'), $chef->id_chef);
+
+        return redirectWithAlertSuccess('A foto de perfil foi alterada com sucesso.')->back();
+    }
+
+    /**
+     * @param Request $request
+     * @throws \App\Exceptions\UnexpectedErrorException
+     */
+    public function getAlterarFotoCapa($slug, Request $request) {
+        $chef = $this->repository->chef->findBySlug($slug, true);
+        $this->chef->alterarFotoCapa($request->file('foto_capa'), $chef->id_chef);
+
+        return redirectWithAlertSuccess('A foto de capa foi alterada com sucesso.')->back();
     }
 }

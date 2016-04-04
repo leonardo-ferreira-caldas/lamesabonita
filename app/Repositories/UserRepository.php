@@ -21,6 +21,18 @@ class UserRepository extends AbstractRepository {
     }
 
     /**
+     * Verifica se ja existe um chef com o email informado
+     *
+     * @param string $email
+     * @return string
+     */
+    public function emailExiste($email) {
+        return $this->exists([
+            'email' => $email
+        ]);
+    }
+
+    /**
      * Insere um novo usuário
      *
      * @param $data

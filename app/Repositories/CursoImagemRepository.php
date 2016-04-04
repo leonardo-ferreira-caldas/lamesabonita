@@ -70,4 +70,24 @@ class CursoImagemRepository extends AbstractRepository {
             'ind_capa' => true
         ]);
     }
+
+    /**
+     * Atualiza a primeira foto do menu como capa
+     *
+     * @param int $idMenu
+     * @return void
+     */
+    public function atualizarPrimeiraFotoComoCapa($idCurso) {
+        $this->update(['fk_curso' => $idCurso], ['ind_capa' => false]);
+
+        $foto = $this->findFirst([
+            'fk_curso' => $idCurso
+        ]);
+
+        if (empty($foto)) {
+            return;
+        }
+
+        $this->updateById($foto->id_curso_imagem, ['ind_capa' => true]);
+    }
 }

@@ -58,12 +58,30 @@ class MenuResource extends Controller
     public function postSalvar(Request $request)
     {
         if (!$request->has('id_menu')) {
-            return redirectWithAlertError("Código do menu não informado.");
+            $menu = $this->menu->salvar($request->all(), $request->get('id_chef'));
+
+            return redirectWithAlertSuccess('O menu foi criado com sucesso.')->route('backoffice.menu.editar', [
+                'slug' => $menu->slug
+            ]);
         }
 
         $this->menu->salvar($request->all());
 
         return redirectWithAlertSuccess('Os dados do menu foram salvos com sucesso.')->back();
+    }
+
+    public function getNovoRegistro() {
+        $refeicoes = $this->repository->tipo_refeicao->all();
+        $culinarias = $this->repository->culinaria->all();
+        $status = $this->repository->produto_status->all();
+        $chefs = $this->repository->chef->getTodosChefs();
+
+        return view('admin.menus.novo_menu', [
+            'refeicoes'       => $refeicoes,
+            'culinarias'      => $culinarias,
+            'status'          => $status,
+            'chefs'           => $chefs
+        ]);
     }
 
     /**

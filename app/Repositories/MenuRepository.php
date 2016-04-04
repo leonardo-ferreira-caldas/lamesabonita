@@ -65,9 +65,13 @@ class MenuRepository extends AbstractRepository {
             'fk_status'          => MenuConstants::STATUS_AGUARANDO_APROVACAO
         ]);
 
+        $slug = Str::slug(sprintf('%s-%s', $menu->id_menu, $dados['titulo']));
+
         $this->updateById($menu->id_menu, [
-            'slug' => Str::slug(sprintf('%s-%s', $menu->id_menu, $dados['titulo']))
+            'slug' => $slug
         ]);
+
+        $menu->slug = $slug;
 
         return $menu;
     }

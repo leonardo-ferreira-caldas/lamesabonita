@@ -41,7 +41,7 @@ class ChefRepository extends AbstractRepository {
      * @return Model\ChefModel
      */
     public function cadastrar(User $usuario, $dados, $moip) {
-        $this->create([
+        return $this->create([
             'id_chef'           => $usuario->id,
             'telefone'          => $dados['telefone'],
             'cep'               => String::removerMascaraCEP($dados['cep']),
@@ -65,8 +65,6 @@ class ChefRepository extends AbstractRepository {
             "moip_login"        => $moip['moip_login'],
             "moip_created_at"   => $moip['moip_created_at']
         ]);
-
-        return $usuario;
     }
 
     /**

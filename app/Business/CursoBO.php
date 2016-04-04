@@ -106,14 +106,15 @@ class CursoBO {
      * @param array $dados
      * @return void
      */
-    public function salvar($dados) {
+    public function salvar($dados, $idChef = null) {
 
         DB::beginTransaction();
 
         try {
 
             if (empty($dados['id_curso'])) {
-                $curso = $this->repository->curso->inserir(Autenticacao::getId(), $dados);
+                $idChef = $idChef ?: Autenticacao::getId();
+                $curso = $this->repository->curso->inserir($idChef, $dados);
             } else {
                 $curso = $this->repository->curso->atualizar($dados['id_curso'], $dados);
             }
@@ -122,12 +123,16 @@ class CursoBO {
             $this->repository->curso_culinaria->deletarByCursoId($curso->id_curso);
             $this->repository->curso_preco->deletarByCursoId($curso->id_curso);
 
-            foreach ($dados['tipo_refeicao'] as $idTipoRefeicao) {
-                $this->repository->curso_refeicao->inserir($curso->id_curso, $idTipoRefeicao);
+            if (isset($dados['tipo_refeicao'])) {
+                foreach ($dados['tipo_refeicao'] as $idTipoRefeicao) {
+                    $this->repository->curso_refeicao->inserir($curso->id_curso, $idTipoRefeicao);
+                }
             }
 
-            foreach ($dados['tipo_culinaria'] as $idCulinaria) {
-                $this->repository->curso_culinaria->inserir($curso->id_curso, $idCulinaria);
+            if (isset($dados['tipo_culinaria'])) {
+                foreach ($dados['tipo_culinaria'] as $idCulinaria) {
+                    $this->repository->curso_culinaria->inserir($curso->id_curso, $idCulinaria);
+                }
             }
 
             if (isset($dados['curso_preco'])) {
@@ -155,6 +160,8 @@ class CursoBO {
             }
 
             DB::commit();
+
+            return $curso;
 
         } catch (Exception $e) {
             DB::rollBack();

@@ -8,6 +8,7 @@
     @section('content')
 
     <body class="ui_charcoal" data-page="projects:new">
+
         <header class="header-expanded navbar navbar-fixed-top navbar-gitlab">
             <div class="container-fluid">
                 <div class="header-content">
@@ -16,6 +17,7 @@
                 </div>
             </div>
         </header>
+
         <div class="page-sidebar-expanded page-with-sidebar">
 
             @include("admin.includes.menu")
@@ -52,6 +54,11 @@
                                 </div>
                                 <div class="avatar-holder">
                                     <img class="avatar s160" src="{{ crop($chef->avatar, 160, 160) }}">
+                                </div>
+                                <div>
+                                    <a class="btn btn-gray" target="_blank" href="{{ route('backoffice.chef.alterar_fotos', ['slug' => $chef->slug]) }}">
+                                        <i class="fa fa-picture-o"></i>&nbsp; Alterar Foto Perfil e Capa
+                                    </a>
                                 </div>
                                 <div class="cover-title">
                                     {{ $chef->nome_completo }}

@@ -2,7 +2,9 @@
 
 namespace Admin\Business;
 
+use App\Business\MoipBO;
 use App\Constants\ChefConstants;
+use App\Exceptions\ErrorException;
 use App\Exceptions\NotAllowedException;
 use App\Exceptions\NotFoundException;
 use App\Mappers\RepositoryMapper;
@@ -12,10 +14,12 @@ class AdminBO
 {
 
     private $repository;
+    private $moip;
 
-    public function __construct(RepositoryMapper $repositoryMapper)
+    public function __construct(RepositoryMapper $repositoryMapper, MoipBO $moip)
     {
         $this->repository = $repositoryMapper;
+        $this->moip = $moip;
     }
 
     /**
@@ -73,6 +77,43 @@ class AdminBO
             $this->repository->user->atualizarEmail($dados['id_chef'], $dados['email']);
 
             DB::commit();
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            throw $e;
+        }
+
+    }
+
+    /**
+     * Insere um novo chef
+     *
+     * @param array $dados
+     * @return null
+     */
+    public function salvarNovoChef($dados) {
+        DB::beginTransaction();
+
+        try {
+
+            if ($this->repository->user->emailExiste($dados['email'])) {
+                throw new ErrorException("O email informado para o chef já está sendo usado.");
+            }
+
+            $usuario = $this->repository->user->cadastrar([
+                'name'     => $dados['name'],
+                'email'    => $dados['email'],
+                'password' => bcrypt($dados['password']),
+                'ind_chef' => true
+            ]);
+
+            $moipResponse = $this->moip->efetuarCadastroChef($dados);
+            $chef = $this->repository->chef->cadastrar($usuario, $dados, $moipResponse);
+
+            DB::commit();
+
+            return $chef;
 
         } catch (\Exception $e) {
             DB::rollBack();

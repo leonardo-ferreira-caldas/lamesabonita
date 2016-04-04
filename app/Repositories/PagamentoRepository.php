@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Constants\PagamentoConstants;
 use App\Model\PagamentoCartaoModel;
 use App\Model\PagamentoModel;
+use App\Model\PagamentoStatus;
 use App\Model\PagamentoTracking;
 use App\Model\PagamentoTaxa;
 
@@ -174,6 +175,15 @@ class PagamentoRepository {
         $cartao->numero_cartao = $cartaoCredito['numero_cartao'];
         $cartao->titular_cartao = $cartaoCredito['titular_cartao'];
         $cartao->save();
+    }
+
+    /**
+     * Retorna todos os status de pagamento
+     *
+     * @return collection
+     */
+    public function getPagamentoStatus() {
+        return PagamentoStatus::all();
     }
 
 }

@@ -8,6 +8,12 @@
         <div class="container-fluid">
             <div class="header-content">
                 @include('admin.includes.topo_formulario')
+
+                <a class="btn btn-success pull-right rightmargin-sm topmargin-sm" href="{{ route('backoffice.chef.novo_registro') }}">
+                    <i class="fa fa-plus"></i>&nbsp;
+                    Adicionar Novo Chef
+                </a>
+
                 <h1 class="title">Chefs</h1>
             </div>
         </div>

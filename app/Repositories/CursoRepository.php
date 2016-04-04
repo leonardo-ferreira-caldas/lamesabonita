@@ -51,6 +51,8 @@ class CursoRepository extends AbstractRepository {
      * @return Model/CursoModel
      */
     public function inserir($idChef, $dados) {
+        $status = isset($dados['fk_status']) ? $dados['fk_status'] : CursoConstants::STATUS_AGUARANDO_APROVACAO;
+
         $curso = $this->create([
             'fk_chef'            => $idChef,
             'slug'               => Str::slug(sprintf("%s-%s", time(), $dados['titulo'])),
@@ -59,12 +61,16 @@ class CursoRepository extends AbstractRepository {
             'qtd_maxima_cliente' => $dados['qtd_maxima_cliente'],
             'preco'              => $dados['preco'],
             'ind_ativo'          => true,
-            'ind_aguardando_aprovacao' => true
+            'fk_status'          => $status
         ]);
 
+        $slug = Str::slug(sprintf('%s-%s', $curso->id_curso, $dados['titulo']));
+
         $this->updateById($curso->id_curso, [
-            'slug' => Str::slug(sprintf('%s-%s', $curso->id_curso, $dados['titulo']))
+            'slug' => $slug
         ]);
+
+        $curso->slug = $slug;
 
         return $curso;
     }
