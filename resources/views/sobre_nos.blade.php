@@ -3,7 +3,7 @@
 @section('after-header')
 <!-- Page Title
 ============================================= -->
-<section id="page-title" class="page-title-center">
+<section id="page-title" class="page-title-center" style="background-image: url('/images/landing/foto_sobrenos.jpg') !important;">
 
     <div class="container clearfix">
         <h1><span>Sobre Nós</span></h1>
