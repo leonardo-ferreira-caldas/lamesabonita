@@ -67,7 +67,15 @@ class PaginasController extends Controller
      */
     public function getLogin()
     {
-        return view('login');
+        $background = "background_login.jpg";
+
+        if ($this->request->has("bg")) {
+            $background = $this->request->get("bg");
+        }
+
+        return view('login', [
+            'background' => $background
+        ]);
     }
 
     /**

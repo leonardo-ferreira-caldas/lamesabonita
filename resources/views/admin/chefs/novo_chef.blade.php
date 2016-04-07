@@ -33,15 +33,15 @@
                             {!! csrf_field() !!}
 
                             <div class="form-group">
-                                <div class="col-sm-4">
+                                <div class="col-sm-2">
                                     <label class="block-label">Código</label>
                                     <input readonly class="form-control" name="id_chef" type="text">
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-5">
                                     <label class="block-label">Nome</label>
                                     <input required class="form-control" type="text" name="name">
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-5">
                                     <label class="block-label">Sobrenome</label>
                                     <input required class="form-control" type="text" name="sobrenome">
                                 </div>

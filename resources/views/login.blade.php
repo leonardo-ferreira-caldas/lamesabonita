@@ -5,7 +5,7 @@
 @section('content')
 <div class="content-wrap nopadding">
 
-    <div class="mb-nobottompadding mb-notoppadding mb-container nopadding toppadding-lg bottompadding-lg nobgmobile" style="background: url(/images/backgrounds/background_login.jpg); background-size: cover;">
+    <div class="mb-nobottompadding mb-notoppadding mb-container nopadding toppadding-lg bottompadding-lg nobgmobile" style="background: url(/images/backgrounds/{{ $background }}); background-size: cover;">
 
         <div class="container clearfix mb-nomargin mb-nopadding mb-nowidth">
 
