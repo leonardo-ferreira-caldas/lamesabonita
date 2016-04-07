@@ -272,7 +272,7 @@
                             <br>
                             Refeição glamoroso, com muito carinho, requinte e sabor. Além da praticidade de ter uma equipe eficiente e pratica para qualquer momento.</p>
                         <div class="testi-meta">
-                            Beth Chleba
+                            Beth
                         </div>
                     </div>
                 </div>
@@ -282,7 +282,7 @@
                     <div class="testi-content">
                         <p>La Mesa Bonita permite proporcionar em nossas casas um encontro com o melhor da gastronomia. Basta escolher um chef e acertar o menu. A experiência degustativa é deprimeira, da entrada à sobremesa, ou melhor, ao chocolatinho do café!</p>
                         <div class="testi-meta">
-                            Maria Beatriz Kohnen
+                            Maria
                         </div>
                     </div>
                 </div>
@@ -292,7 +292,7 @@
                     <div class="testi-content">
                         <p>Adorei o almoco e a companhia de vcs na sua linda casa! Quanto avaliacao: a comida nota 10, apresentacao 10, atendimento e simpatia dos chefs 10.</p>
                         <div class="testi-meta">
-                            Marcia Costa
+                            Marcia
                         </div>
                     </div>
                 </div>
@@ -302,7 +302,7 @@
                     <div class="testi-content">
                         <p>Experiência agradável que traz o requinte de um restaurante mas com o toque pessoaldos anfitriões! Cardápios que atendem ao paladar dos que gostam de novidades até os mais tradicionais!</p>
                         <div class="testi-meta">
-                            Elide Bomeisel
+                            Elide
                         </div>
                     </div>
                 </div>
@@ -312,7 +312,7 @@
                     <div class="testi-content">
                         <p>La Mesa Bonita: Um experiência única, no aconchego da sua casa, os chefes Victor e Daniela criaram especiarias com sabores regionais espetaculares; geleia de umbu, molho de buriti, peixe grelhado com banana defumada e sorvete artesanal de camburi. Cozinha criativa, de qualidade, leveza, sofisticação e brasileiríssima!</p>
                         <div class="testi-meta">
-                            Ana Laura Bessan
+                            Ana Laura
                         </div>
                     </div>
                 </div>
