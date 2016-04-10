@@ -30,15 +30,29 @@ SELECT
     tipo_refeicao ON menu_refeicao.fk_tipo_refeicao = tipo_refeicao.id_tipo_refeicao
   WHERE
     menu_refeicao.fk_menu = menu.id_menu
-  ) as tipos_refeicoes
+  ) as tipos_refeicoes,
+  
+  concat(users.name, ' ', chef.sobrenome) as nome_completo,
+  chef.slug as chef_slug
 
 FROM
-  menu
+  menu  
 INNER JOIN
   produto_status ON produto_status.id_produto_status = menu.fk_status
 INNER JOIN
   chef ON chef.id_chef = menu.fk_chef
+INNER JOIN
+  users ON users.id = chef.id_chef
 WHERE
-  menu.id_menu = :id_menu
+  %s
 GROUP BY menu.id_menu
 ";
+
+if (!is_array($params['id_menu'])) {
+    $query = sprintf($query, 'menu.id_menu = ' . $params['id_menu']);
+} else {
+    $query = sprintf($query, 'menu.id_menu in( ' . implode(',', $params['id_menu']) . ')');
+}
+
+$bindings = [];
+

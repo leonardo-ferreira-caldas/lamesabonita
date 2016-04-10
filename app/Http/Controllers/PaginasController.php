@@ -34,7 +34,9 @@ class PaginasController extends Controller
      */
     public function getHome()
     {
-        return view('home');
+        return view('home', [
+            'menus' => $this->repository->menu->getMenusInicio([14, 15, 16, 11, 12, 20, 22, 13])
+        ]);
     }
 
     /**

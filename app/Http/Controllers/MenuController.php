@@ -20,6 +20,7 @@ class MenuController extends Controller
     public function __construct(RepositoryMapper $mapper, BusinessMapper $businessMapper) {
         parent::__construct();
         $this->middleware('chef');
+        $this->middleware("email_confirmacao");
 
         $this->repository = $mapper;
         $this->bo = $businessMapper;

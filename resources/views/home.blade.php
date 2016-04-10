@@ -52,7 +52,7 @@
 
                 <div class="col_one_fourth bottommargin-sm">
                     <div class="center">
-                        <img src='images/icones/chef_icone_grocery.png' class="fbox-icon-chef-ingredientes" />
+                        <img src='/images/icones/chef_icone_grocery.png' class="fbox-icon-chef-ingredientes" />
                     </div>
                     <div class="center topmargin-sm bottommargin-xsm">
                         <span class="como-funciona-number">1</span>
@@ -63,7 +63,7 @@
 
                 <div class="col_one_fourth bottommargin-sm">
                     <div class="center">
-                        <img src='images/icones/chef_icone_cozinha.png' class="fbox-icon-chef-ingredientes" />
+                        <img src='/images/icones/chef_icone_cozinha.png' class="fbox-icon-chef-ingredientes" />
                     </div>
                     <div class="center topmargin-sm bottommargin-xsm">
                         <span class="como-funciona-number">2</span>
@@ -74,7 +74,7 @@
 
                 <div class="col_one_fourth bottommargin-sm">
                     <div class="center">
-                        <img src='images/icones/chef_icone_apresenta_menu.png' class="fbox-icon-chef-ingredientes" />
+                        <img src='/images/icones/chef_icone_apresenta_menu.png' class="fbox-icon-chef-ingredientes" />
                     </div>
                     <div class="center topmargin-sm bottommargin-xsm">
                         <span class="como-funciona-number">3</span>
@@ -85,7 +85,7 @@
 
                 <div class="col_one_fourth col_last bottommargin-sm">
                     <div class="center">
-                        <img src='images/icones/chef_icone_limpeza.png' class="fbox-icon-chef-ingredientes" />
+                        <img src='/images/icones/chef_icone_limpeza.png' class="fbox-icon-chef-ingredientes" />
                     </div>
                     <div class="center topmargin-sm bottommargin-xsm">
                         <span class="como-funciona-number">4</span>
@@ -103,7 +103,7 @@
         <div class="clear"></div>
 
         <div class="center topmargin-sm">
-            <a href="#" class="button button-3d button-large button-rounded">Veja nossa lista de menus</a>
+            <a href="/nossos-menus-cursos" class="button button-3d button-large button-rounded">Veja nossa lista de menus</a>
         </div>
 
     </div>
@@ -120,128 +120,25 @@
 
             <div class="clear"></div>
 
-            <div class="portfolio grid-container portfolio-nomargin clearfix bottommargin" style="position: relative; height: 426px;">
+            <div>
+                @foreach($menus as $menu)
 
-                <article class="portfolio-item pf-media pf-icons" style="position: absolute; left: 0px; top: 0px;">
-                    <div class="portfolio-image">
-                        <a href="portfolio-single.php">
-                            <img src="{{ crop('bolo_chocolate.jpg', 284, 213) }}" alt="Open Imagination" style="visibility: visible; opacity: 1; display: block;">
-                        </a>
-                        <div class="portfolio-overlay">
-                            <div class="portfolio-desc" style="margin-top: 53.5px;">
-                                <h3><a href="#">Bolo de Chocolate</a></h3>
-                                <span>Chef Leonardo F. Caldas</span>
+                    <article class="portfolio-item pf-media pf-icons nomargin">
+                        <div class="portfolio-image">
+                            <a href="portfolio-single.php">
+                                <img src="{{ crop($menu->foto_capa, 284, 213) }}" alt="Open Imagination" style="visibility: visible; opacity: 1; display: block;">
+                            </a>
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-desc" style="margin-top: 53.5px;">
+                                    <h3><a href="/chef/{{ $menu->chef_slug }}/menu/{{ $menu->slug }}">{{ $menu->titulo }}</a></h3>
+                                    <span>Chef {{ $menu->nome_completo }}</span>
+                                </div>
+                                <a href="/chef/{{ $menu->chef_slug }}/menu/{{ $menu->slug }}" class="left-icon"><i class="icon-line-plus"></i></a>
                             </div>
-                            <a href="#" class="left-icon"><i class="icon-line-plus"></i></a>
                         </div>
-                    </div>
-                </article>
+                    </article>
 
-                <article class="portfolio-item pf-media pf-icons" style="position: absolute; left: 284px; top: 0px;">
-                    <div class="portfolio-image">
-                        <a href="portfolio-single.php">
-                            <img src="{{ crop('bolo_morango.jpg', 284, 213) }}" alt="Open Imagination" style="visibility: visible; opacity: 1; display: block;">
-                        </a>
-                        <div class="portfolio-overlay">
-                            <div class="portfolio-desc" style="margin-top: 53.5px;">
-                                <h3><a href="#">Bolo de Morango</a></h3>
-                                <span>Chef Leonardo F. Caldas</span>
-                            </div>
-                            <a href="#" class="left-icon"><i class="icon-line-plus"></i></a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="portfolio-item pf-media pf-icons" style="position: absolute; left: 568px; top: 0px;">
-                    <div class="portfolio-image">
-                        <a href="portfolio-single.php">
-                            <img src="{{ crop('bolo_caramelo.jpg', 284, 213) }}" alt="Open Imagination" style="visibility: visible; opacity: 1; display: block;">
-                        </a>
-                        <div class="portfolio-overlay">
-                            <div class="portfolio-desc" style="margin-top: 53.5px;">
-                                <h3><a href="#">Bolo de Caramelo</a></h3>
-                                <span>Chef Leonardo F. Caldas</span>
-                            </div>
-                            <a href="#" class="left-icon"><i class="icon-line-plus"></i></a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="portfolio-item pf-media pf-icons" style="position: absolute; left: 852px; top: 0px;">
-                    <div class="portfolio-image">
-                        <a href="portfolio-single.php">
-                            <img src="{{ crop('bolo_abacaxi.jpg', 284, 213) }}" alt="Open Imagination" style="visibility: visible; opacity: 1; display: block;">
-                        </a>
-                        <div class="portfolio-overlay">
-                            <div class="portfolio-desc" style="margin-top: 53.5px;">
-                                <h3><a href="#">Bolo de Abacaxi</a></h3>
-                                <span>Chef Leonardo F. Caldas</span>
-                            </div>
-                            <a href="#" class="left-icon"><i class="icon-line-plus"></i></a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="portfolio-item pf-media pf-icons" style="position: absolute; left: 0px; top: 213px;">
-                    <div class="portfolio-image">
-                        <a href="portfolio-single.php">
-                            <img src="{{ crop('bolo_chocolate_cereja.jpg', 284, 213) }}" alt="Open Imagination" style="visibility: visible; opacity: 1; display: block;">
-                        </a>
-                        <div class="portfolio-overlay">
-                            <div class="portfolio-desc" style="margin-top: 53.5px;">
-                                <h3><a href="#">Bolo de Chocolate c/ Cereja</a></h3>
-                                <span>Chef Leonardo F. Caldas</span>
-                            </div>
-                            <a href="#" class="left-icon"><i class="icon-line-plus"></i></a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="portfolio-item pf-media pf-icons" style="position: absolute; left: 284px; top: 213px;">
-                    <div class="portfolio-image">
-                        <a href="portfolio-single.php">
-                            <img src="{{ crop('pudim_caramelo.jpg', 284, 213) }}" alt="Open Imagination" style="visibility: visible; opacity: 1; display: block;">
-                        </a>
-                        <div class="portfolio-overlay">
-                            <div class="portfolio-desc" style="margin-top: 53.5px;">
-                                <h3><a href="#">Pudim de Caramelo</a></h3>
-                                <span>Chef Leonardo F. Caldas</span>
-                            </div>
-                            <a href="#" class="left-icon"><i class="icon-line-plus"></i></a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="portfolio-item pf-media pf-icons" style="position: absolute; left: 568px; top: 213px;">
-                    <div class="portfolio-image">
-                        <a href="portfolio-single.php">
-                            <img src="{{ crop('pudim_morango.jpg', 284, 213) }}" alt="Open Imagination" style="visibility: visible; opacity: 1; display: block;">
-                        </a>
-                        <div class="portfolio-overlay">
-                            <div class="portfolio-desc" style="margin-top: 53.5px;">
-                                <h3><a href="#">Pudim de Morango</a></h3>
-                                <span>Chef Leonardo F. Caldas</span>
-                            </div>
-                            <a href="#" class="left-icon"><i class="icon-line-plus"></i></a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="portfolio-item pf-media pf-icons" style="position: absolute; left: 852px; top: 213px;">
-                    <div class="portfolio-image">
-                        <a href="portfolio-single.php">
-                            <img src="{{ crop('pudim_morango_2.jpg', 284, 213) }}" alt="Open Imagination" style="visibility: visible; opacity: 1; display: block;">
-                        </a>
-                        <div class="portfolio-overlay">
-                            <div class="portfolio-desc" style="margin-top: 53.5px;">
-                                <h3><a href="#">Pudim de Morango 2</a></h3>
-                                <span>Chef Leonardo F. Caldas</span>
-                            </div>
-                            <a href="#" class="left-icon"><i class="icon-line-plus"></i></a>
-                        </div>
-                    </div>
-                </article>
-
+                @endforeach
             </div>
 
             <div class="clear"></div>

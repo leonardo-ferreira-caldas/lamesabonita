@@ -202,4 +202,17 @@ class MenuRepository extends AbstractRepository {
         ]);
     }
 
+    /**
+     * Retorna uma lista de menus
+     *
+     * @param $listaIds
+     * @return collection
+     */
+    public function getMenusInicio($listaIds) {
+        return Query::fetch('Chef/Menu/QryBuscarDadosMenu', [
+            'id_menu' => $listaIds,
+            'sem_foto' => MenuConstants::SEM_FOTO
+        ]);
+    }
+
 }
