@@ -45,7 +45,6 @@ INNER JOIN
   users ON users.id = chef.id_chef
 WHERE
   %s
-GROUP BY menu.id_menu
 ";
 
 if (!is_array($params['id_menu'])) {
