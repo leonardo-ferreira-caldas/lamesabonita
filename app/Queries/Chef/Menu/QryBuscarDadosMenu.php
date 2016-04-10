@@ -53,5 +53,5 @@ if (!is_array($params['id_menu'])) {
     $query = sprintf($query, 'menu.id_menu in( ' . implode(',', $params['id_menu']) . ')');
 }
 
-$bindings = [];
+unset($params['id_menu']);
 
