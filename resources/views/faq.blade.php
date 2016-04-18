@@ -92,7 +92,7 @@
 
                     @foreach($faqAgrupadoCliente['items'] as $idxCliente => $listaAgrupadaCliente)
 
-                        <h3 id="faq-chef-{{ $listaAgrupadaCliente->id_faq }}">{{ $listaAgrupadaCliente->pergunta }}</h3>
+                        <h3 id="faq-cliente-{{ $listaAgrupadaCliente->id_faq }}">{{ $listaAgrupadaCliente->pergunta }}</h3>
                         <p>{{ $listaAgrupadaCliente->resposta }}</p>
 
                         @if($idxCliente < count($faqAgrupadoCliente['items']) - 1)
