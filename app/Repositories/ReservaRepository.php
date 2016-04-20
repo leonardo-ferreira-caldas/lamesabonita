@@ -86,6 +86,7 @@ class ReservaRepository extends AbstractRepository {
      * Busca todas as reservas de um chef
      *
      * @param int $idChef
+     * @return array
      */
     public function getReservasByChefId($idChef) {
         return Query::fetch('Reservas/QryBuscarReservasChef', [
@@ -97,10 +98,25 @@ class ReservaRepository extends AbstractRepository {
      * Busca todas as reservas
      *
      * @param int $idChef
+     * @return array
      */
     public function getTodasReservas() {
         return Query::fetch('Reservas/QryBuscarTodasReservas');
     }
 
 
+    /**
+     * Verifica se ja existe uma reserva para um chef e uma data
+     *
+     * @param $idChef
+     * @param $dataReserva
+     * @return bool
+     */
+        public function jaPossuiReservaEmData($idChef, $dataReserva) {
+        return $this->exists([
+            'fk_chef'      => $idChef,
+            'data_reserva' => $dataReserva,
+            'fk_status'    => ReservaConstants::STATUS_ATIVA
+        ]);
+    }
 }

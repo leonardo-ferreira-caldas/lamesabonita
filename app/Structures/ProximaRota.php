@@ -12,7 +12,7 @@ class ProximaRota
     private $redirect = null;
     private $redirectFallback = [];
     private $isAjax = false;
-    private $cjef;
+    private $chef;
 
     public function __construct($successMessage, $redirectFallback = null)
     {
@@ -37,7 +37,6 @@ class ProximaRota
     private function identificarProximaRota() {
 
         $status = $this->chef->getStatusPreenchimentoPerfilChefLogado();
-        $finalizouPerfil = true;
 
         if (!$status['informacoes_pessoais']) {
             $this->successMessage[] = 'Agora preencha suas informações pessoais.';

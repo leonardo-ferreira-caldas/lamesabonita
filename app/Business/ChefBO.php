@@ -127,7 +127,7 @@ class ChefBO {
         }
 
     }
-
+    
     /**
      * Retorna o saldo disponivel do chef logado
      *
@@ -244,7 +244,8 @@ class ChefBO {
     /**
      * Aprova o perfil de um chef
      *
-     * @param $slug
+     * @param string $slug
+     * @throws Exception
      * @return bool
      */
     public function aprovarPerfil($slug) {
@@ -300,7 +301,6 @@ class ChefBO {
         } catch (Exception $e) {
 
             DB::rollBack();
-            throw $e;
 
             throw new UnexpectedErrorException;
 

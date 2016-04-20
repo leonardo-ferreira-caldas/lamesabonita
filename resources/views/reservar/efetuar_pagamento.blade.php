@@ -168,12 +168,8 @@
                                     <td class="text-right">{{ $qtd_clientes }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Taxa de Serviço:</td>
-                                    <td class="text-right">R$ {{ formatar_monetario($taxa_lmb) }}</td>
-                                </tr>
-                                <tr>
                                     <td>Valor Total:</td>
-                                    <td class="text-right">R$ {{ formatar_monetario($produto->preco * $qtd_clientes + $taxa_lmb) }}</td>
+                                    <td class="text-right">R$ {{ formatar_monetario($produto->preco * $qtd_clientes) }}</td>
                                 </tr>
                                 </tbody>
                             </table>

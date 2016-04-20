@@ -10434,8 +10434,6 @@ fieldset[disabled] .sm-form-control {
 	opacity: 1;
 }
 
-.sm-form-control { height: auto; }
-
 .form-control { border-radius: 3px; }
 
 .form-control:active,

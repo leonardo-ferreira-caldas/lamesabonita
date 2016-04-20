@@ -3,20 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Business\ChefBO;
-use App\Business\CursoBO;
-use App\Business\DegustadorBO;
-use App\Business\MenuBO;
 use App\Facades\Autenticacao;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Mappers\BusinessMapper;
 use App\Mappers\RepositoryMapper;
-use App\Repositories\ConfiguracaoSiteRepository;
-use App\Repositories\GeoRepository;
-use App\Business\ReservaBO;
 use Auth;
-use App\Utils\Alert;
 
 class ReservaController extends Controller {
 
@@ -53,10 +45,12 @@ class ReservaController extends Controller {
     public function getEnderecoReserva($slugChef, $tipo, $slug) {
         if (Autenticacao::isChef()) {
             return redirectWithAlertError('Não é possível reservar menus logado como chef.')->back();
+        } else if (!$this->request->has(['qtd_clientes', 'data_reserva', 'horario_reserva'  ])) {
+            return redirectWithAlertWarning('Um erro ocorreu. Por favor tente novamente ou entre em contato com a equipe La Mesa Bonita.')->back();
         }
 
         $chef = $this->repository->chef->findBySlug($slugChef, true);
-
+            
         if ($tipo == self::TIPO_MENU) {
             $menu = $this->repository->menu->findBySlug($slug, true);
             $produto = $this->repository->menu->getDadosMenu($menu->id_menu);
@@ -96,6 +90,12 @@ class ReservaController extends Controller {
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
      */
     public function getPagamento($slugChef, $tipo, $slug) {
+        if (Autenticacao::isChef()) {
+            return redirectWithAlertError('Não é possível reservar menus logado como chef.')->back();
+        } else if (!$this->request->has(['qtd_clientes', 'data_reserva', 'horario_reserva'  ])) {
+            return redirectWithAlertWarning('Um erro ocorreu. Por favor tente novamente ou entre em contato com a equipe La Mesa Bonita.')->back();
+        }
+
         $chef = $this->repository->chef->findBySlug($slugChef, true);
 
         if ($tipo == self::TIPO_MENU) {

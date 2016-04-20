@@ -2,28 +2,23 @@
 
 namespace App\Business;
 
+use App\Exceptions\ApplicationException;
+use App\Exceptions\ErrorException;
 use App\Facades\Email;
-use Illuminate\Support\Facades\Auth;
 use App\Constants\ReservaConstants;
 use App\Facades\Autenticacao;
 use App\Formatters\DataFormatter;
 use App\Mappers\RepositoryMapper;
-use App\Repositories\ConfiguracaoSiteRepository;
-use App\Repositories\MenuRepository;
-use App\Repositories\PagamentoRepository;
-use App\Repositories\ReservaRepository;
 use App\Utils\Alert;
 use App\Constants\PagamentoConstants;
+use Carbon\Carbon;
 use DB;
 use Exception;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
-use Inacho\CreditCard;
 use Symfony\Component\Routing\Exception\MissingMandatoryParametersException;
 
 class ReservaBO {
 
-    private $user;
     private $moipBO;
     private $repository;
 
@@ -73,9 +68,8 @@ class ReservaBO {
             throw new MissingMandatoryParametersException;
         }
 
-        $taxaServicoLMB = $this->repository->configuracao->getTaxaLMB();
         $porcentagemChef = $this->repository->configuracao->getPorcentagemChef();
-        $precoTotal = ($dadosRecurso->preco * $dadosReserva['qtd_clientes']) + $taxaServicoLMB;
+        $precoTotal = $dadosRecurso->preco * $dadosReserva['qtd_clientes'];
         $vlrDivisaoChef = round(($precoTotal / 100) * $porcentagemChef, 2);
         $vlrDivisaoLMB  = $precoTotal -  $vlrDivisaoChef;
 
@@ -90,7 +84,7 @@ class ReservaBO {
             'horario_reserva'        => $dadosReserva['horario_reserva'],
             'qtd_clientes'           => $dadosReserva['qtd_clientes'],
             'preco_por_cliente'      => $dadosRecurso->preco,
-            'taxa_lmb'               => $taxaServicoLMB,
+            'taxa_lmb'               => 0,
             'preco_total'            => $precoTotal,
             'observacao'             => $dadosReserva['observacao'],
             'porcentagem_chef'       => $porcentagemChef,
@@ -116,6 +110,35 @@ class ReservaBO {
     }
 
     /**
+     * Verifica se a data em que o cliente está reservando está disponivel de acordo
+     * com a agenda do chef
+     *
+     * @param $idChef Código da Chef
+     * @param $dataReserva Data da Reserva
+     * @param $horarioReserva Horario da Reserva
+     * @return bool
+     */
+    public function validaDataReservaDisponivel($idChef, $dataReserva, $horarioReserva) {
+        $dataReserva = DataFormatter::formatarDataEN($dataReserva);
+
+        if ($dataReserva <= Carbon::now()->toDateString() || $this->repository->reserva->jaPossuiReservaEmData($idChef, $dataReserva)) {
+            return false;
+        }
+        
+        $horarioPorData = $this->repository->chef_agenda->getHorarioPorData($idChef, $dataReserva);
+
+        if (empty($horarioPorData)) {
+            return false;
+        }
+
+        $normalizarParaValidacao = intval(str_replace(':', '', $horarioReserva));
+        $horarioDe = intval(str_replace(':', '', substr($horarioPorData->hora_de, 0, 5)));
+        $horarioAte = intval(str_replace(':', '', substr($horarioPorData->hora_ate, 0, 5)));
+
+        return $horarioDe <= $normalizarParaValidacao && $normalizarParaValidacao <= $horarioAte;
+    }
+
+    /**
      * Responsável por efetuar uma nova reserva e solicitar ao MOIP a criação deste
      * Uma vez que a reserva foi criada, uma nova integração para o pagamento da mesma
      * é solicitada, e com os retornos dessas integrações, são salvos trackings/históricos
@@ -132,6 +155,11 @@ class ReservaBO {
             // Caso algum dado esteja inválido
             if (!$this->validarDadosReserva($dadosReserva)) {
                 throw new Exception("Informe todos os campos obrigatórios.");
+            }
+
+            // Verifica se a data de reserva está disponivel
+            if (!$this->validaDataReservaDisponivel($dadosReserva['id_chef'], $dadosReserva['data_reserva'], $dadosReserva['horario_reserva'])) {
+                throw new ErrorException('O chef não está disponível para reserva na data escolhida. Por favor escolha um dia e hora em que o chef esteja disponível para reserva.');
             }
 
             // Cria uma nova reserva e retorna a instancia do model App\Model\ReservaModel
@@ -168,14 +196,20 @@ class ReservaBO {
 
             DB::commit();
 
-            return redirect()->route(!$pagamentoRecusado ? 'reservar.sucesso': 'reservar.reprovado', [
+            return redirect()->route(!$pagamentoRecusado ? 'reservar.sucesso' : 'reservar.reprovado', [
                 'reserva' => $reserva->id_reserva
             ]);
 
+
+        } catch (ApplicationException $appExcpt) {
+            DB::rollBack();
+
+            throw $appExcpt;
         } catch (Exception $e) {
             DB::rollBack();
-            Alert::error("Atenção!", "Algo inesperado ocorreu e não foi possível finalizar a sua reserva. Por favor tente novamente ou entre em contato com a nossa equipe.");
-            return redirect()->back();
+
+            return redirectWithAlertError("Algo inesperado ocorreu e não foi possível finalizar a sua reserva. Por favor tente novamente ou entre em contato com a nossa equipe.")
+                ->back();
         }
 
     }
