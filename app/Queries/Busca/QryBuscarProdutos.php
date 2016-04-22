@@ -24,7 +24,7 @@ FROM (
           FROM
             avaliacao
           WHERE
-            fk_chef = chef.id_chef), 0), 1
+            fk_chef = chef.id_chef  and avaliacao.ind_aprovado = 1), 0), 1
         ) as chef_avaliacao_media,
 
         (
@@ -33,7 +33,7 @@ FROM (
           FROM
             avaliacao
           WHERE
-            fk_chef = chef.id_chef
+            fk_chef = chef.id_chef and avaliacao.ind_aprovado = 1
         ) as chef_avaliacao_count,
 
         (
@@ -42,7 +42,7 @@ FROM (
           FROM
             avaliacao
           WHERE
-            avaliacao.fk_chef = menu.fk_chef
+            avaliacao.fk_chef = menu.fk_chef and avaliacao.ind_aprovado = 1
         ) as reputacao
 
     FROM
@@ -88,7 +88,7 @@ FROM (
           FROM
             avaliacao
           WHERE
-            fk_chef = chef.id_chef), 0), 1
+            fk_chef = chef.id_chef and avaliacao.ind_aprovado = 1), 0), 1
         ) as chef_avaliacao_media,
 
         (
@@ -97,7 +97,7 @@ FROM (
           FROM
             avaliacao
           WHERE
-            fk_chef = chef.id_chef
+            fk_chef = chef.id_chef and avaliacao.ind_aprovado = 1
         ) as chef_avaliacao_count,
 
         (
@@ -106,7 +106,7 @@ FROM (
           FROM
             avaliacao
           WHERE
-            avaliacao.fk_chef = curso.fk_chef
+            avaliacao.fk_chef = curso.fk_chef and avaliacao.ind_aprovado = 1
         ) as reputacao
 
     FROM

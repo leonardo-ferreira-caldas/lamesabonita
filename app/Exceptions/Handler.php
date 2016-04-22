@@ -47,7 +47,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $e)
     {
         if ($this->isHttpException($e)) {
-            return view('errors.404');
+            return response()->view('errors.404', [], 404);
 
         } else if ($e instanceof UnauthorizedException) {
             return redirect()->to('login');

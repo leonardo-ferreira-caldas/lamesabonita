@@ -57,7 +57,6 @@
                 <div class="divider divider-center mb-leftmargin-xxsm"><i class="fa fa-cutlery"></i></div>
 
                 <a href="/registrar">
-                {{--<a href="/registrar">--}}
                     <div class="fancy-title title-dotted-border title-left mb-leftmargin-sm mb-nopadding">
                         <h3 class="mb-nopadding">Não possui <span>conta</span>? Cadastre-se agora mesmo</h3>
                     </div>

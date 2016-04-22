@@ -25,7 +25,18 @@
             </div>
             <div class="menu-price-box">
                 <span class='menu-price'>R$ {{ formatar_monetario($item->produto_preco) }}</span>
-                <span>/por pessoa para</span>
+                <span>/pessoa
+
+                @if(!empty($item->precos))
+                    para
+                    <select class="sm-form-control menu-list-select-guests" style="width: 70px">
+                        @foreach ($item->precos as $preco)
+                            <option value="{{ $preco['preco']}}">{{ $preco['qtd'] }}</option>
+                        @endforeach
+                    </select>
+                @endif
+
+                </span>
 
                 <a href="/chef/{{ $item->chef_slug }}/{{ $item->produto_tipo }}/{{ $item->produto_slug }}" class="pull-right button button-mini button-3d nomargin">
                     <i class="fa fa-book"></i> Ver {{ ucfirst($item->produto_tipo) }}

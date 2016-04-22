@@ -9,8 +9,8 @@ FROM (
 
     IFNULL(
         SUM(
-          (SELECT COUNT(0) FROM menu WHERE menu.fk_chef = resultado.fk_chef AND ind_ativo = 1) +
-          (SELECT COUNT(0) FROM curso WHERE curso.fk_chef = resultado.fk_chef  AND ind_ativo = 1)
+          (SELECT COUNT(0) FROM menu WHERE menu.fk_chef = resultado.fk_chef AND ind_ativo = 1 and fk_status = 2) +
+          (SELECT COUNT(0) FROM curso WHERE curso.fk_chef = resultado.fk_chef AND ind_ativo = 1 and fk_status = 2)
         ),
     0) as qtd,
 
@@ -33,8 +33,8 @@ FROM (
 
     IFNULL(
         SUM(
-          (SELECT COUNT(0) FROM menu WHERE menu.fk_chef = resultado.fk_chef AND ind_ativo = 1) +
-          (SELECT COUNT(0) FROM curso WHERE curso.fk_chef = resultado.fk_chef  AND ind_ativo = 1)
+          (SELECT COUNT(0) FROM menu WHERE menu.fk_chef = resultado.fk_chef AND ind_ativo = 1 and fk_status = 2) +
+          (SELECT COUNT(0) FROM curso WHERE curso.fk_chef = resultado.fk_chef  AND ind_ativo = 1 and fk_status = 2)
         ),
     0) as qtd,
 
@@ -57,8 +57,8 @@ FROM (
 
     IFNULL(
         SUM(
-          (SELECT COUNT(0) FROM menu WHERE menu.fk_chef = resultado.fk_chef AND ind_ativo = 1) +
-          (SELECT COUNT(0) FROM curso WHERE curso.fk_chef = resultado.fk_chef  AND ind_ativo = 1)
+          (SELECT COUNT(0) FROM menu WHERE menu.fk_chef = resultado.fk_chef AND ind_ativo = 1 and fk_status = 2) +
+          (SELECT COUNT(0) FROM curso WHERE curso.fk_chef = resultado.fk_chef  AND ind_ativo = 1 and fk_status = 2)
         ),
     0) as qtd,
 
@@ -81,8 +81,8 @@ FROM (
 
     IFNULL(
         SUM(
-          (SELECT COUNT(0) FROM menu WHERE menu.fk_chef = resultado.fk_chef AND ind_ativo = 1) +
-          (SELECT COUNT(0) FROM curso WHERE curso.fk_chef = resultado.fk_chef  AND ind_ativo = 1)
+          (SELECT COUNT(0) FROM menu WHERE menu.fk_chef = resultado.fk_chef AND ind_ativo = 1 and fk_status = 2) +
+          (SELECT COUNT(0) FROM curso WHERE curso.fk_chef = resultado.fk_chef  AND ind_ativo = 1 and fk_status = 2)
         ),
     0) as qtd,
 
@@ -105,8 +105,8 @@ FROM (
 
     IFNULL(
         SUM(
-          (SELECT COUNT(0) FROM menu WHERE menu.fk_chef = resultado.fk_chef AND ind_ativo = 1) +
-          (SELECT COUNT(0) FROM curso WHERE curso.fk_chef = resultado.fk_chef  AND ind_ativo = 1)
+          (SELECT COUNT(0) FROM menu WHERE menu.fk_chef = resultado.fk_chef AND ind_ativo = 1 and fk_status = 2) +
+          (SELECT COUNT(0) FROM curso WHERE curso.fk_chef = resultado.fk_chef  AND ind_ativo = 1 and fk_status = 2)
         ),
     0) as qtd,
 

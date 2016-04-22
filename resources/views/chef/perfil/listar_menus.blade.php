@@ -1,7 +1,5 @@
 @extends('template')
 
-@inject('menuRepository', 'App\Repositories\MenuRepository')
-
 @section('head')
     <link rel="stylesheet" href="/css/colorbox.css" type="text/css" />
 @endsection
@@ -21,7 +19,7 @@
             <h2>Menus</h2>
         </div>
 
-        @if($chef->menus->count() == 0)
+        @if(count($menus) == 0)
 
           <div class='col_full' style="margin-top: 70px;">
               <h3 class='text-center'>Este chef não possuí nenhum menu cadastrado.</h3>
@@ -29,13 +27,13 @@
 
         @else
 
-            @foreach($chef->menus as $menu)
+            @foreach($menus as $menu)
 
                 <div class="backgroundWhite nopadding">
 
-                    @if($menu->imagens->count() > 0)
+                    @if(count($menu->imagens) > 0)
 
-                        <div class="menu_cover" style="background-image: url('{{ route('image', ['w' => 730, 'h' => 250, 'i' => $menu->fotoCapa() ]) }}');"></div>
+                        <div class="menu_cover" style="background-image: url('{{ route('image', ['w' => 730, 'h' => 250, 'i' => $menu->foto_capa ]) }}');"></div>
 
                         <div class="padding20px menu-thumb-pictures">
 
@@ -61,59 +59,72 @@
 
                         <div class="padding20px">
                             <div class="fancy-title title-dotted-border title-left marginbottom10px">
-                                <h3>{{ $menu->titulo }}</h3>
+                                <h4>{{ $menu->titulo }}</h4>
                             </div>
 
                             <div class="bottommargin-xsm topmargin-xsm">
                                 @foreach ($menu->culinarias as $culinaria)
-                                    <span class="backgroundWhite bottommargin-xsm inline-block padding-xxsm rightmargin-xxsm">{{ $culinaria->nome_culinaria }}</span>
+                                    <span class="backgroundWhite bottommargin-xsm inline-block padding-xxsm rightmargin-xxsm">{{ $culinaria }}</span>
                                 @endforeach
 
                                 @foreach ($menu->refeicoes as $refeicao)
-                                    <span class="backgroundWhite bottommargin-xsm inline-block padding-xxsm rightmargin-xxsm">{{ $refeicao->nome_tipo_refeicao }}</span>
+                                    <span class="backgroundWhite bottommargin-xsm inline-block padding-xxsm rightmargin-xxsm">{{ $refeicao }}</span>
                                 @endforeach
                             </div>
 
 
                             <div class="detalhes-menu">
-                                @if(!empty($menu->aperitivo ))
-                                  <span>Aperitivos<em>:</em></span> {{ $menu->aperitivo }}
-                                  <div class="divider"><i class="icon-circle"></i></div>
-                                @endif
-
-                                @if(!empty($menu->entrada ))
-                                  <span>Prato de Entrada<em>:</em></span> {{ $menu->entrada }}
-                                  <div class="divider"><i class="icon-circle"></i></div>
-                                @endif
-
-                                <span>Prato Principal<em>:</em></span> {{ $menu->prato_principal }}
-                                <div class="divider"><i class="icon-circle"></i></div>
-
-                                @if(!empty($menu->sobremesa))
-                                  <span>Sobremesa<em>:</em></span> {{ $menu->sobremesa }}
-                                  <div class="divider"><i class="icon-circle"></i></div>
-                                @endif
-
-                                <div class="hide-when-closed">
-
-                                    <div class='col_full lista_incluso_preco'>
-                                        <fieldset class="marginbottom10px">
-                                            <legend class="marginbottom10px"><label for="titulo">O que está incluso no preço</label></legend>
-
-                                            @foreach ($menuRepository->buscarListaInclusoPreco() as $incluso_preco)
-                                                <div class="checkbox text-left font14px col_full notopmargin checkbox-normalize bottommargin-mini">
-
-                                                    <div>
-                                                        <i class="fa fa-check fa-fw"></i> {{ $incluso_preco->descricao }}
-                                                    </div>
-                                                </div>
-
-                                            @endforeach
-
-                                        </fieldset>
+                                @if(count($menu->precos) > 0)
+                                    <div class="fancy-title title-center text-left bottommargin-sm">
+                                        <h4 class="font17px color">Preços por Convidados</h4>
                                     </div>
 
+                                    <table class="table table-striped font14px table-condensed table-bordered text-center" style="width: 60%; margin: 0 20% 30px">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-center">Quantidade de Pessoas</th>
+                                            <th class="text-center">Valor</th>
+                                        </tr>
+                                        </thead>
+                                        @foreach ($menu->precos as $preco)
+                                            <tr>
+                                                <td>A partir de {{ $preco->qtd_minima_clientes }} pessoas</td>
+                                                <td>R$ {{ formatar_monetario($preco->preco) }} por pessoa</td>
+                                            </tr>
+                                        @endforeach
+                                    </table>
+                                @endif
+
+                                @if(!empty($menu->aperitivo))
+                                    <div class="fancy-title title-center text-left bottommargin-sm">
+                                        <h4 class="font17px color">Aperitivos</h4>
+                                    </div>
+
+                                    <div class="font14px text-center topmargin-sm bottommargin-sm">{{ $menu->aperitivo }}</div>
+                                @endif
+
+                                @if(!empty($menu->entrada))
+                                    <div class="fancy-title title-center topmargin-sm text-left bottommargin-sm">
+                                        <h4 class="font17px color">Prato de Entrada</h4>
+                                    </div>
+
+                                    <div class="font14px text-center topmargin-sm bottommargin-sm">{{ $menu->entrada }}</div>
+                                @endif
+
+                                <div class="fancy-title title-center topmargin-sm text-left bottommargin-sm">
+                                    <h4 class="font17px color">Prato Principal</h4>
                                 </div>
+
+                                <div class="font14px text-center topmargin-sm bottommargin-sm">{{ $menu->prato_principal }}</div>
+
+                                @if(!empty($menu->sobremesa))
+                                    <div class="fancy-title title-center topmargin-sm text-left bottommargin-sm">
+                                        <h4 class="font17px color">Sobremesa</h4>
+                                    </div>
+
+                                    <div class="font14px text-center topmargin-sm bottommargin-sm">{{ $menu->sobremesa }}</div>
+
+                                @endif
 
                             </div>
                         </div>
@@ -122,9 +133,8 @@
                         <div class="divider divider-left nomargin" style="margin-left: 10px !important;"><i class="fa fa-cutlery"></i></div>
 
                         <div class="bottom-menu">
-                            <h4>R$ {{ $menu->preco }} <small>/por pessoa</small></h4>
-                            {{--<a href="/reservar/escolher-data" class="pull-right button button-mini button-3d nomargin"><i class="fa fa-book"></i> Reservar</a>--}}
-                            <a href="#" class="pull-right item-menu-mais-detalhes button button-mini button-leaf button-3d nomargin"><i class="fa fa-plus"></i> Detalhes</a>
+                            <h4 class="lato" style="font-weight: 300;">R$ {{ $menu->preco }} <small>/por pessoa</small></h4>
+                            <a href="/chef/{{ $chef->slug }}/menu/{{ $menu->slug }}" class="pull-right button button-mini button-3d nomargin"><i class="fa fa-book"></i> Reservar</a>
                             <a href="/favorito/salvar/{{ $menu->slug }}/menu" class="pull-right button button-mini button-pink button-3d nomargin"><i class="fa fa-heart"></i> Favoritos</a>
                         </div>
 

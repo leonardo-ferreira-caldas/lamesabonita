@@ -70,11 +70,32 @@
 
                             <div class="detalhes-menu">
 
+                                @if(count($precos) > 0)
+                                    <div class="fancy-title title-center text-left bottommargin-sm">
+                                        <h4 class="font17px color">Preços por Alunos</h4>
+                                    </div>
+
+                                    <table class="table table-striped font14px table-condensed table-bordered text-center" style="width: 60%; margin: 0 20% 30px">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-center">Quantidade de Pessoas</th>
+                                            <th class="text-center">Valor</th>
+                                        </tr>
+                                        </thead>
+                                        @foreach ($precos as $preco)
+                                            <tr>
+                                                <td>A partir de {{ $preco->qtd_minima_clientes }} alunos(as)</td>
+                                                <td>R$ {{ formatar_monetario($preco->preco) }} por aluno(a)</td>
+                                            </tr>
+                                        @endforeach
+                                    </table>
+                                @endif
+
                                 <div class="fancy-title title-center topmargin-sm text-left bottommargin-sm">
                                     <h4 class="font17px color">Descrição do Curso</h4>
                                 </div>
 
-                                <div class="font14px text-center topmargin-sm bottommargin-sm">{{ $curso->descricao }}</div>
+                                <div class="font14px topmargin-sm bottommargin-sm">{!! nl2br($curso->descricao) !!}</div>
 
 
                                 <div class="fancy-title title-center topmargin-sm text-left bottommargin-sm">

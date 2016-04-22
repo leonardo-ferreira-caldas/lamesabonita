@@ -13,6 +13,7 @@ SELECT
   IFNULL(chef.avatar, :avatar) as avatar,
   concat(users.name, ' ', chef.sobrenome) as nome_completo,
   date_format(chef.data_nascimento, '%d/%m/%Y') as data_nascimento,
+  date_format(chef.created_at, '%d/%m/%Y %H:%i') as data_criacao,
   chef.cpf,
   chef.rg,
   chef.fk_sexo as sexo,
@@ -46,3 +47,5 @@ WHERE
 if (isset($params['id_status'])) {
     $query .= " AND chef.fk_status = :id_status";
 }
+
+$query .= " ORDER BY chef.created_at ASC";

@@ -210,7 +210,7 @@
                                     </tr>
                                     <tr>
                                         <td>Valor por Pessoa:</td>
-                                        <td class="text-right">R$ {{ formatar_monetario($produto->preco) }}</td>
+                                        <td class="text-right">R$ {{ formatar_monetario($valor_pessoa) }}</td>
                                     </tr>
                                     <tr>
                                         <td>Quantidade de Pessoas:</td>
@@ -218,7 +218,7 @@
                                     </tr>
                                     <tr>
                                         <td>Valor Total:</td>
-                                        <td class="text-right">R$ {{ formatar_monetario($produto->preco * $qtd_clientes) }}</td>
+                                        <td class="text-right">R$ {{ formatar_monetario($valor_pessoa* $qtd_clientes) }}</td>
                                     </tr>
                                 </tbody>
                             </table>

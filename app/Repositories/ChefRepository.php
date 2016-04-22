@@ -23,7 +23,6 @@ class ChefRepository extends AbstractRepository {
 
     private $status;
     private $chef;
-    private $chefLogado;
     private $contaBancaria;
 
     public function __construct(ChefModel $chef, ChefStatusRepository $status, ChefContaBancaria $contaBancaria) {
@@ -36,11 +35,16 @@ class ChefRepository extends AbstractRepository {
     /**
      * Cadastra um novo chef
      *
-     * @param int $id Código do Usuário (PK)
+     * @param User $usuario
      * @param array $dados
-     * @return Model\ChefModel
+     * @param array $moip
+     *
+     * @return ChefModel
      */
     public function cadastrar(User $usuario, $dados, $moip) {
+        $slug = Str::slug(sprintf("%s-%s", $usuario->id, $usuario->name));
+        $slug = rtrim($slug, '-');
+
         return $this->create([
             'id_chef'           => $usuario->id,
             'telefone'          => $dados['telefone'],
@@ -57,7 +61,7 @@ class ChefRepository extends AbstractRepository {
             'sobrenome'         => $dados['sobrenome'],
             'fk_status'         => ChefConstants::STATUS_AGUARDANDO_FINALIZACAO_PERFIL,
             'fk_selo_status'    => ChefConstants::SELO_NAO_POSSUI,
-            'slug'              => Str::slug(sprintf("%s-%s", $usuario->id, $usuario->name)),
+            'slug'              => $slug,
             'avatar'            => ChefConstants::DEFAULT_AVATAR,
             'foto_capa'         => ChefConstants::DEFAULT_CAPA,
             "moip_id"           => $moip['moip_id'],

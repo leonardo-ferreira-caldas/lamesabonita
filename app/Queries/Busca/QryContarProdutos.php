@@ -13,7 +13,7 @@ FROM (
           FROM
             avaliacao
           WHERE
-            avaliacao.fk_chef = menu.fk_chef
+            avaliacao.fk_chef = menu.fk_chef and avaliacao.ind_aprovado = 1
         ) as reputacao
     FROM
       menu
@@ -25,10 +25,6 @@ FROM (
       menu_culinaria ON menu_culinaria.fk_menu = menu.id_menu
     INNER JOIN
       menu_refeicao ON menu_refeicao.fk_menu = menu.id_menu
-    LEFT JOIN
-      menu_imagem ON menu_imagem.fk_menu = menu.id_menu AND menu_imagem.ind_capa = 1
-    LEFT JOIN
-      avaliacao ON avaliacao.fk_chef = chef.id_chef
     WHERE
       menu.ind_ativo = 1 AND
       menu.fk_status = 2
@@ -47,7 +43,7 @@ FROM (
           FROM
             avaliacao
           WHERE
-            avaliacao.fk_chef = curso.fk_chef
+            avaliacao.fk_chef = curso.fk_chef and avaliacao.ind_aprovado = 1
         ) as reputacao
     FROM
       curso
@@ -59,10 +55,6 @@ FROM (
       chef ON chef.id_chef = curso.fk_chef
     INNER JOIN
       users ON chef.id_chef = users.id
-    LEFT JOIN
-      curso_imagem ON curso_imagem.fk_curso = curso.id_curso AND curso_imagem.ind_capa = 1
-    LEFT JOIN
-      avaliacao ON avaliacao.fk_chef = chef.id_chef
     WHERE
       curso.ind_ativo = 1 AND
       curso.fk_status = 2

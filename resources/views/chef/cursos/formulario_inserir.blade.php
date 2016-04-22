@@ -44,6 +44,20 @@
                 </div>
             </div>
 
+            <div class='col_full'>
+                <fieldset class="marginbottom10px">
+                    <legend class="marginbottom10px"><label for="titulo">Preços por convidados <small>(opcional)</small></label></legend>
+
+                    <div id="prices_rules">
+                        <span class="preco_fallback">Nenhum preço por convidado cadastrado.</span>
+                    </div>
+
+                </fieldset>
+                <a href="#" id="add_price_menu" class="text-center mb-button-full button button-small button-3d nomargin">
+                    <i class="fa fa-plus"></i> Adicionar Preço Por Convidados
+                </a>
+            </div>
+
             <div class='col_full lista_incluso_preco'>
                 <fieldset class="marginbottom10px">
                     <legend class="marginbottom10px"><label for="titulo">O que está incluso no preço</label></legend>
@@ -154,4 +168,10 @@
             $("form.use-loading").formLoading();
         });
     </script>
+@endsection
+
+@section('footer.html')
+    <div class='col_full prices-template single-price-menu marginbottom10px'>
+        @include('chef.cursos.formulario_preco_por_clientes')
+    </div>
 @endsection

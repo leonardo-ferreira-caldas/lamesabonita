@@ -70,7 +70,28 @@
 
                         <div class="detalhes-menu">
 
-                            @if(!empty($menu->aperitivo ))
+                            @if(count($precos) > 0)
+                                <div class="fancy-title title-center text-left bottommargin-sm">
+                                    <h4 class="font17px color">Preços por Convidados</h4>
+                                </div>
+
+                                <table class="table table-striped font14px table-condensed table-bordered text-center" style="width: 60%; margin: 0 20% 30px">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Quantidade de Pessoas</th>
+                                            <th class="text-center">Valor</th>
+                                        </tr>
+                                    </thead>
+                                    @foreach ($precos as $preco)
+                                        <tr>
+                                            <td>A partir de {{ $preco->qtd_minima_clientes }} pessoas</td>
+                                            <td>R$ {{ formatar_monetario($preco->preco) }} por pessoa</td>
+                                        </tr>
+                                    @endforeach
+                                </table>
+                            @endif
+
+                            @if(!empty($menu->aperitivo))
                                 <div class="fancy-title title-center text-left bottommargin-sm">
                                     <h4 class="font17px color">Aperitivos</h4>
                                 </div>
@@ -78,7 +99,7 @@
                                 <div class="font14px text-center topmargin-sm bottommargin-sm">{{ $menu->aperitivo }}</div>
                             @endif
 
-                            @if(!empty($menu->entrada ))
+                            @if(!empty($menu->entrada))
                                 <div class="fancy-title title-center topmargin-sm text-left bottommargin-sm">
                                     <h4 class="font17px color">Prato de Entrada</h4>
                                 </div>
@@ -92,7 +113,7 @@
 
                             <div class="font14px text-center topmargin-sm bottommargin-sm">{{ $menu->prato_principal }}</div>
 
-                            @if(!empty($menu->sobremesa ))
+                            @if(!empty($menu->sobremesa))
                                 <div class="fancy-title title-center topmargin-sm text-left bottommargin-sm">
                                     <h4 class="font17px color">Sobremesa</h4>
                                 </div>

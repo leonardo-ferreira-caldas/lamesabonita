@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\ProdutoConstants;
+use App\Constants\ReservaConstants;
 use Illuminate\Http\Request;
 use App\Facades\Autenticacao;
 use App\Http\Requests;
@@ -15,9 +17,6 @@ class ReservaController extends Controller {
     private $request;
     private $repository;
     private $bo;
-
-    const TIPO_MENU = 'menu';
-    const TIPO_CURSO = 'curso';
 
     public function __construct(Request $request, BusinessMapper $bmapper, RepositoryMapper $mapper) {
         if (!Autenticacao::isLogado() && $request->is("reservar/*")) {
@@ -50,14 +49,7 @@ class ReservaController extends Controller {
         }
 
         $chef = $this->repository->chef->findBySlug($slugChef, true);
-            
-        if ($tipo == self::TIPO_MENU) {
-            $menu = $this->repository->menu->findBySlug($slug, true);
-            $produto = $this->repository->menu->getDadosMenu($menu->id_menu);
-        } else {
-            $curso = $this->repository->curso->findBySlug($slug, true);
-            $produto = $this->repository->curso->getDadosCurso($curso->id_curso);
-        }
+        list($produto, $vlrPessoa) = $this->bo->reserva->getDadosProduto($tipo, $slug, $this->request->get('qtd_clientes'));
 
         $enderecos = $this->bo->cliente->buscarEnderecosUsuarioLogado();
 
@@ -70,13 +62,13 @@ class ReservaController extends Controller {
             'chef'              => $chef,
             'tipo'              => $tipo,
             'produto'           => $produto,
+            'valor_pessoa'      => $vlrPessoa,
             'estados'           => $this->repository->geo->listarEstados(),
             'enderecos'         => $enderecos,
             'qtd_clientes'      => $this->request->get('qtd_clientes'),
             'data_reserva'      => $this->request->get('data_reserva'),
             'horario_reserva'   => $this->request->get('horario_reserva'),
-            'observacao'        => $this->request->get('observacao'),
-            'taxa_lmb'          => $this->repository->configuracao->getTaxaLMB()
+            'observacao'        => $this->request->get('observacao')
         ]);
     }
 
@@ -98,26 +90,20 @@ class ReservaController extends Controller {
 
         $chef = $this->repository->chef->findBySlug($slugChef, true);
 
-        if ($tipo == self::TIPO_MENU) {
-            $menu = $this->repository->menu->findBySlug($slug, true);
-            $produto = $this->repository->menu->getDadosMenu($menu->id_menu);
-        } else {
-            $curso = $this->repository->curso->findBySlug($slug, true);
-            $produto = $this->repository->curso->getDadosCurso($curso->id_curso);
-        }
+        list($produto, $vlrPessoa) = $this->bo->reserva->getDadosProduto($tipo, $slug, $this->request->get('qtd_clientes'));
 
         return view('reservar.efetuar_pagamento', [
             'chef'              => $chef,
             'tipo'              => $tipo,
             'produto'           => $produto,
+            'valor_pessoa'      => $vlrPessoa,
             'chave_publica'     => $this->repository->configuracao->getPublicKey(),
             'estados'           => $this->repository->geo->listarEstados(),
             'endereco'          => $this->bo->cliente->buscarDadosEndereco($this->request->get('id_degustador_endereco')),
             'qtd_clientes'      => $this->request->get('qtd_clientes'),
             'data_reserva'      => $this->request->get('data_reserva'),
             'horario_reserva'   => $this->request->get('horario_reserva'),
-            'observacao'        => $this->request->get('observacao'),
-            'taxa_lmb'          => $this->repository->configuracao->getTaxaLMB()
+            'observacao'        => $this->request->get('observacao')
         ]);
     }
 

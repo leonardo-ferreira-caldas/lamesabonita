@@ -87,6 +87,6 @@ class ChefModel extends Model
     }
 
     public function getAvaliacaoMedia() {
-        return number_format(AvaliacaoModel::where('fk_chef', $this->id_chef)->avg('nota'), 1);
+        return number_format(AvaliacaoModel::where('fk_chef', $this->id_chef)->where('ind_aprovado', 1)->avg('nota'), 1);
     }
 }

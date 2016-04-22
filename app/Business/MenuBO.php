@@ -176,6 +176,7 @@ class MenuBO {
      * Deleta uma imagem de um menu
      *
      * @param int $idMenuImagem
+     * @throws HttpException
      * @return void
      */
     public function deletarImagem($idMenu, $idMenuImagem) {
@@ -196,8 +197,9 @@ class MenuBO {
     /**
      * Define uma imagem do menu como capa
      *
+     * @param $idMenu
      * @param $idMenuImagem
-     * @throws Exception
+     * @throws HttpException
      */
     public function definirComoCapa($idMenu, $idMenuImagem) {
 
@@ -210,4 +212,5 @@ class MenuBO {
         $this->repository->menu_imagem->atualizarFotoCapa($idMenu, $idMenuImagem);
 
     }
+    
 }

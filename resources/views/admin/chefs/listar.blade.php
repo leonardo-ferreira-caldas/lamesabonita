@@ -59,6 +59,7 @@
                                     <th>Foto Perfil</th>
                                     <th>Nome Completo</th>
                                     <th>Status</th>
+                                    <th>Data Cadastro</th>
                                     <th nowrap="nowrap"></th>
                                 </tr>
                                 </thead>
@@ -78,6 +79,7 @@
                                         </td>
                                         <td>@{{ registro.nome_completo }}</td>
                                         <td style="color: @{{ registro.status_cor }}">@{{ registro.status_descricao }}</td>
+                                        <td>@{{ registro.data_criacao }}</td>
                                         <td nowrap="nowrap">
 
                                             <a class="btn btn-sm btn-gray pull-right" href="/backoffice/chef/detalhes/@{{ registro.slug }}">

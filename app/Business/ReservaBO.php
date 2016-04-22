@@ -2,12 +2,14 @@
 
 namespace App\Business;
 
+use App\Constants\ProdutoConstants;
 use App\Exceptions\ApplicationException;
 use App\Exceptions\ErrorException;
 use App\Facades\Email;
 use App\Constants\ReservaConstants;
 use App\Facades\Autenticacao;
 use App\Formatters\DataFormatter;
+use App\Mappers\BusinessMapper;
 use App\Mappers\RepositoryMapper;
 use App\Utils\Alert;
 use App\Constants\PagamentoConstants;
@@ -21,10 +23,12 @@ class ReservaBO {
 
     private $moipBO;
     private $repository;
+    private $bo;
 
-    public function __construct(MoipBO $moipBO, RepositoryMapper $mapper) {
+    public function __construct(MoipBO $moipBO, BusinessMapper $bo, RepositoryMapper $mapper) {
         $this->moipBO       = $moipBO;
         $this->repository   = $mapper;
+        $this->bo           = $bo;
     }
 
     /**
@@ -59,17 +63,19 @@ class ReservaBO {
         if (!empty($dadosReserva['id_menu'])) {
             $dadosRecurso = $this->repository->menu->findById($dadosReserva['id_menu']);
             $idMenu = $dadosReserva['id_menu'];
+            $preco = $this->getValorPorPessoa($idMenu, $dadosRecurso->preco, $dadosReserva['qtd_clientes'], ProdutoConstants::PRODUTO_MENU);
 
         } else if (!empty($dadosReserva['id_curso'])) {
             $dadosRecurso = $this->repository->curso->findById($dadosReserva['id_curso']);
             $idCurso = $dadosReserva['id_curso'];
+            $preco = $this->getValorPorPessoa($idCurso, $dadosRecurso->preco, $dadosReserva['qtd_clientes'], ProdutoConstants::PRODUTO_CURSO);
 
         } else {
             throw new MissingMandatoryParametersException;
         }
 
         $porcentagemChef = $this->repository->configuracao->getPorcentagemChef();
-        $precoTotal = $dadosRecurso->preco * $dadosReserva['qtd_clientes'];
+        $precoTotal = $preco * $dadosReserva['qtd_clientes'];
         $vlrDivisaoChef = round(($precoTotal / 100) * $porcentagemChef, 2);
         $vlrDivisaoLMB  = $precoTotal -  $vlrDivisaoChef;
 
@@ -83,7 +89,7 @@ class ReservaBO {
             'data_reserva'           => DataFormatter::formatarDataEN($dadosReserva['data_reserva']),
             'horario_reserva'        => $dadosReserva['horario_reserva'],
             'qtd_clientes'           => $dadosReserva['qtd_clientes'],
-            'preco_por_cliente'      => $dadosRecurso->preco,
+            'preco_por_cliente'      => $preco,
             'taxa_lmb'               => 0,
             'preco_total'            => $precoTotal,
             'observacao'             => $dadosReserva['observacao'],
@@ -288,6 +294,70 @@ class ReservaBO {
      */
     public function getReservasChefLogado() {
         return $this->repository->reserva->getReservasByChefId(Autenticacao::getId());
+    }
+
+    /**
+     * Busca o valor de acordo com a quantidade de pessoas
+     *
+     * @param $idMenu
+     * @param float $preco
+     * @param $qtdPessoas
+     * @param int $tipoProduto
+     *
+     * @return float
+     */
+    public function getValorPorPessoa($idProduto, $precoProduto, $qtdPessoas, $tipoProduto) {
+        if ($tipoProduto == ProdutoConstants::PRODUTO_MENU) {
+            $precosPorConvidados = $this->repository->menu_preco->getPrecosPorConvidado($idProduto);
+        } else {
+            $precosPorConvidados = $this->repository->curso_preco->getPrecosPorConvidado($idProduto);
+        }
+
+        if (empty($precosPorConvidados)) {
+            return $precoProduto;
+        }
+
+        $precosPorConvidados = $precosPorConvidados->all();
+
+        usort($precosPorConvidados, function($a, $b) {
+            if ($a->qtd_minima_clientes == $b->qtd_minima_clientes) {
+                return 0;
+            }
+
+            return $a->qtd_minima_clientes < $b->qtd_minima_clientes ? -1 : 1;
+        });
+
+        foreach ($precosPorConvidados as $loop) {
+            if ($qtdPessoas <= $loop->qtd_minima_clientes) {
+                $precoProduto = $loop->preco;
+                break;
+            }
+        }
+
+        return $precoProduto;
+    }
+
+
+    /**
+     * Busca os dados do produto que esta sendo reservado
+     *
+     * @param $tipo
+     * @param $slug
+     * @return array
+     */
+    public function getDadosProduto($tipo, $slug, $qtdClientes) {
+
+        if ($tipo == strtolower(ReservaConstants::RESERVA_TIPO_MENU)) {
+            $menu = $this->repository->menu->findBySlug($slug, true);
+            $produto = $this->repository->menu->getDadosMenu($menu->id_menu);
+            $vlrPessoa = $this->getValorPorPessoa($menu->id_menu, $menu->preco, $qtdClientes, ProdutoConstants::PRODUTO_MENU);
+        } else {
+            $curso = $this->repository->curso->findBySlug($slug, true);
+            $produto = $this->repository->curso->getDadosCurso($curso->id_curso);
+            $vlrPessoa = $this->getValorPorPessoa($curso->id_curso, $curso->preco, $qtdClientes, ProdutoConstants::PRODUTO_CURSO);
+        }
+
+        return [$produto, $vlrPessoa];
     }
 
 }

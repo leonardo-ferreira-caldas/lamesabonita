@@ -42,10 +42,10 @@
                 <i class="fa fa-camera fa-fw"></i>&nbsp; Galeria de Fotos
                 <span class="badge">{{ count($chef->galeria()) }}</span>
             </a>
-            <a class="list-group-item" href="{{ route('chef_perfil_avaliacoes', ['slug' => $chef->slug]) }}">
-                <i class="fa fa-comments fa-fw"></i>&nbsp; Avaliações
-                <span class="badge">{{ $chef->avaliacoes->count() }}</span>
-            </a>
+            {{--<a class="list-group-item" href="{{ route('chef_perfil_avaliacoes', ['slug' => $chef->slug]) }}">--}}
+                {{--<i class="fa fa-comments fa-fw"></i>&nbsp; Avaliações--}}
+                {{--<span class="badge">{{ $chef->avaliacoes->count() }}</span>--}}
+            {{--</a>--}}
         </div>
     </div>
 

@@ -12,7 +12,7 @@ FROM (
   FROM
     menu
   WHERE
-    menu.ind_ativo = 1
+    menu.ind_ativo = 1 and menu.fk_status = 2
 
   UNION ALL
 
@@ -22,7 +22,7 @@ FROM (
   FROM
     curso
   WHERE
-    curso.ind_ativo = 1
+    curso.ind_ativo = 1 and curso.fk_status = 2
 
 ) as resultado
 ";

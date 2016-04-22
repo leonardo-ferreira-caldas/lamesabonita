@@ -17,7 +17,7 @@ class CursoRepository extends AbstractRepository {
      *
      * @param string $slug
      * @param bool $throwNotFoundException
-     * @return Model/MenuModel
+     * @return MenuModel
      */
     public function findBySlug($slug, $throwNotFoundException = false) {
         $curso = $this->findFirst([
@@ -35,6 +35,7 @@ class CursoRepository extends AbstractRepository {
      * Atualiza os dados de um curso usando o slug
      *
      * @param string $slug
+     * @param array $dados
      * @return void
      */
     public function updateBySlug($slug, $dados) {
@@ -48,7 +49,7 @@ class CursoRepository extends AbstractRepository {
      *
      * @param array $dados
      * @param int $idChef
-     * @return Model/CursoModel
+     * @return CursoModel
      */
     public function inserir($idChef, $dados) {
         $status = isset($dados['fk_status']) ? $dados['fk_status'] : CursoConstants::STATUS_AGUARANDO_APROVACAO;
@@ -65,6 +66,7 @@ class CursoRepository extends AbstractRepository {
         ]);
 
         $slug = Str::slug(sprintf('%s-%s', $curso->id_curso, $dados['titulo']));
+        $slug = rtrim($slug, '-');
 
         $this->updateById($curso->id_curso, [
             'slug' => $slug
@@ -78,9 +80,9 @@ class CursoRepository extends AbstractRepository {
     /**
      * Atualiza os dados de um curso
      *
-     * @param int $idMenu
+     * @param int $idCurso
      * @param array $dados
-     * @return Model/CursoModel
+     * @return CursoModel
      */
     public function atualizar($idCurso, $dados) {
         $dadosAtualizar = [

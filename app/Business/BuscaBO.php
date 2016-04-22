@@ -190,6 +190,7 @@ class BuscaBO
     /**
      * Retorna a quantiadde de pagians
      *
+     * @param int $qtdRegistrosEncontrados
      * @return int
      */
     private function getQtdPaginas($qtdRegistrosEncontrados)
@@ -198,7 +199,7 @@ class BuscaBO
     }
 
     /**
-     * Carrega precos pro clientes dos produtos
+     * Carrega precos por clientes dos produtos
      *
      * @param array $produtos
      * @return array
@@ -241,22 +242,42 @@ class BuscaBO
         foreach ($produtos as &$produto) {
             $preco = $produto->produto_preco;
             $precosFinais = [];
+            $agrupadorLoop = null;
+            $counter = 0;
+            $ultimoQtdPessoas = 1;
 
-            if ($produto->produto_tipo == BuscaConstants::BUSCA_TIPO_MENU) {
-                for ($i = 1; $i <= $produto->produto_qtd_maxima_cliente; $i++) {
-                    if (isset($agrupadoPorIdMenu[$produto->produto_id][$i]) && $agrupadoPorIdMenu[$produto->produto_id][$i] < $preco) {
-                        $preco = $agrupadoPorIdMenu[$produto->produto_id][$i];
-                    }
-                    $precosFinais[] = ['preco' => $preco, 'qtd' => $i];
+            if ($produto->produto_tipo == BuscaConstants::BUSCA_TIPO_MENU && isset($agrupadoPorIdMenu[$produto->produto_id])) {
+                $agrupadorLoop = $agrupadoPorIdMenu[$produto->produto_id];
+            } else if ($produto->produto_tipo == BuscaConstants::BUSCA_TIPO_CURSO && isset($agrupadoPorIdCurso[$produto->produto_id])) {
+                $agrupadorLoop = $agrupadoPorIdCurso[$produto->produto_id];
+            }
+
+            if (is_null($agrupadorLoop)) {
+                continue;
+            }
+
+            foreach ($agrupadorLoop as $qtdPessoas => $valor) {
+                $counter++;
+                if ($qtdPessoas == 1) continue;
+                $descricao = "$ultimoQtdPessoas a " . ($qtdPessoas - 1);
+
+                if ($ultimoQtdPessoas == ($qtdPessoas - 1)) {
+                    $descricao = $ultimoQtdPessoas;
                 }
 
-            } else {
-                for ($i = 1; $i <= $produto->produto_qtd_maxima_cliente; $i++) {
-                    if (isset($agrupadoPorIdMenu[$produto->produto_id][$i]) && $agrupadoPorIdMenu[$produto->produto_id][$i] < $preco) {
-                        $preco = $agrupadoPorIdMenu[$produto->produto_id][$i];
+                if ($counter == count($agrupadorLoop)) {
+                    if (empty($precosFinais)) {
+                        $precosFinais[] = ['preco' => $preco, 'qtd' => $descricao];
+                    } else {
+                        $precosFinais[] = ['preco' => $valor, 'qtd' => $descricao];
                     }
-                    $precosFinais[] = ['preco' => $preco, 'qtd' => $i];
+
+                    $precosFinais[] = ['preco' => $valor, 'qtd' => "$qtdPessoas+"];
+                } else {
+                    $precosFinais[] = ['preco' => empty($precosFinais) ? $preco : $valor, 'qtd' => $descricao];
                 }
+
+                $ultimoQtdPessoas = $qtdPessoas;
             }
 
             $produto->precos = $precosFinais;

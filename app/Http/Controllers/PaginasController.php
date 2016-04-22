@@ -154,7 +154,7 @@ class PaginasController extends Controller
 
         return view('chef.perfil.agenda', [
             'chef'      => $chef,
-            'schedules' => $this->repository->chef_agenda->getAgendaCalendario($chef->id_chef)
+            'schedules' => json_encode($this->repository->chef_agenda->getAgendaCalendario($chef->id_chef))
         ]);
     }
 
@@ -186,6 +186,7 @@ class PaginasController extends Controller
         return view('chef.perfil.menu_detalhes', [
             'chef'          => $chef,
             'menu'          => $menu,
+            'precos'        => $this->repository->menu_preco->getPrecosPorConvidado($menu->id_menu),
             'avaliacoes'    => $this->repository->avaliacao->getAvaliacaoesMenu($menu->id_menu),
             'datas_reserva' => json_encode($this->repository->chef_agenda->getAgendaDisponivel($chef->id_chef)),
             'incluso_preco' => $this->bo->menu->getInclusoPreco()
@@ -207,6 +208,7 @@ class PaginasController extends Controller
         return view('chef.perfil.curso_detalhes', [
             'chef'          => $chef,
             'curso'         => $curso,
+            'precos'        => $this->repository->curso_preco->getPrecosPorConvidado($curso->id_curso),
             'avaliacoes'    => $this->repository->avaliacao->getAvaliacaoesCurso($curso->id_curso),
             'datas_reserva' => json_encode($this->repository->chef_agenda->getAgendaDisponivel($chef->id_chef)),
             'incluso_preco' => $this->bo->curso->getInclusoPreco()
@@ -234,8 +236,20 @@ class PaginasController extends Controller
      */
     public function getChefPerfilMenus($slug)
     {
+        $chef = $this->repository->chef->findBySlug($slug, true);
+
+        $menus = array_map(function($menu) {
+            $menu->precos = $this->repository->menu_preco->getPrecosPorConvidado($menu->id_menu);
+            $menu->imagens = $this->repository->menu_imagem->getImagens($menu->id_menu);
+            $menu->culinarias = explode(' / ', $menu->culinarias);
+            $menu->refeicoes = explode(' / ', $menu->tipos_refeicoes);
+
+            return $menu;
+        }, $this->repository->menu->getMenusByChefId($chef->id_chef));
+
         return view('chef.perfil.listar_menus', [
-            'chef' => $this->repository->chef->findBySlug($slug, true)
+            'chef'  => $chef,
+            'menus' => $menus
         ]);
     }
 
@@ -247,8 +261,20 @@ class PaginasController extends Controller
      */
     public function getChefPerfilCursos($slug)
     {
+        $chef = $this->repository->chef->findBySlug($slug, true);
+
+        $cursos = array_map(function($curso) {
+            $curso->precos = $this->repository->curso_preco->getPrecosPorConvidado($curso->id_curso);
+            $curso->imagens = $this->repository->curso_imagem->getImagens($curso->id_curso);
+            $curso->culinarias = explode(' / ', $curso->culinarias);
+            $curso->refeicoes = explode(' / ', $curso->tipos_refeicoes);
+
+            return $curso;
+        }, $this->repository->curso->getCursosByChefId($chef->id_chef));
+
         return view('chef.perfil.listar_cursos', [
-            'chef' => $this->repository->chef->findBySlug($slug, true)
+            'chef'  => $chef,
+            'cursos' => $cursos
         ]);
     }
 

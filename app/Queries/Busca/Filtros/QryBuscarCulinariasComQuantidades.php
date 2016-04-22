@@ -8,11 +8,11 @@ SELECT
 
     (SELECT count(0)
       FROM menu_culinaria
-      INNER JOIN menu ON menu_culinaria.fk_menu = menu.id_menu AND menu.ind_ativo = 1
+      INNER JOIN menu ON menu_culinaria.fk_menu = menu.id_menu AND menu.ind_ativo = 1 AND menu.fk_status = 2
       WHERE fk_culinaria = culinaria.id_culinaria) +
 
     (SELECT count(0) FROM curso_culinaria
-     INNER JOIN curso ON curso_culinaria.fk_curso = curso.id_curso AND curso.ind_ativo = 1
+     INNER JOIN curso ON curso_culinaria.fk_curso = curso.id_curso AND curso.ind_ativo = 1 AND curso.fk_status = 2
      WHERE fk_culinaria = culinaria.id_culinaria)
 
   , 0) AS qtd_produtos

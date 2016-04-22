@@ -8,11 +8,11 @@ SELECT
   IFNULL(
 
     (SELECT count(0) FROM menu_refeicao
-    INNER JOIN menu ON menu_refeicao.fk_menu = menu.id_menu AND menu.ind_ativo = 1
+    INNER JOIN menu ON menu_refeicao.fk_menu = menu.id_menu AND menu.ind_ativo = 1 AND menu.fk_status = 2
     WHERE fk_tipo_refeicao = tipo_refeicao.id_tipo_refeicao) +
 
     (SELECT count(0) FROM curso_refeicao
-    INNER JOIN curso ON curso_refeicao.fk_curso = curso.id_curso AND curso.ind_ativo = 1
+    INNER JOIN curso ON curso_refeicao.fk_curso = curso.id_curso AND curso.ind_ativo = 1 and curso.fk_status = 2
     WHERE fk_tipo_refeicao = tipo_refeicao.id_tipo_refeicao)
 
   , 0) AS qtd_produtos

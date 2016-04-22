@@ -65,7 +65,10 @@ class UserBO
     /**
      * Insere uma nova avaliação para o usuário que está logado
      *
-     * @param $dadosAvaliacao
+     * @param array $dadosAvaliacao
+     * @throws NotAllowedException
+     * @throws ErrorException
+     * @return null
      */
     public function salvarAvaliacao($dadosAvaliacao)
     {
@@ -105,6 +108,7 @@ class UserBO
      * Altera a senha do usuario logado
      *
      * @param string $novaSenha
+     * @throws ErrorException
      * @return void
      */
     public function alterarSenha($senhaAtual, $novaSenha)

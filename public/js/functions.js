@@ -55,7 +55,7 @@ $("#add_price_menu").click(function(evt) {
 });
 
 $('body').delegate(".menu-list-select-guests", 'change', function() {
-	$(this).parent().find('.menu-price').text('R$ ' + $(this).val());
+	$(this).parent().parent().find('.menu-price').text('R$ ' + $(this).val().toString().replace(".", ','));
 });
 
 $("body").delegate('.remove-price-menu', 'click', function(evt) {

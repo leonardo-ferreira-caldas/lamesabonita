@@ -66,6 +66,7 @@ class MenuRepository extends AbstractRepository {
         ]);
 
         $slug = Str::slug(sprintf('%s-%s', $menu->id_menu, $dados['titulo']));
+        $slug = rtrim($slug, '-');
 
         $this->updateById($menu->id_menu, [
             'slug' => $slug

@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Model\MenuPrecoModel;
+use Illuminate\Support\Collection;
 
 class MenuPrecoRepository extends AbstractRepository {
 
@@ -40,7 +41,7 @@ class MenuPrecoRepository extends AbstractRepository {
      * Retorna todos os preços de um menu
      *
      * @param int $idMenu
-     * @return array
+     * @return Collection
      */
     public function getPrecosPorConvidado($idMenu) {
         return $this->find([
