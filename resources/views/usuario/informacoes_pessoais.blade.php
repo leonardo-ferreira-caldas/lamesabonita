@@ -145,8 +145,8 @@
                 </div>
 
                 <div class='col_full'>
-                    <label for="bairro">Complemento <small>*</small></label>
-                    <input required type="text" id="complemento" name="complemento" value="{{ old('complemento') ?: $dados->complemento }}" class="sm-form-control required">
+                    <label for="bairro">Complemento</label>
+                    <input type="text" id="complemento" name="complemento" value="{{ old('complemento') ?: $dados->complemento }}" class="sm-form-control required">
                 </div>
 
             </div>
