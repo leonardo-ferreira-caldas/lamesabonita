@@ -239,7 +239,7 @@ class ChefRepository extends AbstractRepository {
      * @param $saldo
      */
     public function adicionarSaldo($id, $saldo) {
-        Query::update("Chef/Saldo/UpdAdicionarSaldo", [
+        Query::update("Chef/Saque/UpdAdicionarSaldo", [
             'id'    => $id,
             'saldo' => $saldo
         ]);
