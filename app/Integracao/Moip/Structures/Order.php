@@ -56,12 +56,6 @@ class Order implements JsonSerializable {
                     "detail"    => $this->menuOuCurso->titulo,
                     "quantity"  => $this->reserva->qtd_clientes,
                     "price"     => $this->reserva->preco_por_cliente
-                ],
-                [
-                    "product"   => 'Taxa de Serviço La Mesa Bonita',
-                    "quantity"  => 1,
-                    "detail"    => "Taxa cobrada pela utilização do serviço prestado pela empresa La Mesa Bonita na contratação de chef's.",
-                    "price"     => $this->reserva->taxa_lmb
                 ]
             ],
             "receivers" => [
