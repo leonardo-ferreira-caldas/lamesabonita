@@ -1,5 +1,7 @@
 <?php
 
+Route::post('integracao/atualizar/pagamento', 'IntegracaoController@postAtualizarIntegracaoPagamento')->name('integracao.atualizar_integracao');
+
 Route::group(['middleware' => ['web']], function () {
 
     Route::get('log', function() {
@@ -36,7 +38,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('chef/{slug_chef}/menu/{slug_menu}',     'PaginasController@getMenuDetalhes')->name("detalhes_menu");
     Route::get('chef/{slug_chef}/curso/{slug_menu}',    'PaginasController@getCursoDetalhes');
     Route::post('reserva/status',                       'ReservaController@postAtualizarDadosReserva')->name('reserva.atualizar_status');
-    Route::post('integracao/atualizar/pagamento',       'IntegracaoController@postAtualizarIntegracaoPagamento')->name('integracao.atualizar_integracao');
 
     Route::get('filtrar-cidades/{state}',               'GeoController@getCidadesEstados');
     Route::post('buscar-cidades',                       'GeoController@getCidadesByName');
